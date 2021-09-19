@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import info.thecodinglive.model.Member;
 import info.thecodinglive.repository.MemberRepository;
 
+
 @Service
 public class MemberService {
 	@Autowired
