@@ -40,6 +40,10 @@ public class MyBatisConfig {
 		sqlSessionFactoryBean.setMapperLocations((new PathMatchingResourcePatternResolver()
 				.getResources("classpath:sample/mapper/*.xml")));
 		
+		sqlSessionFactoryBean.setMapperLocations((new PathMatchingResourcePatternResolver()
+				.getResources("classpath:sample/mapper/member/*.xml")));
+		
+		
 		return sqlSessionFactoryBean.getObject();
 	}
 	

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1 nitial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/Match/css/main.css">
+<style>
+#wrap
+{
+	width: 70%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#wrap div:first-child {
+	width: 70%;
+	box-sizing:border-box;
+	float: left;
+}
+#wrap div:last-child {
+	width: 70%;
+	
+	box-sizing:border-box;
+	float: center;
+} 
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<a href="/Match/main.jsp" class="logo"><strong>matching</strong>
+				<span>kick together</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<!-- <nav id="menu">
+			<th:block page="/WEB-INF/view/nav.jsp" />
+			<jsp:include page="/WEB-INF/view/nav.jsp" />
+		</nav> -->
+		<section id="one">
+			<div id="wrap">
+		<header style= "text-align: center">
+			<h1 align="center">회원가입</h1>
+		</header>
+		
+<div>
+<input type="text" id="member_id" placeholder="아이디"><br>
+<input type="text" id="member_name" placeholder="이름"><br>
+<input type="password" id="member_password" placeholder="패스워드"><br>
+<input type="text" id="member_tel" placeholder="전화번호"><br>
+<button  type="button" class="btn btn-info" id="register">등록</button>
+</div>
+
+<script >
+		$('#register').click(function(){
+				 var jsonData=JSON.stringify({
+				memberId:$('#member_id').val(),
+				memberName:$('#member_name').val(),
+				memberPassword:$('#member_password').val(),
+				memberTel:$('#member_tel').val() 
+				/* alert("헬로"); */
+			});
+		 	$.ajax({
+				url:"http://localhost:9080/member/register",
+				type:"POST",
+				data:jsonData,
+				contentType:"application/json",
+				dataType:"json",
+				success:function(){
+					alert('가입 성공');
+					location.href='/hello.html';
+				},
+				error:function(){
+					alert(jsonData);
+					alert('회원가입 실패');
+				}
+			});
+		});
+	
+	</script>
+</body>
+</html>
