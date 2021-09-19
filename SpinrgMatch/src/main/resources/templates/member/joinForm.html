@@ -60,9 +60,9 @@
 <button  type="button" class="btn btn-info" id="register">등록</button>
 </div>
 
-<script >
+<script>
 		$('#register').click(function(){
-				 var jsonData=JSON.stringify({
+				 var member=JSON.stringify({
 				memberId:$('#member_id').val(),
 				memberName:$('#member_name').val(),
 				memberPassword:$('#member_password').val(),
@@ -70,17 +70,17 @@
 				/* alert("헬로"); */
 			});
 		 	$.ajax({
-				url:"http://localhost:9080/member/register",
+				url:"/member/register",
 				type:"POST",
-				data:jsonData,
-				contentType:"application/json",
-				dataType:"json",
+				data:member,
+				contentType:"application/json;charset=utf-8",
+				
 				success:function(){
 					alert('가입 성공');
 					location.href='/hello.html';
 				},
 				error:function(){
-					alert(jsonData);
+					alert(member);
 					alert('회원가입 실패');
 				}
 			});

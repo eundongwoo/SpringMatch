@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,19 +18,22 @@ import info.thecodinglive.service.MemberService;
 
 
 
-@RestController
+@Controller
 @RequestMapping(value ="/member")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/register" , method=RequestMethod.POST)
-	public void insert(Member member) {
+	@PostMapping(value="/register")
+	public ResponseEntity<String> insert(@RequestBody Member member) {
 		System.out.println(member.getMemberName());
-	
 		memberService.register(member);
+		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		
+		
+		return entity;
 //		return new ResponseEntity<Member>(member,HttpStatus.CREATED);
+		
 	}
 }
