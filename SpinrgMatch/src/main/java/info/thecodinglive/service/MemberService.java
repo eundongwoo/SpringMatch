@@ -15,4 +15,8 @@ public class MemberService {
 	public void register(Member member) {
 		memberRepository.adduser(member);
 	}
+	
+	public void login(String memberId) {
+		memberRepository.loginUser(memberId);
+	}
 }

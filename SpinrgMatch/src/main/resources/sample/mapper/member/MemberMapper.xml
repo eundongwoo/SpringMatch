@@ -9,7 +9,15 @@
 			]]>
 		</insert>
 
-
+	<select id="loginUser" parameterType="map" resultMap="loginResultMap">
+		<![CDATA[
+			SELECT member_id FROM member WHERE member_id=#{memberId}
+			]]>
+	</select>
+	
+	<resultMap type="info.thecodinglive.model.Member" id="loginResultMap">
+		<result property="memberId" column="member_id"/>
+	</resultMap>
 
 </mapper>
 

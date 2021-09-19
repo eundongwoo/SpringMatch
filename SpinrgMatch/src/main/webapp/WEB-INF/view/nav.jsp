@@ -23,8 +23,8 @@
                     	</li>
                  </ul>
                  <ul class="actions stacked">
-						<li><a href="join.do" class="button primary fit">회원가입</a></li>
-						<li><a href="login.do" class="button fit">로그인</a></li>
+						<li><a href="member/joinForm" class="button primary fit">회원가입</a></li>
+						<li><a href="member/login" class="button fit">로그인</a></li>
 				 </ul>
                  	   	
                     </c:if>

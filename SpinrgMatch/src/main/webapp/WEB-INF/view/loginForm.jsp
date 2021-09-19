@@ -1,3 +1,4 @@
+<%-- <%@page import="member.service.User"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,11 +7,11 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>로그인</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1 nitial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="/Match/css/main.css">
-<style>
+<style type="text/css">
 #wrap
 {
 	width: 70%;
@@ -27,7 +28,7 @@
 	
 	box-sizing:border-box;
 	float: center;
-} 
+}  
 </style>
 </head>
 <body class="is-preload">
@@ -48,68 +49,63 @@
 		<nav id="menu">
 			<jsp:include page="/WEB-INF/view/nav.jsp" />
 		</nav>
+		<!-- One -->
 		<section id="one">
 			<div id="wrap">
-		<header style= "text-align: center">
-			<h1 align="center">회원가입</h1>
-		</header>
-
+				<header style= "text-align: center">
+					<h1 align="center" >로그인</h1>
+				</header>
+						
 <div id="wrap" style="text-align: center">
 
-<input id="member_id" type="text" name="id"  placeholder="ID">
-<%-- <c:if test="${errors.id}">아이디를 입력하세요.</c:if>
-<c:if test="${errors.duplicateId}">이미 사용중인 아이디 입니다.</c:if> --%>
-<br>
-<input id="member_name" type="text" name="name"  placeholder="name">
-<%-- <c:if test="${errors.name}">이름을 입력하세요.</c:if> --%>
-<br>
+<c:if test="${errors.idOrPwNotMatch}">
+</c:if>
 
-<input id="member_password" type="password" name="password" placeholder="Password">
-<%-- <c:if test="${errors.password}">패스워드를 입력하세요.</c:if> --%>
-<br>
+<p>
+	<input id="member_id" type="text" name="id" value="${param.id}" placeholder="ID">
+	<%-- <c:if test="${errors.idOrPwNotMatch }">
+	아이디와 암호가 일치하지 않습니다.
+	</c:if> --%>
+</p>
 
-<input type="password" name="confirm" placeholder="PasswordConfirm">
-<%-- <c:if test="${errors.confirm}">패스워드 확인을 입력하세요.</c:if>
-<c:if test="${errors.notMatch}">패스워드와 확인이 일치하지 않습니다.</c:if> --%>
-<br>
-
-<input id="member_tel" type="text" name="tel" value="${param.tel}" placeholder="ex) 010-1234-5678">
-<%-- <c:if test="${errors.tel}">전화번호를 입력하세요.</c:if> --%>
-<br>
-<button  type="button" class="btn btn-info" id="register">등록</button>
+<p>
+	<input id="member_password" type="password" name="password" placeholder="Password" >
+	<%-- <c:if test="${errors.password}">
+	암호를 입력하세요.
+	</c:if> --%>
+</p>
+<button  type="button" class="btn btn-info" id="login">로그인</button>
 
 </div>
 </div>
 </section>
 </div>
 <script>
-		$('#register').click(function(){
+		$('#login').click(function(){
 				 var member=JSON.stringify({
-				memberId:$('#member_id').val(),
-				memberName:$('#member_name').val(),
-				memberPassword:$('#member_password').val(),
-				memberTel:$('#member_tel').val() 
+				memberId:$('#member_id').val(),				
+				memberPassword:$('#member_password').val()
+				
 				/* alert("헬로"); */
 			});
 		 	$.ajax({
-				url:"/member/register",
+				url:"/member/login",
 				type:"POST",
 				data:member,
 				contentType:"application/json;charset=utf-8",
 				
 				success:function(){
-					alert('가입 성공');
+					alert('로그인 성공');
 					location.href='/main';
 				},
 				error:function(){
 					alert(member);
-					alert('회원가입 실패');
+					alert('로그인 실패');
 				}
 			});
 		});
 	
 	</script>
-	
 	<!-- Scripts -->
 	<script src="/Match/js/jquery.min.js"></script>
 	<script src="/Match/js/jquery.scrolly.min.js"></script>

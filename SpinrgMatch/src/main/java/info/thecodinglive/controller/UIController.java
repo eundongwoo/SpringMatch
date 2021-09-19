@@ -18,11 +18,20 @@ public class UIController {
 //			mv.setViewName("joinForm");
 //			return mv;
 			return "joinForm";
-			//ModelAndView
 		}
 		
-		@GetMapping(value = "/hello")
-		public String helloForm() {
-			return "hellojsp";
+//		@GetMapping(value = "/hello")
+//		public String helloForm() {
+//			return "hellojsp";
+//		}
+		
+		@GetMapping(value = "/main")
+		public String mainForm() {
+			return "main";
+		}
+		
+		@GetMapping(value = "/member/login")
+		public String loginForm() {
+			return "loginForm";
 		}
 }

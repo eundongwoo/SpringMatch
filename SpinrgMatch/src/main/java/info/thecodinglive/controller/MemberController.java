@@ -36,4 +36,16 @@ public class MemberController {
 //		return new ResponseEntity<Member>(member,HttpStatus.CREATED);
 		
 	}
+	
+	@PostMapping(value="/login")
+	public ResponseEntity<String> login(@RequestBody Member member) {
+		System.out.println(member.getMemberName());
+//		memberService.register(member);
+		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+		
+		
+		return entity;
+//		return new ResponseEntity<Member>(member,HttpStatus.CREATED);
+		
+	}
 }
