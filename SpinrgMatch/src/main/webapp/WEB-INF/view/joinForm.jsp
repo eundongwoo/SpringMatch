@@ -73,7 +73,7 @@
 <c:if test="${errors.notMatch}">패스워드와 확인이 일치하지 않습니다.</c:if> --%>
 <br>
 
-<input id="member_tel" type="text" name="tel" value="${param.tel}" placeholder="ex) 010-1234-5678">
+<input id="member_tel" type="text" name="tel" value="" placeholder="ex) 010-1234-5678">
 <%-- <c:if test="${errors.tel}">전화번호를 입력하세요.</c:if> --%>
 <br>
 <button  type="button" class="btn btn-info" id="register">등록</button>
@@ -92,14 +92,14 @@
 				/* alert("헬로"); */
 			});
 		 	$.ajax({
-				url:"/register",
+				url:"/member/register",
 				type:"POST",
 				data:member,
 				contentType:"application/json;charset=utf-8",
 				
 				success:function(){
 					alert('가입 성공');
-					location.href='/viewMain';
+					location.href='/main';
 				},
 				error:function(){
 					alert(member);
