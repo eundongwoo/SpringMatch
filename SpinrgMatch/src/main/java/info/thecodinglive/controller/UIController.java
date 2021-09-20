@@ -26,6 +26,10 @@ public class UIController {
 			return "main";
 		}
 		
+		@GetMapping(value = "/map")
+		public String showMap() {
+			return "map";
+		}
 		
 		
 }
