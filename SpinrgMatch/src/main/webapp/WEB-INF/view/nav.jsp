@@ -13,13 +13,13 @@
                 <ul class="links">
                     <c:if test="${empty authUser}">
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="/Match/main.jsp">HOME</a>
+                        	<a class="nav-link active" aria-current="page" href="/viewMain">HOME</a>
                     	</li>               
                     	<li class="nav-item">
                         	<a class="nav-link active" aria-current="page" href="article_list.do">자유게시판</a>
                     	</li>
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="reserve.do">예약페이지</a>
+                        	<a class="nav-link active" aria-current="page" href="/viewLogin">예약페이지</a>
                     	</li>
                  </ul>
                  <ul class="actions stacked">
@@ -35,13 +35,13 @@
                  <ul class="links">
                     <c:if test="${!empty authUser}">
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="/Match/main.jsp">HOME</a>
+                        	<a class="nav-link active" aria-current="page" href="/viewMain">HOME</a>
                     	</li>
                     	 <li class="nav-item">
                         	<a class="nav-link active" aria-current="page" href="mypage.do">마이페이지</a>
                     	</li> 
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="reserve.do">예약페이지</a>
+                        	<a class="nav-link active" aria-current="page" href="/viewReserve">예약페이지</a>
                     	</li>                
                     	<li class="nav-item">
                         	<a class="nav-link active" aria-current="page" href="article_list.do">자유게시판</a>

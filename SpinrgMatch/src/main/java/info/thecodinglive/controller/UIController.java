@@ -34,4 +34,9 @@ public class UIController {
 		public String loginForm() {
 			return "loginForm";
 		}
+		
+		@GetMapping(value = "/viewReserve")
+		public String reserveForm() {
+			return "reserve";
+		}
 }
