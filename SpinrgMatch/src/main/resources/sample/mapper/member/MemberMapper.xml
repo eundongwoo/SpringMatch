@@ -9,15 +9,15 @@
 			]]>
 		</insert>
 
-	<select id="loginUser" parameterType="map" resultMap="loginResultMap">
+	<select id="loginUser" parameterType="map" resultType="info.thecodinglive.model.Member">
 		<![CDATA[
-			SELECT member_id FROM member WHERE member_id=#{memberId}
+			SELECT * FROM member WHERE member_id=#{memberId} and member_password=#{memberPassword}
 			]]>
 	</select>
 	
-	<resultMap type="info.thecodinglive.model.Member" id="loginResultMap">
+	<!-- <resultMap type="info.thecodinglive.model.Member" id="loginResultMap">
 		<result property="memberId" column="member_id"/>
-	</resultMap>
+	</resultMap> -->
 
 </mapper>
 

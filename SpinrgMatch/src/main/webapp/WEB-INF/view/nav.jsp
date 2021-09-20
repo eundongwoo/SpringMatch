@@ -23,10 +23,12 @@
                     	</li>
                  </ul>
                  <ul class="actions stacked">
-						<li><a href="member/joinForm" class="button primary fit">회원가입</a></li>
-						<li><a href="member/login" class="button fit">로그인</a></li>
+						<li><a href="/viewJoinForm" class="button primary fit">회원가입</a></li>
+						<li><a href="<c:url value='/viewLogin'/>" class="button fit">로그인</a></li>
 				 </ul>
-                 	   	
+                 	  
+
+
                     </c:if>
                     
                     
@@ -45,15 +47,16 @@
                         	<a class="nav-link active" aria-current="page" href="article_list.do">자유게시판</a>
                     	</li>                 
                                     
-                    	<c:if test="${authUser.author eq '1'}">
+                    	 <c:if test="${authUser.author eq '1'}">
                     		<li class="nav-item">
                         		<a class="nav-link active" aria-current="page" href="admin.do">풋살장 등록</a>
                     		</li>
-                    	</c:if> 
+                    	</c:if>  
                     	 <ul class="actions stacked">
 								<li>
-								<a href="logout.do" class="button primary fit">로그아웃</a>
+								<a href="<c:url value='/logout' />" class="button primary fit">로그아웃</a>
 								</li>
+								 
 						 </ul>         
                     </c:if>
                 </ul>                                                         

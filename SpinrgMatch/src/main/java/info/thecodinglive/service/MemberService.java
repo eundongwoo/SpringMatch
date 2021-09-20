@@ -16,7 +16,12 @@ public class MemberService {
 		memberRepository.adduser(member);
 	}
 	
-	public void login(String memberId) {
-		memberRepository.loginUser(memberId);
+	public Member login(String memberId, String memberPassword) {
+		Member member = memberRepository.loginUser(memberId, memberPassword);	
+		if(member==null) {
+			System.out.println("일치하지 않습니다");
+			return null;
+		}else
+		return member;
 	}
 }

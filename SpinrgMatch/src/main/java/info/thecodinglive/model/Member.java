@@ -14,7 +14,7 @@ public class Member {
 	private String memberName;
 	private String memberPassword;
 	private String memberTel;
-	//private String author;
+	private String author;
 	
 	
 	

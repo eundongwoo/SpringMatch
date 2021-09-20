@@ -89,14 +89,14 @@
 				/* alert("헬로"); */
 			});
 		 	$.ajax({
-				url:"/member/login",
+				url:"/login",
 				type:"POST",
 				data:member,
 				contentType:"application/json;charset=utf-8",
 				
 				success:function(){
 					alert('로그인 성공');
-					location.href='/main';
+					location.href='/viewMain';
 				},
 				error:function(){
 					alert(member);

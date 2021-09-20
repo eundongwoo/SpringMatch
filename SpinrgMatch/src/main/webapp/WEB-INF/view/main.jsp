@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <%
 	String message=(String)request.getAttribute("message");
 	System.out.print("메세지----->"+message);
@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
 	<!-- Wrapper -->
 	<div id="wrapper">
 
@@ -35,6 +34,9 @@
 			</nav>
 		</header>
 
+		<%-- <c:if test="${!empty authUser}">
+		${authUser.author}
+		</c:if> --%>
 
 		<!-- Menu -->
 		<nav id="menu">

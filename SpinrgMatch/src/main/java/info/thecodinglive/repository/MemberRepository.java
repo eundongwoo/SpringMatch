@@ -20,10 +20,11 @@ public class MemberRepository {
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addUser",member);
 		
 	}
-	public void loginUser(String memberId) {
-		HashMap<String, Object> params = new HashMap();
+	public Member loginUser(String memberId, String memberPassword) {
+		HashMap<String, String> params = new HashMap();
 		params.put("memberId", memberId);
-		sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"loginUser",params);
+		params.put("memberPassword", memberPassword);
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"loginUser",params);
 		
 	}
 	

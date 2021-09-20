@@ -13,7 +13,7 @@ import info.thecodinglive.service.MemberService;
 @Controller
 public class UIController {
 	
-		@GetMapping(value = "/member/joinForm")
+		@GetMapping(value = "/viewJoinForm")
 		public String joinForm() {
 //			mv.setViewName("joinForm");
 //			return mv;
@@ -25,12 +25,12 @@ public class UIController {
 //			return "hellojsp";
 //		}
 		
-		@GetMapping(value = "/main")
+		@GetMapping(value = "/viewMain")
 		public String mainForm() {
 			return "main";
 		}
 		
-		@GetMapping(value = "/member/login")
+		@GetMapping(value = "/viewLogin")
 		public String loginForm() {
 			return "loginForm";
 		}
