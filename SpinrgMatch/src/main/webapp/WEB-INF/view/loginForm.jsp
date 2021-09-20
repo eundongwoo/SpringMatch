@@ -82,21 +82,21 @@
 </div>
 <script>
 		$('#login').click(function(){
-				 var member=JSON.stringify({
+				var member=JSON.stringify({
 				memberId:$('#member_id').val(),				
 				memberPassword:$('#member_password').val()
 				
 				/* alert("헬로"); */
 			});
 		 	$.ajax({
-				url:"/login",
+				url:"/member/login",
 				type:"POST",
 				data:member,
 				contentType:"application/json;charset=utf-8",
 				
 				success:function(){
 					alert('로그인 성공');
-					location.href='/viewMain';
+					location.href='/main';
 				},
 				error:function(){
 					alert(member);

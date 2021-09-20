@@ -23,10 +23,23 @@ import info.thecodinglive.service.MemberService;
 
 
 @Controller
+@RequestMapping(value="/member")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@GetMapping(value = "/loginForm")
+	public String loginForm() {
+		return "loginForm";
+	}
+	
+	@GetMapping(value = "/joinForm")
+	public String joinForm() {
+//		mv.setViewName("joinForm");
+//		return mv;
+		return "joinForm";
+	}
 	
 	@PostMapping(value="/register")
 	public ResponseEntity<String> insert(@RequestBody Member member) {
@@ -68,7 +81,7 @@ public class MemberController {
 //		}
 	
 	@GetMapping(value="/logout")
-	public String logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, ModelAndView mv) throws IOException {
 		
 		HttpSession session=request.getSession();
 		if(session !=null)
@@ -76,9 +89,9 @@ public class MemberController {
 			session.invalidate();			
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/viewMain");
+		mv.setViewName("/main");
 		
-		return null;
+		return mv;
 		}
 	
 }

@@ -11,27 +11,21 @@ import info.thecodinglive.service.MemberService;
 
 
 @Controller
+@RequestMapping(value="/")
 public class UIController {
 	
-		@GetMapping(value = "/viewJoinForm")
-		public String joinForm() {
-//			mv.setViewName("joinForm");
-//			return mv;
-			return "joinForm";
-		}
+
 		
 //		@GetMapping(value = "/hello")
 //		public String helloForm() {
 //			return "hellojsp";
 //		}
 		
-		@GetMapping(value = "/viewMain")
+		@GetMapping(value = "/main")
 		public String mainForm() {
 			return "main";
 		}
 		
-		@GetMapping(value = "/viewLogin")
-		public String loginForm() {
-			return "loginForm";
-		}
+		
+		
 }

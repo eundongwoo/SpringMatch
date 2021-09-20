@@ -23,8 +23,8 @@
                     	</li>
                  </ul>
                  <ul class="actions stacked">
-						<li><a href="/viewJoinForm" class="button primary fit">회원가입</a></li>
-						<li><a href="<c:url value='/viewLogin'/>" class="button fit">로그인</a></li>
+						<li><a href="/member/joinForm" class="button primary fit">회원가입</a></li>
+						<li><a href="/member/loginForm" class="button fit">로그인</a></li>
 				 </ul>
                  	  
 
@@ -54,7 +54,7 @@
                     	</c:if>  
                     	 <ul class="actions stacked">
 								<li>
-								<a href="<c:url value='/logout' />" class="button primary fit">로그아웃</a>
+								<a href="/member/logout" class="button primary fit">로그아웃</a>
 								</li>
 								 
 						 </ul>         
