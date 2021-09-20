@@ -1,15 +1,15 @@
 <%@page import="java.util.concurrent.Callable"%>
-<%@page import="calendar.model.Calendar"%>
+<%-- <%@page import="calendar.model.Calendar"%> --%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="map.model.Place"%>
+<%-- <%@page import="map.model.Place"%> --%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%
+<%-- <%
 Calendar cal= (Calendar)session.getAttribute("calendar");
 List<String> list=(List<String>)request.getSession().getAttribute("timeList");
 HashMap<String, Integer> hm =(HashMap<String, Integer>)  request.getSession().getAttribute("timeMap");
@@ -17,7 +17,7 @@ if(cal!=null) {
 	System.out.println("여기");
 System.out.println(cal.getDate());
 }
-%>
+%> --%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -107,7 +107,7 @@ System.out.println(cal.getDate());
     		날짜:<input type="text" name="date" id="date" value="" readonly="readonly"><br>  
     		</c:if>	 
     		<c:if test="${!empty param.year }">  		
-    		날짜:<input type="text" name="date" id="date" value="<%=cal.getYear()+"년"+cal.getMonth()+"월"+cal.getDate()+"일"%>" readonly="readonly"><br> 
+    		<%-- 날짜:<input type="text" name="date" id="date" value="<%=cal.getYear()+"년"+cal.getMonth()+"월"+cal.getDate()+"일"%>" readonly="readonly"><br>  --%>
     		</c:if>   		
     		시간:<input type="text" name="time" id="time" readonly="readonly">
     		 <div id="locationss"></div>	  		
@@ -119,22 +119,21 @@ System.out.println(cal.getDate());
 				<!-- Main -->
 					 
 						<!-- One -->
-							<section id="one" class="tiles">							
+							<%-- <section id="one" class="tiles">							
 									 <table>
 					    				<tr>
 					    					<td class="one"><jsp:include page="/WEB-INF/view/map.jsp" flush="false"/></td>					    									
 					    				</tr>					    																					
     								</table>								
-							</section>
+							</section> --%>
 
 						<!-- Two -->
-							<section id="two" class="tiles">							
-									 <table>
-					    				<tr>
-					    					<td class="two"><jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/></td>				    									
-					    				</tr>					    																					
-    								</table>								
-							</section>
+														
+					    			 <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/>
+									<jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/>				    									
+					    									    																					
+    																
+						
 						
 							
 							<form action="timesearch.do" method="Post" style="text-align: center">								
@@ -144,7 +143,7 @@ System.out.println(cal.getDate());
 						    </form>						   
 						    <div id="hidden_div" style="text-align: center">
     						<p>시간</p>
-    						<%
+    		<%-- 				<%
 
 	 		if(list==null) {System.out.println("list는 null");} else {
 	 			
@@ -166,19 +165,14 @@ System.out.println(cal.getDate());
 					
 				java.util.Calendar cal3 =java.util.Calendar.getInstance();
 				if(cal!=null) {
-					System.out.println("받아온 날짜"+cal.getYear()+"년"+cal.getMonth()+"월"+cal.getDate()+"일");
-					System.out.println("setting전날짜"+cal3.getTime());
+					
 					cal3.set(Integer.parseInt(cal.getYear()), Integer.parseInt(cal.getMonth())-1, Integer.parseInt(cal.getDate()));
-					System.out.println("setting후 받아온 날짜"+cal3.getTime());		//예약시점의 날짜 (시간은 현재시점과 같음)
-					System.out.println("boolean값:"+(cal3.getTime()!=currentTime));
+				
 				}
 				
-				System.out.println(cal3.getTime()+"::::"+currentTime);
+				
 				int b= hm.get(time);
-				System.out.println("!check"+!check);
-				System.out.println("cal3.getTime()"+cal3.getTime());
-				System.out.println("currentTime"+currentTime);
-				System.out.println("cal3.getTime()!=currentTime"+(cal3.getTime().after(currentTime)));
+				
 				if(b<3 && (!check || (cal3.getTime().after(currentTime)))) { 
 				
 		%>		
@@ -207,7 +201,7 @@ System.out.println(cal.getDate());
 
 	 		
 		%> 
-							</div>
+							</div> --%>
 						
 							<br><br>
 			<!-- Scripts -->
