@@ -27,6 +27,6 @@ public class ReservceController {
 		List<Place> placeList = reserveService.showPlace();
 		System.out.println("풋살장이름:"+placeList.get(0).getPlaceName());	//test
 		httpSession.setAttribute("placeList", placeList);
-		return "main";
+		return "reserve";
 	}
 }

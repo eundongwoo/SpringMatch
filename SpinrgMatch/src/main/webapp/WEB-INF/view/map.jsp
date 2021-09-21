@@ -58,6 +58,14 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
 
 <script style="color:red">
+var placeArray = new Array();
+<c:forEach items="${placeList}" var="place">
+	placeArray.push({
+		placeAddr:"${place.placeAddr}",
+		placeName:"${place.placeName}"
+	});
+</c:forEach>
+/* var placeList='${placeList}'; */
 
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -108,18 +116,15 @@ geocoder.addressSearch(address, function(result, status) {
 });  
 }
 
-
-<%-- <%
-for(int j=0; j<list.size(); j++) {
-%>
-searchLocation('<%=list.get(j).getF_addr()%>', '<%=list.get(j).getF_name()%>');
-<%
+for(var j=0; j<placeArray.length; j++) {
+	searchLocation(placeArray[j].placeAddr,placeArray[j].placeName);
 }
-%> --%>
-alert(${placeList});
+
+
 
 
 </script>
 <!-- </div> -->
+${placeList }
 </body>
 </html>

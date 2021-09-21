@@ -52,7 +52,7 @@
 				<div class="content">
 					<p>친구는 없지만 축구를 좋아하는 사람들은 여기로</p>
 					<ul class="actions">
-						<li><a href="reserve.do" class="button next scrolly">예약하기</a></li>
+						<li><a href="/reserve/reserveHome" class="button next scrolly">예약하기</a></li>
 					</ul>
 				</div>
 			</div>
