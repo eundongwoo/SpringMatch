@@ -18,6 +18,7 @@ import info.thecodinglive.model.Member;
 import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.PlaceAndCalendar;
+import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.ReserveInfo;
 import info.thecodinglive.service.MemberService;
 import info.thecodinglive.service.ReserveService;
@@ -71,6 +72,16 @@ public class ReservceController {
 		System.out.println("operationTimeList정보"+operationTimeList.get(1).getFullTime());
 		httpSession.setAttribute("operationTimeList", operationTimeList);
 		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = "/reserveSubmit")
+	public String reserveSubmit(@RequestBody ReserveDTO reserveDTO, HttpSession httpSession) {
+				
+		System.out.println("operationTimelist정보"+operationTimeList.get(0).getFullTime());
+		System.out.println("operationTimeList정보"+operationTimeList.get(1).getFullTime());
+		httpSession.setAttribute("operationTimeList", operationTimeList);
+		return "main";
 	}
 	
 	

@@ -100,7 +100,7 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<a href="/Match/main.jsp" class="logo"><strong>matching</strong>
+			<a href="/main" class="logo"><strong>matching</strong>
 				<span>kick together</span></a>
 			<nav>
 				<a href="#menu">Menu</a>
@@ -479,7 +479,7 @@ for(var j=0; j<placeArray.length; j++) {
 		
 		<!-- input3개-------------------------------- -->
 		 <div class="quickmenu">
-		   <form action="reserve.do" method="post"> 
+		   <form action="/reserve/reserveSubmit" method="post"> 
    			<table>
     		<td>  		
     		풋살장:	
@@ -501,9 +501,6 @@ for(var j=0; j<placeArray.length; j++) {
 		    </form>		    
 			</div> 			
 			
-						    
-						    				   
-						    
 						     
 						    <script>
 						    	$("#timelook").click(function() {
