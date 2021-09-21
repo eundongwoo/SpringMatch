@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import info.thecodinglive.model.CalendarDate;
 import info.thecodinglive.model.Member;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.ReserveInfo;
@@ -49,6 +50,15 @@ public class ReservceController {
 		httpSession.setAttribute("reserveInfo", reserveInfo);
 		ReserveInfo ts=(ReserveInfo)httpSession.getAttribute("reserveInfo");
 		System.out.println("test"+ts.getPlaceName());
+		return new ResponseEntity<ReserveInfo>(reserveInfo,HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/calendar")
+	public ResponseEntity<ReserveInfo> getCalendarDate(@RequestBody CalendarDate calendarDate, HttpSession httpSession) {
+		System.out.println(calendarDate.getCalendarFullDate());		
+		ReserveInfo reserveInfo=(ReserveInfo)httpSession.getAttribute("reserveInfo");
+		reserveInfo.setDate(calendarDate.getCalendarFullDate());
+		httpSession.setAttribute("reserveInfo", reserveInfo);
 		return new ResponseEntity<ReserveInfo>(reserveInfo,HttpStatus.OK);
 	}
 }

@@ -108,7 +108,7 @@
                     // @param 평일 날짜 데이터 삽입
 
                     column.innerText = autoLeftPad(day, 2);
-
+					
 
 
                     // @param 일요일인 경우
@@ -186,7 +186,7 @@
                     if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
                         column.style.backgroundColor = "#FFFFFF";
                         column.style.cursor = "pointer";
-                        column.onclick = function () { calendarChoiceDay(this); alert(day);}
+                        column.onclick = function () { calendarChoiceDay(this); }
                     }
                 }
 
@@ -211,12 +211,37 @@
 
             // @param 선택일 체크 표시
             column.style.backgroundColor = "#FF9999";
-
+			
 			
 
             // @param 선택일 클래스명 변경
-
             column.classList.add("choiceDay");
+            
+            //클릭하면  ajax 방식으로 날짜 보냄
+            var month=today.getMonth()+1;
+            var calendarfulldate=today.getFullYear()+"년"+month+"월"+column.innerText+"일";
+            alert(calendarfulldate);
+            var calendarDate=JSON.stringify({
+            	calendarYear:today.getFullYear(),				
+            	calendarMonth:month,
+				calendarDay:column.innerText,
+				calendarFullDate:calendarfulldate
+				
+			});
+            $.ajax({
+				url:"/reserve/calendar",
+				type:"POST",
+				data:calendarDate,
+				contentType:"application/json;charset=utf-8",
+				
+				success:function(){
+					alert('달력값 보내기 성공');
+					
+				},
+				error:function(){
+					alert('달력값 보내기 실패');
+				}
+			}); 
         }
 
         /**
@@ -259,5 +284,6 @@
         </thead>
         <tbody></tbody>
     </table>
+    ${reserveInfo.date}
 </body>
 </html>
