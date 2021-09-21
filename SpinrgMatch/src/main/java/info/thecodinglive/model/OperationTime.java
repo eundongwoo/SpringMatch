@@ -5,7 +5,7 @@ import lombok.Data;
 //운영시간대 정보
 @Data
 public class OperationTime {
-	private int id;
+	private int operationId;
 	private int placeId;
 	private String startTime;
 	private String endTime;
