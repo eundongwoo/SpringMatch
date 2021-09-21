@@ -529,8 +529,8 @@ for(var j=0; j<placeArray.length; j++) {
 						    
 						    				   
 						     <input id="timelook" type="button" value="시간 조회">
+						     <div id="timezone"></div>
 						     
-						     <input id="test" type="text" value="${operationTimeList[0].fullTime}">
 						    <script>
 						    	$("#timelook").click(function() {
 						    		alert('hello');
@@ -546,7 +546,16 @@ for(var j=0; j<placeArray.length; j++) {
 										
 										success:function(operationTimeList){
 											alert('풋살장이름, 예약날짜 정보 보내기 성공');
-											alert(operationTimeList[0].fullTime);
+											$("#timezone").html("");
+											for(var i=0; i<operationTimeList.length; i++) {
+												var time = operationTimeList[i].fullTime;
+												
+												$("#timezone").append("<input id='operationTime"+i+"' type='button'>");
+												$("#operationTime"+i).val(time);
+												$("#operationTime"+i).click(function() {
+													alert('hello');
+												});
+											}
 											
 										},
 										error:function(){

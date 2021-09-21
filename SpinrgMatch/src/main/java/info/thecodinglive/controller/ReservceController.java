@@ -68,6 +68,7 @@ public class ReservceController {
 	public ResponseEntity<List<OperationTime>> getOperationTimes(@RequestBody PlaceAndCalendar placeAndCalendar, HttpSession httpSession) {
 		List<OperationTime> operationTimeList= reserveService.getOperationTimeList(placeAndCalendar);		
 		System.out.println("operationTimelist정보"+operationTimeList.get(0).getFullTime());
+		System.out.println("operationTimeList정보"+operationTimeList.get(1).getFullTime());
 		httpSession.setAttribute("operationTimeList", operationTimeList);
 		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
 	}
