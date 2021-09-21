@@ -116,6 +116,8 @@ searchLocation('<%=list.get(j).getF_addr()%>', '<%=list.get(j).getF_name()%>');
 <%
 }
 %> --%>
+alert(${placeList});
+
 
 </script>
 <!-- </div> -->

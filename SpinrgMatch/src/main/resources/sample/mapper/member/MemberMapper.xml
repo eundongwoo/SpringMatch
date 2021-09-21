@@ -18,6 +18,6 @@
 	<!-- <resultMap type="info.thecodinglive.model.Member" id="loginResultMap">
 		<result property="memberId" column="member_id"/>
 	</resultMap> -->
-
+	
 </mapper>
 

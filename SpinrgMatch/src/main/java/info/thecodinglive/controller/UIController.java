@@ -32,8 +32,5 @@ public class UIController {
 		}
 		
 
-		@GetMapping(value = "/reserve")
-		public String showCalendar() {
-			return "reserve";
-		}
+		
 }
