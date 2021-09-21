@@ -492,6 +492,9 @@ for(var j=0; j<placeArray.length; j++) {
     		</c:if>   		
     		시간:<input type="text" name="time" id="time" readonly="readonly">
     		 <div id="locationss"></div>	  		
+    		 
+    		<input id="timelook" type="button" value="시간 조회">		<!--시간조회   -->
+			<div id="timezone"></div>									<!-- 시간대버튼 -->
     		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
     		</td>     	   		
 		    </table>   	
@@ -500,12 +503,11 @@ for(var j=0; j<placeArray.length; j++) {
 			
 						    
 						    				   
-						     <input id="timelook" type="button" value="시간 조회">
-						     <div id="timezone"></div>
+						    
 						     
 						    <script>
 						    	$("#timelook").click(function() {
-						    		alert('hello');
+						    		
 						    		var placeAndCalendar=JSON.stringify({
 						            	placeName:$("#place").val(),
 										calendarFullDate:$("#date").val()										
