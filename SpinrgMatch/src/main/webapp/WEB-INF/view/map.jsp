@@ -96,11 +96,36 @@ geocoder.addressSearch(address, function(result, status) {
             clickable:true
         });
         
+        
+        
         // 마커에 클릭이벤트를 등록합니다
         kakao.maps.event.addListener(marker, 'click', function() {
-                var placeName =document.getElementById('placeName');
+        	
+        	var placeInfo=JSON.stringify({
+    			placeName:name				
+
+    		});
+        	
+        	$.ajax({
+				url:"/reserve/map",
+				type:"POST",
+				data:placeInfo,
+				contentType:"application/json;charset=utf-8",
+				
+				success:function(){
+					alert('풋살장 정보 보내기 성공');
+					
+				},
+				error:function(){
+					
+					alert('풋살장 정보보내기 실패');
+				}
+			});
+        	
+        	
+                /* var placeName =document.getElementById('placeName');
                 placeName.setAttribute('value',name);
-                $("#please").submit();
+                $("#please").submit(); */
                 
         });
         
@@ -121,10 +146,8 @@ for(var j=0; j<placeArray.length; j++) {
 }
 
 
-
-
 </script>
-<!-- </div> -->
-${placeList }
+
+
 </body>
 </html>

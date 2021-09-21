@@ -48,7 +48,7 @@ System.out.println(cal.getDate());
 			
 			});		
 		</script>
-		<!-- 퀵메뉴 -->
+		<!-- 퀵메뉴-------------------- -->
 		<script type="text/javascript">
 			$(document).ready(function(){
 				  var currentPosition = parseInt($(".quickmenu").css("top"));
@@ -74,7 +74,7 @@ System.out.println(cal.getDate());
 		<% String s = request.getParameter("year")+"년"+request.getParameter("month")+"월"+request.getParameter("date")+"일"; %>
 		
 	<body class="is-preload">	
-	
+		
 
 		<!-- Header -->
 		<header id="header" class="alt">
@@ -90,18 +90,122 @@ System.out.println(cal.getDate());
 			<jsp:include page="/WEB-INF/view/nav.jsp" />
 		</nav>
 		
+		<!-- map start--------------------------------------- -->
 		
+		
+		<%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
+		<div id="map" style="width:70%;height:400px; margin: 0 auto;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
+
+<script style="color:red">
+var placeArray = new Array();
+<c:forEach items="${placeList}" var="place">
+	placeArray.push({
+		placeAddr:"${place.placeAddr}",
+		placeName:"${place.placeName}"
+	});
+</c:forEach>
+/* var placeList='${placeList}'; */
+
+
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 9 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+function searchLocation(address, name) {
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch(address, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,    
+            clickable:true
+        });
+        
+        
+        
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'click', function() {
+        	
+        	var placeInfo=JSON.stringify({
+    			placeName:name				
+
+    		});
+        	
+        	$.ajax({
+				url:"/reserve/map",
+				type:"POST",
+				data:placeInfo,
+				contentType:"application/json;charset=utf-8",
+				
+				success:function(reserveInfo){
+					alert('풋살장 정보 보내기 성공');
+					alert(reserveInfo.placeName);
+					$("#place").val(reserveInfo.placeName);
+				},
+				error:function(){
+					
+					
+					alert('풋살장 정보보내기 실패');
+				}
+			});
+        	
+ 
+        });
+        
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<span style="color:black; text-align:center; margin-left:25px;">'+name+'</span>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});  
+}
+
+for(var j=0; j<placeArray.length; j++) {
+	searchLocation(placeArray[j].placeAddr,placeArray[j].placeName);
+}
+
+
+</script>
+
+
+
+		<!--map end -------------------------------- -->
+		
+		
+		
+		<jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/>
+		${reserveInfo.placeName}
 		 <div class="quickmenu">
 		   <form action="reserve.do" method="post"> 
    			<table>
     		<td>  		
     		풋살장:
-    		<%if((String)session.getAttribute("placeName")!=null) {%>
+    	
+	
+    		<input type="text" name="place" id="place" value="" readonly="readonly"><br>   	
+ 
     		
-    		<input type="text" name="place" id="place" value="<%=(String)session.getAttribute("placeName")%>" readonly="readonly"><br>   	
-    		<%} else {%>
-    		<input type="text" name="place" id="place" value="" readonly="readonly"><br>
-    		<%} %>
+    		
 
     		<c:if test="${empty param.year}">
     		날짜:<input type="text" name="date" id="date" value="" readonly="readonly"><br>  
@@ -129,8 +233,7 @@ System.out.println(cal.getDate());
 
 						<!-- Two -->
 														
-					    			 <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/>
-									<jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/>				    									
+									    									
 					    									    																					
     																
 						
