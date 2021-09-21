@@ -28,4 +28,16 @@ public class PlaceRepository {
 		
 		return placeList;
 	}
+	
+	public int getPlaceId(String place) {
+		System.out.println("place"+place);
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("place", place);
+		// placeId
+		 Place placeSample=(Place)sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getPlaceId", params);
+		int placeId = placeSample.getPlaceId();
+		System.out.println("placeId"+placeId);
+		return placeId;
+		
+	}
 }

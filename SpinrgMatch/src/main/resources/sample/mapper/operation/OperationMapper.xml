@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.mapper.operation.OperationMapper">
+	
+	<select id="getOperationInfo" parameterType="map" resultType="info.thecodinglive.model.OperationTime">
+		<![CDATA[
+			SELECT start_time as "startTime",
+			 end_time as "endTime" 
+			FROM operation
+			WHERE place_id=#{placeId}
+		
+			]]>
+	</select>
+	
+	
+	
+	
+	<!-- <resultMap type="info.thecodinglive.model.Place" id="operationTime">
+		<result property="placeId" column="place_id"/>
+		<result property="placeName" column="place_name"/>
+		<result property="placeAddr" column="place_addr"/>
+		<result property="placeTel" column="place_tel"/>
+		<result property="manager" column="manager"/>
+	</resultMap>  -->
+
+</mapper>

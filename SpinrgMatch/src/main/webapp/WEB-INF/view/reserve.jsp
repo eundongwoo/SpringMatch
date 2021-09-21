@@ -481,18 +481,14 @@ for(var j=0; j<placeArray.length; j++) {
     ${reserveInfo.date}
 		
 		<!-- calendar end------------------------------------------- -->
+		
+		<!-- input3개-------------------------------- -->
 		 <div class="quickmenu">
 		   <form action="reserve.do" method="post"> 
    			<table>
     		<td>  		
-    		풋살장:
-    	
-	
+    		풋살장:	
     		<input type="text" name="place" id="place" value="" readonly="readonly"><br>   	
- 
-    		
-    		
-
     		<c:if test="${empty param.year}">
     		날짜:<input type="text" name="date" id="date" value="" readonly="readonly"><br>  
     		</c:if>	 
@@ -504,7 +500,7 @@ for(var j=0; j<placeArray.length; j++) {
     		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
     		</td>     	   		
 		    </table>   	
-		    </form>
+		    </form>		    
 			</div> 			
 				<!-- Main -->
 					 
@@ -525,12 +521,46 @@ for(var j=0; j<placeArray.length; j++) {
 						
 						
 							
-							<form action="timesearch.do" method="Post" style="text-align: center">								
+						<%-- 	<form action="timesearch.do" method="Post" style="text-align: center">								
 						    	<input type="hidden" name="placeName" value="<%=(String)session.getAttribute("placeName")%>">
 						    	<input type="hidden" name="placeDate" value="<%=s%>">
 						    	<input id="timelook" type="submit" value="시간 조회">
-						    </form>						   
-						    <div id="hidden_div" style="text-align: center">
+						    </form>		 --%>
+						    
+						    				   
+						     <input id="timelook" type="button" value="시간 조회">
+						     
+						     <input id="test" type="text" value="${operationTimeList[0].fullTime}">
+						    <script>
+						    	$("#timelook").click(function() {
+						    		alert('hello');
+						    		var placeAndCalendar=JSON.stringify({
+						            	placeName:$("#place").val(),
+										calendarFullDate:$("#date").val()										
+									});
+						            $.ajax({
+										url:"/reserve/timelook",
+										type:"POST",
+										data:placeAndCalendar,
+										contentType:"application/json;charset=utf-8",
+										
+										success:function(operationTimeList){
+											alert('풋살장이름, 예약날짜 정보 보내기 성공');
+											alert(operationTimeList[0].fullTime);
+											
+										},
+										error:function(){
+											alert('풋살장이름, 예약날짜 정보 보내기 실패');
+										}
+									});
+						    		
+						    		
+						    	});
+						    
+						    </script>
+						    
+						    
+						    <div id="hidden_div" style="text-align: center"></div>
     						<p>시간</p>
     		<%-- 				<%
 

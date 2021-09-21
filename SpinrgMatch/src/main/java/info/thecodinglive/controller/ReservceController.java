@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import info.thecodinglive.model.CalendarDate;
 import info.thecodinglive.model.Member;
+import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
+import info.thecodinglive.model.PlaceAndCalendar;
 import info.thecodinglive.model.ReserveInfo;
 import info.thecodinglive.service.MemberService;
 import info.thecodinglive.service.ReserveService;
@@ -61,4 +63,14 @@ public class ReservceController {
 		httpSession.setAttribute("reserveInfo", reserveInfo);
 		return new ResponseEntity<ReserveInfo>(reserveInfo,HttpStatus.OK);
 	}
+	
+	@PostMapping(value = "/timelook")
+	public ResponseEntity<List<OperationTime>> getOperationTimes(@RequestBody PlaceAndCalendar placeAndCalendar, HttpSession httpSession) {
+		List<OperationTime> operationTimeList= reserveService.getOperationTimeList(placeAndCalendar);		
+		System.out.println("operationTimelist정보"+operationTimeList.get(0).getFullTime());
+		httpSession.setAttribute("operationTimeList", operationTimeList);
+		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
+	}
+	
+	
 }

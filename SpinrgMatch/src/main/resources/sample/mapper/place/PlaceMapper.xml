@@ -11,6 +11,14 @@
 			]]>
 	</select>
 	
+	<select id="getPlaceId" parameterType="map" resultType="info.thecodinglive.model.Place">
+		<![CDATA[
+			SELECT place_id as "placeId"
+				FROM place 
+				WHERE place_name=#{place}
+			]]>
+	</select>
+	
     <resultMap type="info.thecodinglive.model.Place" id="placeRs">
 		<result property="placeId" column="place_id"/>
 		<result property="placeName" column="place_name"/>
