@@ -32,8 +32,15 @@ public class OracleDBConnectionConfig {
 		
 		hikariConfig.addDataSourceProperty("url", dbUrl);
 		hikariConfig.setDataSourceClassName(dbClassName);
-		hikariConfig.setLeakDetectionThreshold(2000);
+//		hikariConfig.setLeakDetectionThreshold(2000);
 		hikariConfig.setPoolName("jpubDBpool");
+		
+		hikariConfig.setMinimumIdle(2);
+		hikariConfig.setMaximumPoolSize(4);
+		hikariConfig.setIdleTimeout(600000);
+		hikariConfig.setLeakDetectionThreshold(30000);
+		hikariConfig.setConnectionTimeout(30000);
+		
 		
 		final HikariDataSource dataSource = new HikariDataSource(hikariConfig);
 		return dataSource;

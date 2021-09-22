@@ -38,13 +38,13 @@
                         	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
                     	</li>
                     	 <li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="mypage.do">마이페이지</a>
+                        	<a class="nav-link active" aria-current="page" href="/map">마이페이지</a>
                     	</li> 
                     	<li class="nav-item">
                         	<a class="nav-link active" aria-current="page" href="/reserve">예약페이지</a>
                     	</li>                
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="/map">자유게시판</a>
+                        	<a class="nav-link active" aria-current="page" href="/article/write">자유게시판</a>
                     	</li>                 
                                     
                     	 <c:if test="${authUser.author eq '1'}">

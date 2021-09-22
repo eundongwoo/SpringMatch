@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.mapper.board.ArticleMapper">
+
+	<insert id="Insert" parameterType="info.thecodinglive.model.Article">
+		<![CDATA[
+			insert into article(article_no, member_id, title, content)
+			values((select nvl(max(article_no), 0)+1 from article), #{memberId}, #{title}, #{content})
+			]]>
+		</insert>
+
+	<!-- <select id="loginUser" parameterType="map" resultType="info.thecodinglive.model.Member">
+		<![CDATA[
+			SELECT * FROM member WHERE member_id=#{memberId} and member_password=#{memberPassword}
+			]]>
+	</select> -->
+</mapper>
