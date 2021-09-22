@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.OperationTime;
+import info.thecodinglive.model.PlaceAndOperation;
 
 @Repository
 public class OperationRepository {
@@ -24,6 +25,14 @@ public class OperationRepository {
 			operationTimeList.get(i).setFullTime(operationTimeList.get(i).getStartTime()+"~"+operationTimeList.get(i).getEndTime());
 		}
 		return operationTimeList;
+		
+	}
+	
+	public void addOperation(PlaceAndOperation placeAndOperation) {
+		List<OperationTime> list= placeAndOperation.getOperationTimeList();
+		for(int i=0; i<list.size(); i++) {
+			sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addOperation", list.get(i));
+		}
 		
 	}
 	

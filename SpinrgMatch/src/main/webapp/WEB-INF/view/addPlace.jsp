@@ -138,7 +138,7 @@
 				placeName:$('#placeName').val(),				
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
-				manager:$('placeManager').val(),
+				manager:$('#placeManager').val(),
 				operationTimeList:operationTimeListSample,
 				placeCost:$("#placeCost").val()
 				/*운영 시간 값 반복 */

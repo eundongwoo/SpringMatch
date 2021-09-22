@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.Member;
 import info.thecodinglive.model.Place;
+import info.thecodinglive.model.PlaceAndOperation;
 
 @Repository
 public class PlaceRepository {
@@ -39,5 +40,9 @@ public class PlaceRepository {
 		System.out.println("placeId"+placeId);
 		return placeId;
 		
+	}
+	
+	public void addPlace(PlaceAndOperation placeAndOperation) {
+		sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addPlace", placeAndOperation);
 	}
 }

@@ -11,6 +11,14 @@
 			]]>
 	</select>
 	
+	<insert id="addOperation">
+		<![CDATA[
+			insert into operation(operation_id, place_id, start_time, end_time)
+			values(operation_num.nextVal, #{placeId}, #{startTime}, #{endTime})
+			]]>
+		</insert>
+	
+	
 	<!-- 
 	<![CDATA[
 			SELECT start_time as "startTime",
