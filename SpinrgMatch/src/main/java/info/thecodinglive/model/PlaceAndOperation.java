@@ -11,5 +11,6 @@ public class PlaceAndOperation {
 	private String placeTel;
 	private String manager;
 	private List<OperationTime> operationTimeList;
+	private int placeCost;
 	
 }
