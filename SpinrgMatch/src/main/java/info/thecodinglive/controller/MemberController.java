@@ -62,12 +62,13 @@ public class MemberController {
 		System.out.println(member.getMemberPassword());
 		Member user = memberService.login(member.getMemberId(), member.getMemberPassword());
 		if(user==null) {
-			System.out.println("로그인 실패");
+			
 			session.setAttribute("authUser", null);
 			return null;
 		}else {
-			System.out.println("로그인 성공");
+			
 			session.setAttribute("authUser", user);
+			System.out.println("user"+user.toString());
 			return new ResponseEntity<String>("success",HttpStatus.OK);
 		}
 	}

@@ -78,7 +78,7 @@ public class ReservceController {
 	
 	
 	@PostMapping(value = "/reserveSubmit")
-	public String reserveSubmit(@RequestBody ReserveDTO reserveDTO, HttpSession httpSession) {
+	public String reserveSubmit(ReserveDTO reserveDTO, HttpSession httpSession) {
 		Member authUser = (Member)httpSession.getAttribute("authUser");	
 		if(authUser!=null) {
 			reserveDTO.setMemberId(authUser.getMemberId());
@@ -86,8 +86,11 @@ public class ReservceController {
 			System.out.println("로그인이 필요합니다");
 			return "main";
 		}
-	
-		
+		reserveDTO.setPlaceId(Integer.parseInt(reserveDTO.getPlaceIdString()));
+		reserveDTO.setOperationId(Integer.parseInt(reserveDTO.getOperationIdString()));
+		System.out.println(reserveDTO.toString());
+		reserveService.reserve(reserveDTO);
+		System.out.println("예약되었습니다.");
 		
 		return "main";
 	}

@@ -8,7 +8,8 @@ public class ReserveDTO {
 	private String date;
 	private String time;
 	private String memberId;
+	private String placeIdString;
+	private String operationIdString;
 	private int placeId;
 	private int operationId;
-	
 }

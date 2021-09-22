@@ -493,8 +493,8 @@ for(var j=0; j<placeArray.length; j++) {
     		시간:<input type="text" name="time" id="time" readonly="readonly">
     		 <div id="locationss"></div>	  		
     		<!--hidden input (operationId, placeId 보낼 장소) --> 
-    		<input type="hidden" name="operationId" id="operationIdHidden">
-    		<input type="hidden" name="placeId" id="placeIdIdHidden">
+    		<input type="hidden" name="operationIdString" id="operationIdHidden">
+    		<input type="hidden" name="placeIdString" id="placeIdHidden">
     		<input id="timelook" type="button" value="시간 조회">		<!--시간조회   -->
 			<div id="timezone"></div>									<!-- 시간대버튼 -->
     		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
