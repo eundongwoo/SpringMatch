@@ -38,7 +38,7 @@ insert into place values(place_num.NEXTVAL,'lfc풋살파크','대구 달서구 �
 /*operation*/
 
 create table operation(
-	id int PRIMARY key,
+	operation_id int PRIMARY key,
 	place_id int not null CONSTRAINT operation_place_id  REFERENCES place(place_id),
 	start_time varchar(10),
 	end_time varchar(10)

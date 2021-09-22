@@ -9,15 +9,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%-- <%
-Calendar cal= (Calendar)session.getAttribute("calendar");
-List<String> list=(List<String>)request.getSession().getAttribute("timeList");
-HashMap<String, Integer> hm =(HashMap<String, Integer>)  request.getSession().getAttribute("timeMap");
-if(cal!=null) {
-	System.out.println("여기");
-System.out.println(cal.getDate());
-}
-%> --%>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -108,7 +100,7 @@ System.out.println(cal.getDate());
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<a href="/Match/main.jsp" class="logo"><strong>matching</strong>
+			<a href="/main" class="logo"><strong>matching</strong>
 				<span>kick together</span></a>
 			<nav>
 				<a href="#menu">Menu</a>
@@ -187,6 +179,8 @@ geocoder.addressSearch(address, function(result, status) {
 					alert('풋살장 정보 보내기 성공');
 					alert(reserveInfo.placeName);
 					$("#place").val(reserveInfo.placeName);
+					$("#timezone").html("");		/*추가  */
+					$("#time").val("");
 				},
 				error:function(){
 					
@@ -224,7 +218,7 @@ for(var j=0; j<placeArray.length; j++) {
 		
 		
 		<%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
-		${reserveInfo.placeName}
+		<%-- ${reserveInfo.placeName} --%>
 		<!-- calendar start--------------------------------- -->
 		
     <script type="text/javascript">
@@ -430,7 +424,8 @@ for(var j=0; j<placeArray.length; j++) {
 				success:function(reserveInfo){
 					alert('달력값 보내기 성공');
 					$("#date").val(reserveInfo.date);
-					
+					$("#timezone").html(""); 	/*추가  */
+					$("#time").val("");
 				},
 				error:function(){
 					alert('달력값 보내기 실패');
@@ -481,18 +476,14 @@ for(var j=0; j<placeArray.length; j++) {
     ${reserveInfo.date}
 		
 		<!-- calendar end------------------------------------------- -->
+		
+		<!-- input3개-------------------------------- -->
 		 <div class="quickmenu">
-		   <form action="reserve.do" method="post"> 
+		   <form action="/reserve/reserveSubmit" method="post"> 
    			<table>
     		<td>  		
-    		풋살장:
-    	
-	
+    		풋살장:	
     		<input type="text" name="place" id="place" value="" readonly="readonly"><br>   	
- 
-    		
-    		
-
     		<c:if test="${empty param.year}">
     		날짜:<input type="text" name="date" id="date" value="" readonly="readonly"><br>  
     		</c:if>	 
@@ -501,97 +492,66 @@ for(var j=0; j<placeArray.length; j++) {
     		</c:if>   		
     		시간:<input type="text" name="time" id="time" readonly="readonly">
     		 <div id="locationss"></div>	  		
+    		<!--hidden input (operationId, placeId 보낼 장소) --> 
+    		<input type="hidden" name="operationIdString" id="operationIdHidden">
+    		<input type="hidden" name="placeIdString" id="placeIdHidden">
+    		<input id="timelook" type="button" value="시간 조회">		<!--시간조회   -->
+			<div id="timezone"></div>									<!-- 시간대버튼 -->
     		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
     		</td>     	   		
 		    </table>   	
-		    </form>
+		    </form>		    
 			</div> 			
-				<!-- Main -->
-					 
-						<!-- One -->
-							<%-- <section id="one" class="tiles">							
-									 <table>
-					    				<tr>
-					    					<td class="one"><jsp:include page="/WEB-INF/view/map.jsp" flush="false"/></td>					    									
-					    				</tr>					    																					
-    								</table>								
-							</section> --%>
-
-						<!-- Two -->
-														
-									    									
-					    									    																					
-    																
-						
-						
-							
-							<form action="timesearch.do" method="Post" style="text-align: center">								
-						    	<input type="hidden" name="placeName" value="<%=(String)session.getAttribute("placeName")%>">
-						    	<input type="hidden" name="placeDate" value="<%=s%>">
-						    	<input id="timelook" type="submit" value="시간 조회">
-						    </form>						   
-						    <div id="hidden_div" style="text-align: center">
-    						<p>시간</p>
-    		<%-- 				<%
-
-	 		if(list==null) {System.out.println("list는 null");} else {
-	 			
-			for(String time: list) {
-				String a = time;
-				String startTime = a.split("~")[0];
-				SimpleDateFormat sdf= new SimpleDateFormat("HH:mm");
-				Date reserveTime = new Date(sdf.parse(startTime).getTime());
-				java.util.Calendar cal2 = java.util.Calendar.getInstance();
-				Date currentTime = cal2.getTime();
-				reserveTime.setYear(currentTime.getYear());
-				reserveTime.setMonth(currentTime.getMonth());
-				reserveTime.setDate(currentTime.getDate());		//reserveTime완성
-				
-							//b<3||check==false
-				boolean check = currentTime.after(reserveTime);
-					//check가 true면 지나갔다 -> 버튼 못 누르게			
-				
-					
-				java.util.Calendar cal3 =java.util.Calendar.getInstance();
-				if(cal!=null) {
-					
-					cal3.set(Integer.parseInt(cal.getYear()), Integer.parseInt(cal.getMonth())-1, Integer.parseInt(cal.getDate()));
-				
-				}
-				
-				
-				int b= hm.get(time);
-				
-				if(b<3 && (!check || (cal3.getTime().after(currentTime)))) { 
-				
-		%>		
 			
-			<button class="timeBtn" value="<%=a%>"><%=a%><br><%=b %></button>		
-		
-					
-		<%
-				}
-			else{						
-		%>
-				<button  class="timeBtn rf" value="<%=a%>" disabled="disabled"><%=a%><br><%=b %></button>
-			<script>
-				$(".rf").css({
-					background:'red',
-					opacity:0.7
-				});
-			</script>	
-			
-		<%
-				}
-		%>
-		<%
-				}
-			}
-
-	 		
-		%> 
-							</div> --%>
-						
+						     
+						    <script>
+						    	$("#timelook").click(function() {
+						    		
+						    		var placeAndCalendar=JSON.stringify({
+						            	placeName:$("#place").val(),
+										calendarFullDate:$("#date").val()										
+									});
+						            $.ajax({
+										url:"/reserve/timelook",
+										type:"POST",
+										data:placeAndCalendar,
+										contentType:"application/json;charset=utf-8",
+										
+										success:function(operationTimeList){
+											alert('풋살장이름, 예약날짜 정보 보내기 성공');
+											$("#timezone").html("");
+											var operationIdHidden=null;
+											var placeIdHidden=null;
+											for(var i=0; i<operationTimeList.length; i++) {
+												var time = operationTimeList[i].fullTime;
+												operationIdHidden=operationTimeList[i].operationId;
+												placeIdHidden=operationTimeList[i].placeId;
+											    
+												$("#timezone").append("<input id='operationTime"+i+"' type='button'>");
+												$("#operationTime"+i).val(time);
+												$("#operationTime"+i).click(function() {
+													$("#time").val($(this).val());
+												});
+											}
+											
+											$("#operationIdHidden").val(operationIdHidden);
+											$("#placeIdHidden").val(placeIdHidden);
+											
+										},
+										error:function(){
+											alert('풋살장이름, 예약날짜 정보 보내기 실패');
+										}
+									});
+						    		
+						    		
+						    	});
+						    
+						    </script>
+						    
+						    
+						    <div id="hidden_div" style="text-align: center"></div>
+    						
+    	
 							<br><br>
 			<!-- Scripts -->
 			<script src="/Match/js/jquery.min.js"></script>

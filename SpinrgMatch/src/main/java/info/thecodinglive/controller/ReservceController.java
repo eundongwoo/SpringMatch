@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import info.thecodinglive.model.CalendarDate;
 import info.thecodinglive.model.Member;
+import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
+import info.thecodinglive.model.PlaceAndCalendar;
+import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.ReserveInfo;
 import info.thecodinglive.service.MemberService;
 import info.thecodinglive.service.ReserveService;
@@ -61,4 +64,36 @@ public class ReservceController {
 		httpSession.setAttribute("reserveInfo", reserveInfo);
 		return new ResponseEntity<ReserveInfo>(reserveInfo,HttpStatus.OK);
 	}
+	
+	@PostMapping(value = "/timelook")
+	public ResponseEntity<List<OperationTime>> getOperationTimes(@RequestBody PlaceAndCalendar placeAndCalendar, HttpSession httpSession) {
+		List<OperationTime> operationTimeList= reserveService.getOperationTimeList(placeAndCalendar);		
+		System.out.println("operationTimelist정보"+operationTimeList.get(0).getFullTime());
+		System.out.println("operationTimeList정보"+operationTimeList.get(1).getFullTime());
+		System.out.println("operationTimeList정보operationId===>"+operationTimeList.get(1).getOperationId());
+		System.out.println("operationTimeList정보placeId==>"+operationTimeList.get(1).getPlaceId());
+		httpSession.setAttribute("operationTimeList", operationTimeList);
+		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = "/reserveSubmit")
+	public String reserveSubmit(ReserveDTO reserveDTO, HttpSession httpSession) {
+		Member authUser = (Member)httpSession.getAttribute("authUser");	
+		if(authUser!=null) {
+			reserveDTO.setMemberId(authUser.getMemberId());
+		} else {
+			System.out.println("로그인이 필요합니다");
+			return "main";
+		}
+		reserveDTO.setPlaceId(Integer.parseInt(reserveDTO.getPlaceIdString()));
+		reserveDTO.setOperationId(Integer.parseInt(reserveDTO.getOperationIdString()));
+		System.out.println(reserveDTO.toString());
+		reserveService.reserve(reserveDTO);
+		System.out.println("예약되었습니다.");
+		
+		return "main";
+	}
+	
+	
 }
