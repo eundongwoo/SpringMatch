@@ -17,7 +17,7 @@ public class ReservationRepository {
 	
 	public void addReservation(ReserveDTO reserveDTO) {
 		
-		sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addReservation",params);
+//		sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addReservation",params);
 		
 	}
 	

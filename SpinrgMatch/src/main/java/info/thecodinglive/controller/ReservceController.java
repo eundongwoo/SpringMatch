@@ -70,6 +70,8 @@ public class ReservceController {
 		List<OperationTime> operationTimeList= reserveService.getOperationTimeList(placeAndCalendar);		
 		System.out.println("operationTimelist정보"+operationTimeList.get(0).getFullTime());
 		System.out.println("operationTimeList정보"+operationTimeList.get(1).getFullTime());
+		System.out.println("operationTimeList정보operationId===>"+operationTimeList.get(1).getOperationId());
+		System.out.println("operationTimeList정보placeId==>"+operationTimeList.get(1).getPlaceId());
 		httpSession.setAttribute("operationTimeList", operationTimeList);
 		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
 	}

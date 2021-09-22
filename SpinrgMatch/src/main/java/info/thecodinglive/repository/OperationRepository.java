@@ -20,7 +20,9 @@ public class OperationRepository {
 		HashMap<String, Integer> hm = new HashMap();
 		hm.put("placeId", placeId);
 		List<OperationTime> operationTimeList= sqlSessionTemplate.selectList(MAPPER_NAME_SPACE+"getOperationInfo", hm);
-		
+		for(int i=0; i<operationTimeList.size(); i++) {
+			operationTimeList.get(i).setFullTime(operationTimeList.get(i).getStartTime()+"~"+operationTimeList.get(i).getEndTime());
+		}
 		return operationTimeList;
 		
 	}

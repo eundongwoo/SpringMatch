@@ -492,7 +492,9 @@ for(var j=0; j<placeArray.length; j++) {
     		</c:if>   		
     		시간:<input type="text" name="time" id="time" readonly="readonly">
     		 <div id="locationss"></div>	  		
-    		 
+    		<!--hidden input (operationId, placeId 보낼 장소) --> 
+    		<input type="hidden" name="operationId" id="operationIdHidden">
+    		<input type="hidden" name="placeId" id="placeIdIdHidden">
     		<input id="timelook" type="button" value="시간 조회">		<!--시간조회   -->
 			<div id="timezone"></div>									<!-- 시간대버튼 -->
     		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
@@ -518,15 +520,22 @@ for(var j=0; j<placeArray.length; j++) {
 										success:function(operationTimeList){
 											alert('풋살장이름, 예약날짜 정보 보내기 성공');
 											$("#timezone").html("");
+											var operationIdHidden=null;
+											var placeIdHidden=null;
 											for(var i=0; i<operationTimeList.length; i++) {
 												var time = operationTimeList[i].fullTime;
-												
+												operationIdHidden=operationTimeList[i].operationId;
+												placeIdHidden=operationTimeList[i].placeId;
+											    
 												$("#timezone").append("<input id='operationTime"+i+"' type='button'>");
 												$("#operationTime"+i).val(time);
 												$("#operationTime"+i).click(function() {
 													$("#time").val($(this).val());
 												});
 											}
+											
+											$("#operationIdHidden").val(operationIdHidden);
+											$("#placeIdHidden").val(placeIdHidden);
 											
 										},
 										error:function(){
