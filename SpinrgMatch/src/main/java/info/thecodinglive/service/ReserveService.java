@@ -41,6 +41,19 @@ public class ReserveService {
 	
 	
 	public void reserve(ReserveDTO reserveDTO) {
-		reservationRepository.addReservation(reserveDTO);
+		int reserveCount = checkCount(reserveDTO);
+		if(reserveCount<=2) {
+			reservationRepository.addReservation(reserveDTO);
+			reserveCount = checkCount(reserveDTO);
+			if(reserveCount==3) {
+				reservationRepository.stateUpdate(reserveDTO);
+			}
+		}
+		
+	}
+	
+	public int checkCount(ReserveDTO reserveDTO) {
+		int reserveCount = reservationRepository.reserveCount(reserveDTO);	//사람수
+		return reserveCount;
 	}
 }

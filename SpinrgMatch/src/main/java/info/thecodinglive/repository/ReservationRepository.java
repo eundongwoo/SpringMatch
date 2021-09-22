@@ -21,4 +21,17 @@ public class ReservationRepository {
 		
 	}
 	
+	public int reserveCount(ReserveDTO reserveDTO) {
+		
+		int reserveCount = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"reserveCount", reserveDTO);
+		System.out.println("rscount"+reserveCount);
+		return reserveCount;
+		
+	}
+	
+	public void stateUpdate(ReserveDTO reserveDTO) {
+		sqlSessionTemplate.update(MAPPER_NAME_SPACE+"stateUpdate", reserveDTO);
+		System.out.println("업데이트");
+	}
+	
 }
