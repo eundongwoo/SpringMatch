@@ -14,7 +14,7 @@ public class ReservationRepository {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	
+	//예약
 	public void addReservation(ReserveDTO reserveDTO) {
 		System.out.println("====repository>"+reserveDTO.toString());
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addReservation", reserveDTO);
