@@ -50,7 +50,7 @@
                                     
                     	 <c:if test="${authUser.author eq '1'}">
                     		<li class="nav-item">
-                        		<a class="nav-link active" aria-current="page" href="admin.do">풋살장 등록</a>
+                        		<a class="nav-link active" aria-current="page" href="/admin/addplaceForm">풋살장 등록</a>
                     		</li>
                     	</c:if>  
                     	 <ul class="actions stacked">

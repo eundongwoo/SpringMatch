@@ -17,9 +17,11 @@ public class MemberService {
 	}
 	
 	public Member login(String memberId, String memberPassword) {
-		Member member = memberRepository.loginUser(memberId, memberPassword);	
+		Member member = memberRepository.loginUser(memberId, memberPassword);
+		System.out.println("ì„œë¹„ìŠ¤ ìª½"+member.getMemberId());
+		System.out.println("ì„œë¹„ìŠ¤ ìª½"+member.getMemberName());
 		if(member==null) {
-			System.out.println("ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+			System.out.println("ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½");
 			return null;
 		}else
 		return member;

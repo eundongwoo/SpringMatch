@@ -34,9 +34,9 @@
 			</nav>
 		</header>
 
-		<%-- <c:if test="${!empty authUser}">
-		${authUser.author}
-		</c:if> --%>
+		<c:if test="${!empty authUser}">
+			${authUser.memberId} 와 ${authUser.memberName} 와  ${authUser.author}
+		</c:if>
 
 		<!-- Menu -->
 		<nav id="menu">

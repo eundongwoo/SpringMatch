@@ -1,6 +1,8 @@
 package info.thecodinglive.repository;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,11 @@ public class MemberRepository {
 		
 	}
 	public Member loginUser(String memberId, String memberPassword) {
-		HashMap<String, String> params = new HashMap();
+		Map<String, String> params = new HashMap<String, String>();
 		params.put("memberId", memberId);
 		params.put("memberPassword", memberPassword);
-		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"loginUser",params);
 		
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"loginUser",params);		
 	}
 	
 }

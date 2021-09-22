@@ -1,6 +1,8 @@
 package info.thecodinglive.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -61,12 +63,19 @@ public class MemberController {
 		System.out.println(member.getMemberId());
 		System.out.println(member.getMemberPassword());
 		Member user = memberService.login(member.getMemberId(), member.getMemberPassword());
+		
+		System.out.println("->>>>"+user.getMemberId());
+		System.out.println("->>>>"+user.getMemberName());
+		System.out.println("->>>>"+user.getMemberPassword());
+		System.out.println("->>>>"+user.getMemberTel());
+		System.out.println("->>>>"+user.getAuthor());
+		
 		if(user==null) {
-			System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+			System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 			session.setAttribute("authUser", null);
 			return null;
 		}else {
-			System.out.println("·Î±×ÀÎ ¼º°ø");
+			System.out.println("ë¡œê·¸ì¸ ì„±ê³µ");
 			session.setAttribute("authUser", user);
 			return new ResponseEntity<String>("success",HttpStatus.OK);
 		}

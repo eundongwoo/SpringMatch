@@ -7,15 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 	private String memberId;
 	private String memberName;
 	private String memberPassword;
 	private String memberTel;
 	private String author;
-	
-	
-	
 }
