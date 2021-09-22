@@ -1,11 +1,15 @@
 package info.thecodinglive.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.Member;
+import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
+import info.thecodinglive.model.Search;
 
 @Repository
 public class ReservationRepository {
@@ -32,6 +36,10 @@ public class ReservationRepository {
 	public void stateUpdate(ReserveDTO reserveDTO) {
 		sqlSessionTemplate.update(MAPPER_NAME_SPACE+"stateUpdate", reserveDTO);
 		System.out.println("업데이트");
+	}
+	
+	public List<ReservationDTO> searchById(Member user) {
+		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE+"searchById", user);
 	}
 	
 }

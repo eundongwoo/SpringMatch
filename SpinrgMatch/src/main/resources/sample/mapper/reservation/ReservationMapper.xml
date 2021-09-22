@@ -26,6 +26,19 @@
 			]]>
 		</update>
 		
+		<select id="searchById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.ReservationDTO">
+		<![CDATA[
+			select place_id as "placeId",
+			operation_id as "operationId",
+			reserve_date as "reserveDate",
+			state as "state",
+			reg_time as "regDate"
+			from reservation
+			where member_id=#{memberId}
+			]]>
+		</select>
+		
+
 		
 		<!-- resultType="Integer" -->
 	<!-- 

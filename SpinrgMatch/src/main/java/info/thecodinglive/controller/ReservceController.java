@@ -18,8 +18,11 @@ import info.thecodinglive.model.Member;
 import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.PlaceAndCalendar;
+import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.ReserveInfo;
+import info.thecodinglive.model.Search;
+import info.thecodinglive.repository.ReservationRepository;
 import info.thecodinglive.service.MemberService;
 import info.thecodinglive.service.ReserveService;
 
@@ -30,6 +33,8 @@ public class ReservceController {
 	@Autowired
 	ReserveService reserveService;
 	
+	@Autowired
+	ReservationRepository reservationRepository;
 	
 	//하나의 날짜, 풋살장, 시간대 정보 있는 객체 만들어서 세션에 넣기
 	@GetMapping(value = "/reserveHome")
@@ -91,6 +96,21 @@ public class ReservceController {
 		System.out.println(reserveDTO.toString());
 		reserveService.reserve(reserveDTO);
 		System.out.println("예약되었습니다.");
+		
+		return "main";
+	}
+	
+	@PostMapping(value = "/search")
+	public String searchReservation(ReserveDTO reserveDTO, HttpSession httpSession) {
+		Member authUser = (Member)httpSession.getAttribute("authUser");	
+		if(authUser!=null) {
+			reserveDTO.setMemberId(authUser.getMemberId());
+		} else {
+			System.out.println("로그인이 필요합니다");
+			return "main";
+		}
+		List<ReservationDTO> list= reservationRepository.searchById(authUser);
+		
 		
 		return "main";
 	}
