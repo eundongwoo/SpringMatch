@@ -82,6 +82,10 @@
 			<td>풋살장 주소</td>
 			<td><input id="placeAddr" type="text" value=""></td>
 		</tr>
+		<tr>
+			<td>풋살장 관리자</td>
+			<td><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
+		</tr>
 		<%-- <tr>
 			<td>풋살장 점장</td>
 			<td><input name="placeManager" type="text" value="${authUser.author}"></td>
@@ -113,20 +117,36 @@
 	
 	<script>
 		$('#addPlace').click(function(){
-				var addPlace=JSON.stringify({
+				var operationTimeListSample = new Array();
+			
+			
+				for(var i=1; i<=$('#timeRowNum').val();i++) {
+					var operationTimeArray = new Object();
+					operationTimeArray.startTime=$("#startTime"+i).val();
+					operationTimeArray.endTime=$("#endTime"+i).val();
+					operationTimeListSample[i-1]=operationTimeArray;
+					
+				}
+			
+				
+			/* 	var x=JSON.stringify(operationTimeListSample); */
+				var PlaceAndOperation=JSON.stringify({
 				placeName:$('#placeName').val(),				
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
-				timeRowNum:$('#timeRowNum').val()
+				manager:$('placeManager').val(),
+				operationTimeList:operationTimeListSample
+				
 				/*운영 시간 값 반복 */
 				
 			});
+				
 		 	$.ajax({
 				url:"/admin/addplace",
 				type:"POST",
-				data:addPlace,
+				data:PlaceAndOperation,
 				contentType:"application/json;charset=utf-8",
-				
+				traditional:true,
 				success:function(){
 					alert('등록 성공');
 					location.href='/main';
