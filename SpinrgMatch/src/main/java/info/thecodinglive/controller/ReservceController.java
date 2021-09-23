@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import info.thecodinglive.model.CalendarDate;
 import info.thecodinglive.model.Member;
 import info.thecodinglive.model.OperationTime;
@@ -22,6 +23,8 @@ import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.ReserveInfo;
 import info.thecodinglive.model.Search;
+import info.thecodinglive.repository.OperationRepository;
+import info.thecodinglive.repository.PlaceRepository;
 import info.thecodinglive.repository.ReservationRepository;
 import info.thecodinglive.service.MemberService;
 import info.thecodinglive.service.ReserveService;
@@ -36,6 +39,11 @@ public class ReservceController {
 	@Autowired
 	ReservationRepository reservationRepository;
 	
+	@Autowired
+	OperationRepository operationRepository;
+	
+	@Autowired
+	PlaceRepository placeRepository;
 	//하나의 날짜, 풋살장, 시간대 정보 있는 객체 만들어서 세션에 넣기
 	@GetMapping(value = "/reserveHome")
 	public String init(HttpSession httpSession) {
@@ -100,7 +108,8 @@ public class ReservceController {
 		return "main";
 	}
 	
-	@PostMapping(value = "/search")
+	//search클래스 리스트를 얻어서 뷰로 보내야 함.
+	@GetMapping(value = "/search")
 	public String searchReservation(ReserveDTO reserveDTO, HttpSession httpSession) {
 		Member authUser = (Member)httpSession.getAttribute("authUser");	
 		if(authUser!=null) {
@@ -109,7 +118,16 @@ public class ReservceController {
 			System.out.println("로그인이 필요합니다");
 			return "main";
 		}
-		List<ReservationDTO> list= reservationRepository.searchById(authUser);
+		List<Search> searchList = reservationRepository.searchJoinById(authUser);
+		//이제 operationId로 예약시간대 구하는 작업 하고 각 Search객체에 넣어준다.
+		for(int i=0; i<searchList.size(); i++) {
+			OperationTime operationtime = operationRepository.getOperationTimeSearch(searchList.get(i));
+			searchList.get(i).setReserveTime(operationtime.getStartTime()+"~"+operationtime.getEndTime());	// 각 리스트 요소별 예약시간대 설정
+		}
+		//여기까지하면 searchList완성 이걸 이제 뷰로 보낸다.
+		for (int i=0; i<searchList.size(); i++) {
+			System.out.println(searchList.get(i).toString());
+		}
 		
 		
 		return "main";

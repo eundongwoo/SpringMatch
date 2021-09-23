@@ -39,7 +39,20 @@ public class ReservationRepository {
 	}
 	
 	public List<ReservationDTO> searchById(Member user) {
-		return sqlSessionTemplate.selectList(MAPPER_NAME_SPACE+"searchById", user);
+		List<ReservationDTO> list = sqlSessionTemplate.selectList(MAPPER_NAME_SPACE+"searchById", user);;
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setMemberId(user.getMemberId());
+		}
+
+		return list;
+	}
+	
+	
+	//Search의 리스트 조인으로 반환
+	public List<Search> searchJoinById(Member user) {
+		List<Search> list = sqlSessionTemplate.selectList(MAPPER_NAME_SPACE+"searchJoinById", user);
+		
+		return list;
 	}
 	
 }

@@ -18,6 +18,23 @@
 			]]>
 		</insert>
 	
+	<select id="getOperationTime" parameterType="info.thecodinglive.model.ReservationDTO" resultMap="operationTimeMap">
+		<![CDATA[
+			SELECT * 
+			FROM operation
+			WHERE operation_id=#{operationId}
+		
+			]]>
+	</select>
+	
+	<select id="getOperationTimeSearch" parameterType="info.thecodinglive.model.Search" resultMap="operationTimeMap">
+		<![CDATA[
+			SELECT * 
+			FROM operation
+			WHERE operation_id=#{operationId}
+		
+			]]>
+	</select>
 	
 	<!-- 
 	<![CDATA[
@@ -35,5 +52,7 @@
 		<result property="endTime" column="end_time"/>
 		
 	</resultMap> 
+	
+	
 
 </mapper>

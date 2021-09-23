@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.PlaceAndOperation;
+import info.thecodinglive.model.ReservationDTO;
+import info.thecodinglive.model.Search;
 
 @Repository
 public class OperationRepository {
@@ -37,4 +39,14 @@ public class OperationRepository {
 	}
 	
 	
+	public void getOperationTime(ReservationDTO reservationDTO) {
+		OperationTime operationTime = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getOperationTime", reservationDTO);
+		System.out.println("operationTIme===>"+operationTime.toString());
+	}
+	
+	public OperationTime getOperationTimeSearch(Search search) {
+		OperationTime operationTime = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getOperationTimeSearch", search);
+		System.out.println("operationTIme===>"+operationTime.toString());
+		return operationTime;
+	}
 }

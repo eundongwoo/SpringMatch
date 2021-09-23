@@ -26,7 +26,13 @@
 			]]>
 		</insert>
 	
-	
+	<select id="getPlaceName" parameterType="info.thecodinglive.model.Search" resultType="info.thecodinglive.model.Place">
+		<![CDATA[
+			SELECT place_name as "placeName"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+	</select>
 
 	
     <resultMap type="info.thecodinglive.model.Place" id="placeRs">

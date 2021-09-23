@@ -32,12 +32,26 @@
 			operation_id as "operationId",
 			reserve_date as "reserveDate",
 			state as "state",
-			reg_time as "regDate"
+			reg_time as "regTime"
 			from reservation
 			where member_id=#{memberId}
 			]]>
 		</select>
 		
+		<select id="searchJoinById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.Search">
+		<![CDATA[
+			select  
+			place_name as "placeName",
+			 reserve_date as "reserveDate",
+			  reg_time as "regDate",
+			   state as "state",
+			   operation_id as "operationId"
+			     from
+			      reservation r,
+			       place p 
+			       where r.place_id=p.place_id and member_id=#{memberId}
+			]]>
+		</select>
 
 		
 		<!-- resultType="Integer" -->
