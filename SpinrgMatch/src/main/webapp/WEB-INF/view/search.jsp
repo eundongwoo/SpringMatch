@@ -17,7 +17,7 @@
 <title>Insert title here</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1 nitial-scale=1, user-scalable=no">
-<link rel="stylesheet" href="/Match/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 </head>
 <body class="is-preload">
 	<!-- Wrapper -->
@@ -25,7 +25,7 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<a href="/Match/main.jsp" class="logo"><strong>matching</strong>
+			<a href="/main" class="logo"><strong>matching</strong>
 				<span>kick together</span></a>
 			<nav>
 				<a href="#menu">Menu</a>
@@ -84,15 +84,15 @@
 </tbody>
 </table>
 
-<button type="button" onclick="location.href='/main'">뒤로가기</button>
+<button type="button" onclick="location.href='/main'" style="margin-left:1200px">뒤로가기</button>
 </div>
 <!-- Scripts -->
-	<script src="/Match/js/jquery.min.js"></script>
-	<script src="/Match/js/jquery.scrolly.min.js"></script>
-	<script src="/Match/js/jquery.scrollex.min.js"></script>
-	<script src="/Match/js/browser.min.js"></script>
-	<script src="/Match/js/breakpoints.min.js"></script>
-	<script src="/Match/js/util.js"></script>
-	<script src="/Match/js/main.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.scrolly.min.js"></script>
+		<script src="/js/jquery.scrollex.min.js"></script>
+		<script src="/js/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
 </body>
 </html>

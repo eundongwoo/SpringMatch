@@ -9,7 +9,6 @@
 </head>
 <body>
 <script>
-alert('${authUser}');
 
 </script>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
