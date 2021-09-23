@@ -520,32 +520,42 @@ for(var j=0; j<placeArray.length; j++) {
 										success:function(checkButton){
 											
 											$("#timezone").html("");
-											var operationIdHidden=null;
-											var placeIdHidden=null;
+											
 											for(var i=0; i<checkButton.operationTimeList.length; i++) {
+												var operationIdHidden=null;
+												var placeIdHidden=null; 
 												var time = checkButton.operationTimeList[i].fullTime;
-												operationIdHidden=checkButton.operationTimeList[i].operationId;
-												placeIdHidden=checkButton.operationTimeList[i].placeId;
-											   	for(var j=0; j<checkButton.checkRedList.length; j++) {
+												 operationIdHidden=checkButton.operationTimeList[i].operationId;
+												placeIdHidden=checkButton.operationTimeList[i].placeId; 
+											   /* 	for(var j=0; j<checkButton.checkRedList.length; j++) {
 											   		alert(checkButton.checkRedList[j].checkNum);
-											   	}
+											   	} */
 												
-												$("#timezone").append("<input id='operationTime"+i+"' type='button'>");
-												/* if(!) {
+												$("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
+												 if(!(checkButton.checkRedList[i].checkNum&&(!checkButton.checkRedList[i].checkDate||checkButton.checkRedList[i].checkTime))) {
 													$("#operationTime"+i).css({
 														background:'red',
 														opacity:0.7
 													});
-												} */
+													/* $("#operationTime"+i).attr('disabled',disabled); */
+												} 
 												
 												$("#operationTime"+i).val(time);
+												$("#operationTime"+i).attr("data-operationId",operationIdHidden);
+												$("#operationTime"+i).attr("data-placeId",placeIdHidden);
 												$("#operationTime"+i).click(function() {
+												/* 	operationIdHidden= checkButton.operationTimeList[i].operationId;
+													placeIdHidden=checkButton.operationTimeList[i].placeId; */
 													$("#time").val($(this).val());
+													$("#operationIdHidden").val($(this).attr("data-operationId"));
+													$("#placeIdHidden").val($(this).attr("data-placeId"));
+													/* $("#operationIdHidden").val(operationIdHidden);
+													$("#placeIdHidden").val(placeIdHidden);  */
 												});
 											}
 											
-											$("#operationIdHidden").val(operationIdHidden);
-											$("#placeIdHidden").val(placeIdHidden);
+											/*  $("#operationIdHidden").val(operationIdHidden);
+											$("#placeIdHidden").val(placeIdHidden); */
 											
 										},
 										error:function(){

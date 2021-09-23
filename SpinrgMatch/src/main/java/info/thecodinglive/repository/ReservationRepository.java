@@ -22,6 +22,7 @@ public class ReservationRepository {
 	//예약
 	public void addReservation(ReserveDTO reserveDTO) {
 		System.out.println("====repository>"+reserveDTO.toString());
+		System.out.println("체크 operationID"+reserveDTO.toString());
 		sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addReservation", reserveDTO);
 		
 	}

@@ -135,7 +135,8 @@ public class ReservceController {
 			reserveTime.setYear(nowDate.getYear());
 			reserveTime.setMonth(nowDate.getMonth());
 			reserveTime.setDate(nowDate.getDate());
-			checkRedList.get(i).setCheckTime(nowDate.after(reserveTime));
+			System.out.println("변경 후 reserveTIME!!!===>"+reserveTime);
+			checkRedList.get(i).setCheckTime(reserveTime.after(nowDate));
 		}
 		//이제 checkRed의 리스트 완성
 		System.out.println("checkRedList===>"+checkRedList.toString());
@@ -164,6 +165,7 @@ public class ReservceController {
 			System.out.println("로그인이 필요합니다");
 			return "main";
 		}
+		System.out.println("전~~~~~"+reserveDTO.toString());
 		reserveDTO.setPlaceId(Integer.parseInt(reserveDTO.getPlaceIdString()));
 		reserveDTO.setOperationId(Integer.parseInt(reserveDTO.getOperationIdString()));
 		System.out.println(reserveDTO.toString());

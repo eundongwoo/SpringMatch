@@ -42,6 +42,7 @@ public class ReserveService {
 	
 	public void reserve(ReserveDTO reserveDTO) {
 		int reserveCount = checkCount(reserveDTO);
+		System.out.println("reserve!!!"+reserveDTO.toString());
 		if(reserveCount<=2) {
 			reservationRepository.addReservation(reserveDTO);
 			reserveCount = checkCount(reserveDTO);
