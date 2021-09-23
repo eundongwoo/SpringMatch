@@ -532,7 +532,7 @@ for(var j=0; j<placeArray.length; j++) {
 											   	} */
 												
 												$("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
-												 if(!(checkButton.checkRedList[i].checkNum&&(!checkButton.checkRedList[i].checkDate||!checkButton.checkRedList[i].checkTime))) {
+												 if((!checkButton.checkRedList[i].checkNum||(!checkButton.checkRedList[i].checkDate&&!checkButton.checkRedList[i].checkTime))) {
 													$("#operationTime"+i).css({
 														background:'red',
 														opacity:0.7
