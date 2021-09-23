@@ -41,6 +41,7 @@
 		<select id="searchJoinById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.Search">
 		<![CDATA[
 			select  
+			reserve_num as "reserveNum",
 			place_name as "placeName",
 			 reserve_date as "reserveDate",
 			  reg_time as "regDate",
@@ -52,7 +53,19 @@
 			       where r.place_id=p.place_id and member_id=#{memberId}
 			]]>
 		</select>
-
+		
+		
+		<delete id="cancelReservation" >
+			<![CDATA[
+			delete from reservation 
+			where reserve_num=#{reserveNum}
+			
+			
+			]]>
+		
+		</delete> 
+		
+		
 		
 		<!-- resultType="Integer" -->
 	<!-- 

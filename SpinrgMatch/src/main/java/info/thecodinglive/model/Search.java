@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Search {
+	private int reserveNum;     //예약 primarykey id
 	private int operationId;	//운영시간대 id
 	private String placeName;	//풋살장명
 	private String reserveDate;	//예약날짜

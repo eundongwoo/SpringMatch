@@ -1,5 +1,6 @@
 package info.thecodinglive.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import info.thecodinglive.model.CalendarDate;
@@ -130,6 +132,20 @@ public class ReservceController {
 		
 		return "search";
 	}
+	
+	@PostMapping(value = "/cancel")
+	public String reserveCacnel(Search search, HttpSession httpSession) {
+		Member authUser = (Member)httpSession.getAttribute("authUser");	
+		//cancelDTO에 담긴 풋살장이름, 예약날짜, 시간대를 가지고 delete쿼리문 해주면 됨.
+		
+		reservationRepository.cancelReservation(search);	//reservationDTO 받아서 삭제 쿼리
+//		System.out.println("cancel:===>"+regTime);
+		System.out.println("삭제완료");
+		
+		return "redirect:/reserve/search";
+		
+	}
+	
 	
 	
 }

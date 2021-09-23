@@ -65,24 +65,25 @@
 	<td>${search.reserveTime}</td>
 	<td>${search.regDate}</td>
 	 <td>
-		<form action="search.do" method="get">
-		 <input type="hidden" name="place_name" value="${search.placeName}">
-		 <input type="hidden" name="reserve_date" value="${search.reserveDate}">
-		 <input type="hidden" name="reserve_time" value="${search.reserveTime}">
-		 <input type="hidden" name="reg_time" value="${search.regDate}">
-		 <!-- info.state에 따라 예약취소 버튼 만들기 -->
+		 <form action="/reserve/cancel" method="post">
+		 <input type="hidden" name="reserveNum" value="${search.reserveNum}">
+		 <%-- <input type="hidden" name="place" value="${search.placeName}">
+		 <input type="hidden" name="date" value="${search.reserveDate}">
+		 <input type="hidden" name="time" value="${search.reserveTime}">  --%>
+		 <%-- <input type="hidden" name="regTime" value="${search.regDate}"> --%>
+		 <!-- info.state에 따라 예약취소 버튼 만들기 --> 
 		
-		<c:if test="${search.state ne '매칭실패'}">
-		 <input type="submit" value="예약취소">		 				
+		<c:if test="${search.state ne '예약확정'or'매칭실패'}">
+		 <input type="submit" id="cancel" value="예약취소">		 				
 		</c:if>		
 		</form>
 	</td> 
 	<td>${search.state}</td>
-	
 </tr>
  </c:forEach> 
 </tbody>
 </table>
+
 <button type="button" onclick="location.href='/main'">뒤로가기</button>
 </div>
 <!-- Scripts -->

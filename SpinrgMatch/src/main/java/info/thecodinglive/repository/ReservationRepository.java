@@ -55,4 +55,10 @@ public class ReservationRepository {
 		return list;
 	}
 	
+	//예약 취소
+	public void cancelReservation(Search search) {
+		sqlSessionTemplate.delete(MAPPER_NAME_SPACE+"cancelReservation", search);
+		System.out.println("삭제되었습니다");
+	}
+	
 }
