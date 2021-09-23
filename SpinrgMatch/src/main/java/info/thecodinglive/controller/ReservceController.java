@@ -122,9 +122,13 @@ public class ReservceController {
 			String reserveDate =placeAndCalendar.getCalendarFullDate();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy년MM월dd일");
 			Date reservedt = formatter.parse(reserveDate);	//예약시간 00시 
-			if(nowDate.after(reservedt)) {
-				checkRedList.get(i).setCheckDate(true);	//nowDate가 예약시간보다 지나면 true
+			System.out.println(nowDate+":::::"+reservedt);
+			if(nowDate.before(reservedt)) {
+				checkRedList.get(i).setCheckDate(true);	//nowDate가 예약시간보다 이전이면 true
 			}
+		}
+		for(int i=0; i<operationTimeList.size(); i++) {
+			System.out.println("-----checkDate"+checkRedList.get(i).isCheckDate());
 		}
 		//시간비교 
 		for(int i=0; i<operationTimeList.size(); i++) {
@@ -135,6 +139,7 @@ public class ReservceController {
 			reserveTime.setYear(nowDate.getYear());
 			reserveTime.setMonth(nowDate.getMonth());
 			reserveTime.setDate(nowDate.getDate());
+			System.out.println("변경 후 currentTIME!!!===>"+nowDate);
 			System.out.println("변경 후 reserveTIME!!!===>"+reserveTime);
 			checkRedList.get(i).setCheckTime(reserveTime.after(nowDate));
 		}

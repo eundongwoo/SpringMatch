@@ -9,4 +9,5 @@ public class CheckRed {
 	private boolean checkNum;		//사람 수 비교
 	private boolean checkDate;		//날짜 비교
 	private boolean checkTime;		//시간 비교
+	
 }
