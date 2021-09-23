@@ -537,7 +537,7 @@ for(var j=0; j<placeArray.length; j++) {
 														background:'red',
 														opacity:0.7
 													});
-													/* $("#operationTime"+i).attr('disabled',disabled); */
+													$("#operationTime"+i).attr('disabled','disabled');
 												} 
 												
 												$("#operationTime"+i).val(time);
