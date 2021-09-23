@@ -66,4 +66,11 @@ public class ReservationRepository {
 		System.out.println("매칭실패로 update");
 	}
 	
+	//한사람이 같은곳에 더블예약 체크
+	public int reserveCheck(ReserveDTO reserveDTO)
+	{
+		int reserveCheck = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"reserveCheck", reserveDTO);
+		return reserveCheck;
+	}
+	
 }

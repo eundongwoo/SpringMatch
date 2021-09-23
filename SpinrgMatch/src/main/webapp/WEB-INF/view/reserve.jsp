@@ -117,7 +117,7 @@
     </style>   
    
       </head>
-      <% String s = request.getParameter("year")+"년"+request.getParameter("month")+"월"+request.getParameter("date")+"일"; %>
+     
       
    <body class="is-preload"> 
       <!-- Header -->

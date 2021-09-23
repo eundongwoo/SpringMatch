@@ -76,6 +76,14 @@
 			]]>
 		</update>
 		
+		<select id="reserveCheck" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			select count(*) from reservation where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{date} 
+			and OPERATION_ID=#{operationId} and member_id=#{memberId}
+			]]>
+		</select>
+		
 		
 		<!-- resultType="Integer" -->
 	<!-- 

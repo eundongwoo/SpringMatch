@@ -109,6 +109,11 @@
 		</tr>				
 	</table>
 	<!-- <input type="submit" value="제출"> -->
+	<div id="placeDiv">
+      <table>
+         
+      </table>   
+   </div>
 	<button  type="button" class="btn btn-info" id="addPlace" style="margin-left:90%;">등록</button>
 	<input type="hidden" name="timeRowNum" id="timeRowNum">
 	<!-- </form> -->
@@ -138,12 +143,10 @@
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
 				manager:$('#placeManager').val(),
-<<<<<<< HEAD
-				timeRowNum:$('#timeRowNum').val()
-=======
+
 				operationTimeList:operationTimeListSample,
 				placeCost:$("#placeCost").val()
->>>>>>> branch 'test3' of https://github.com/eundongwoo/SpringMatch.git
+
 				/*운영 시간 값 반복 */
 				
 			});

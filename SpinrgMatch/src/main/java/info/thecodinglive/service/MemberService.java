@@ -21,7 +21,7 @@ public class MemberService {
 		System.out.println("서비스 쪽"+member.getMemberId());
 		System.out.println("서비스 쪽"+member.getMemberName());
 		if(member==null) {
-			System.out.println("��ġ���� �ʽ��ϴ�");
+			
 			return null;
 		}else
 		return member;
