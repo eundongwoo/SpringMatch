@@ -3,6 +3,7 @@ package info.thecodinglive.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -133,9 +134,17 @@ public class ReservceController {
 		
 		for(int i=0; i<searchList.size(); i++) {
 			String reserveDate = searchList.get(i).getReserveDate();		
-			Date nowDate = new Date();
+			Date nowDate = new Date();	//현재시간
+		
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy년MM월dd일");
-			Date reservedt = formatter.parse(reserveDate);
+			Date reservedt = formatter.parse(reserveDate);	//예약시간
+			reservedt.setHours(nowDate.getHours());
+
+			nowDate.setHours(0);
+
+			//reservedt.setTime(nowDate.getTime());	//시간도 맞춰주기
+			System.out.println("nowDate===>"+nowDate.toString());
+			System.out.println("reservedt===>"+reservedt.toString());
 			if(nowDate.after(reservedt)) {
 				//Search객체의 reserveNum으로 state '매칭실패'로 update
 				reservationRepository.stateUpdateByReserveNum(searchList.get(i));
