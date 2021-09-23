@@ -29,8 +29,9 @@ create table place(
 	place_name varchar(50) not null,
 	place_addr varchar(50) not null,
 	place_tel varchar(50) not null,
-	manager varchar(50) not null
+	manager varchar(50) not null,
 );
+ALTER TABLE place ADD place_cost number DEFAULT 0 NOT NULL;
 create sequence place_num increment by 1 start with 1;
 insert into place values(place_num.NEXTVAL,'북현풋살구장','대구 북구 복현동 302-16','053-383-2630');
 insert into place values(place_num.NEXTVAL,'lfc풋살파크','대구 달서구 달구벌대로 1820','650-81-00575');

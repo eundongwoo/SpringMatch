@@ -19,6 +19,22 @@
 			]]>
 	</select>
 	
+	<insert id="addPlace">
+		<![CDATA[
+			insert into place(place_id, place_name, place_addr, place_tel, manager, place_cost)
+			values(place_num.nextVal, #{placeName}, #{placeAddr}, #{placeTel}, #{manager}, #{placeCost})
+			]]>
+		</insert>
+	
+	<select id="getPlaceName" parameterType="info.thecodinglive.model.Search" resultType="info.thecodinglive.model.Place">
+		<![CDATA[
+			SELECT place_name as "placeName"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+	</select>
+
+	
     <resultMap type="info.thecodinglive.model.Place" id="placeRs">
 		<result property="placeId" column="place_id"/>
 		<result property="placeName" column="place_name"/>

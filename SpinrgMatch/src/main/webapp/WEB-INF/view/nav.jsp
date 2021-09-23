@@ -23,7 +23,7 @@ alert('${authUser}');
                         	<a class="nav-link active" aria-current="page" href="/map">자유게시판</a>
                     	</li>
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="/reserve">예약페이지</a>
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약페이지</a>
                     	</li>
                  </ul>
                  <ul class="actions stacked">
@@ -45,8 +45,7 @@ alert('${authUser}');
                         	<a class="nav-link active" aria-current="page" href="mypage.do">마이페이지</a>
                     	</li> 
                     	<li class="nav-item">
-                        	<a class="nav-link active" aria-current="page" href="/reserve
-                        	">예약페이지</a>
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약페이지</a>
                     	</li>                
                     	<li class="nav-item">
                         	<a class="nav-link active" aria-current="page" href="/map">자유게시판</a>

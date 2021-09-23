@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.OperationTime;
+import info.thecodinglive.model.PlaceAndOperation;
+import info.thecodinglive.model.ReservationDTO;
+import info.thecodinglive.model.Search;
 
 @Repository
 public class OperationRepository {
@@ -27,5 +30,23 @@ public class OperationRepository {
 		
 	}
 	
+	public void addOperation(PlaceAndOperation placeAndOperation) {
+		List<OperationTime> list= placeAndOperation.getOperationTimeList();
+		for(int i=0; i<list.size(); i++) {
+			sqlSessionTemplate.insert(MAPPER_NAME_SPACE+"addOperation", list.get(i));
+		}
+		
+	}
 	
+	
+	public void getOperationTime(ReservationDTO reservationDTO) {
+		OperationTime operationTime = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getOperationTime", reservationDTO);
+		System.out.println("operationTIme===>"+operationTime.toString());
+	}
+	
+	public OperationTime getOperationTimeSearch(Search search) {
+		OperationTime operationTime = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getOperationTimeSearch", search);
+		System.out.println("operationTIme===>"+operationTime.toString());
+		return operationTime;
+	}
 }

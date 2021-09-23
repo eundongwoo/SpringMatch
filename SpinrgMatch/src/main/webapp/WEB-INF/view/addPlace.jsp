@@ -79,21 +79,30 @@
 			<td><input id="placeName" type="text" value=""></td>
 		</tr>
 		<tr>
+			<td>풋살장 관리자</td>
+			<td><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
+		</tr>
+		<tr>
 			<td>풋살장 주소</td>
 			<td><input id="placeAddr" type="text" value=""></td>
 		</tr>
 		<tr>
+
 			<td>풋살장 관리자</td>
 			<td><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
+
+			<td>풋살장 전화번호</td>
+			<td><input id="placeTel" type="text" value=""></td>
+		</tr>
+		<tr>
+			<td>타임 당 금액</td>
+			<td><input id="placeCost" type="text" value="" placeholder="10000원"></td>
+
 		</tr>
 		<%-- <tr>
 			<td>풋살장 점장</td>
 			<td><input name="placeManager" type="text" value="${authUser.author}"></td>
 		</tr> --%>
-		<tr>
-			<td>풋살장 전화번호</td>
-			<td><input id="placeTel" type="text" value=""></td>
-		</tr>
 		<tr>
 			<td>풋살장 운영시간</td>
 			<td><input id="plus" type="button" value="추가"></td>
@@ -119,21 +128,40 @@
 		
 	
 		$('#addPlace').click(function(){
-				var addPlace=JSON.stringify({
+				var operationTimeListSample = new Array();
+			
+			
+				for(var i=1; i<=$('#timeRowNum').val();i++) {
+					var operationTimeArray = new Object();
+					operationTimeArray.startTime=$("#startTime"+i).val();
+					operationTimeArray.endTime=$("#endTime"+i).val();
+					operationTimeListSample[i-1]=operationTimeArray;
+					
+				}
+			
+				
+			/* 	var x=JSON.stringify(operationTimeListSample); */
+				var PlaceAndOperation=JSON.stringify({
 				placeName:$('#placeName').val(),				
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
 				manager:$('#placeManager').val(),
+<<<<<<< HEAD
 				timeRowNum:$('#timeRowNum').val()
+=======
+				operationTimeList:operationTimeListSample,
+				placeCost:$("#placeCost").val()
+>>>>>>> branch 'test3' of https://github.com/eundongwoo/SpringMatch.git
 				/*운영 시간 값 반복 */
 				
 			});
+				
 		 	$.ajax({
 				url:"/admin/addplace",
 				type:"POST",
-				data:addPlace,
+				data:PlaceAndOperation,
 				contentType:"application/json;charset=utf-8",
-				
+				traditional:true,
 				success:function(){
 					alert('등록 성공');
 					location.href='/main';

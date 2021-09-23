@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import info.thecodinglive.model.Member;
 import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.PlaceAndCalendar;
@@ -41,6 +41,25 @@ public class ReserveService {
 	
 	
 	public void reserve(ReserveDTO reserveDTO) {
-		reservationRepository.addReservation(reserveDTO);
+		int reserveCount = checkCount(reserveDTO);
+		if(reserveCount<=2) {
+			reservationRepository.addReservation(reserveDTO);
+			reserveCount = checkCount(reserveDTO);
+			if(reserveCount==3) {
+				reservationRepository.stateUpdate(reserveDTO);
+			}
+		}
+		
 	}
+	
+	public int checkCount(ReserveDTO reserveDTO) {
+		int reserveCount = reservationRepository.reserveCount(reserveDTO);	//사람수
+		return reserveCount;
+	}
+	
+	/*
+	 * public void cancel(ReserveDTO reserveDTO, Member authUser) { //reserveDTO로부터
+	 * place로부터 placeId, date로부터 reserveDate, time으로부터 operationId가져와야 됨 //그리고 그
+	 * 정보들을 ReservationDTO에 넣어줘야 함. reservationRepository.cancelReservation(null); }
+	 */
 }

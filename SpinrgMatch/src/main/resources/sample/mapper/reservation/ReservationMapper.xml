@@ -7,8 +7,82 @@
 			values(reserve_num.NEXTVAL, #{memberId}, #{placeId}, #{operationId}, #{date})
 			]]>
 		</insert>
+		
+		<select id="reserveCount" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			select count(*) from reservation where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{date} 
+			and OPERATION_ID=#{operationId}
+			]]>
+		</select>
+		
+		<update id="stateUpdate" >
+			<![CDATA[
+			update reservation 
+			set state = '예약확정'
+			where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{date} 
+			and OPERATION_ID=#{operationId}
+			]]>
+		</update>
+		
+		<select id="searchById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.ReservationDTO">
+		<![CDATA[
+			select place_id as "placeId",
+			operation_id as "operationId",
+			reserve_date as "reserveDate",
+			state as "state",
+			reg_time as "regTime"
+			from reservation
+			where member_id=#{memberId}
+			]]>
+		</select>
+		
+		<select id="searchJoinById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.Search">
+		<![CDATA[
+			select  
+			reserve_num as "reserveNum",
+			place_name as "placeName",
+			 reserve_date as "reserveDate",
+			  reg_time as "regDate",
+			   state as "state",
+			   operation_id as "operationId"
+			     from
+			      reservation r,
+			       place p 
+			       where r.place_id=p.place_id and member_id=#{memberId}
+			]]>
+		</select>
+		
+		
+		<delete id="cancelReservation" >
+			<![CDATA[
+			delete from reservation 
+			where reserve_num=#{reserveNum}
+			
+			
+			]]>
+		
+		</delete> 
+		
+		
+		
+		<update id="stateUpdateByReserveNum" >
+			<![CDATA[
+			update reservation 
+			set state = '매칭실패'
+			where reserve_num=#{reserveNum} and state != '예약확정'
+			
+			]]>
+		</update>
+		
+		
+		<!-- resultType="Integer" -->
 	<!-- 
 	insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date)
 			values(reserve_num.NEXTVAL, #{memberId}, #{placeId}, #{operationId}, #{date}) -->
 <!-- parameterType="info.thecodinglive.model.ReserveDTO" -->
+
+
+
 </mapper>

@@ -1,17 +1,16 @@
 package info.thecodinglive.model;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Place {
-	private int placeId;
+public class PlaceAndOperation {
 	private String placeName;
 	private String placeAddr;
 	private String placeTel;
 	private String manager;
+	private List<OperationTime> operationTimeList;
+	private int placeCost;
 	
 }

@@ -176,8 +176,8 @@ geocoder.addressSearch(address, function(result, status) {
 				contentType:"application/json;charset=utf-8",
 				
 				success:function(reserveInfo){
-					alert('풋살장 정보 보내기 성공');
-					alert(reserveInfo.placeName);
+					
+					
 					$("#place").val(reserveInfo.placeName);
 					$("#timezone").html("");		/*추가  */
 					$("#time").val("");
@@ -422,7 +422,7 @@ for(var j=0; j<placeArray.length; j++) {
 				contentType:"application/json;charset=utf-8",
 				
 				success:function(reserveInfo){
-					alert('달력값 보내기 성공');
+					
 					$("#date").val(reserveInfo.date);
 					$("#timezone").html(""); 	/*추가  */
 					$("#time").val("");
@@ -518,7 +518,7 @@ for(var j=0; j<placeArray.length; j++) {
 										contentType:"application/json;charset=utf-8",
 										
 										success:function(operationTimeList){
-											alert('풋살장이름, 예약날짜 정보 보내기 성공');
+											
 											$("#timezone").html("");
 											var operationIdHidden=null;
 											var placeIdHidden=null;
