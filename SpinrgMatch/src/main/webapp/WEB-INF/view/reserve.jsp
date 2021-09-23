@@ -220,8 +220,8 @@ geocoder.addressSearch(address, function(result, status) {
             contentType:"application/json;charset=utf-8",
             
             success:function(reserveInfo){
-               alert('풋살장 정보 보내기 성공');
-               alert(reserveInfo.placeName);
+               
+             
                $("#place").val(reserveInfo.placeName);
                $("#timezone").html("");      /*추가  */
                $("#time").val("");
@@ -254,7 +254,7 @@ for(var j=0; j<placeArray.length; j++) {
 
 
 </script>
-</section>
+</section><br><br><br>
 
 
 
@@ -438,7 +438,7 @@ for(var j=0; j<placeArray.length; j++) {
 
             // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
             if (document.getElementsByClassName("choiceDay")[0]) {
-                document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+                document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#A9A9A9";
                 document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
             }
 
@@ -453,7 +453,6 @@ for(var j=0; j<placeArray.length; j++) {
             //클릭하면  ajax 방식으로 날짜 보냄
             var month=today.getMonth()+1;
             var calendarfulldate=today.getFullYear()+"년"+month+"월"+column.innerText+"일";
-            alert(calendarfulldate);
             var calendarDate=JSON.stringify({
                calendarYear:today.getFullYear(),            
                calendarMonth:month,
@@ -468,7 +467,7 @@ for(var j=0; j<placeArray.length; j++) {
             contentType:"application/json;charset=utf-8",
             
             success:function(reserveInfo){
-               alert('달력값 보내기 성공');
+              
                $("#date").val(reserveInfo.date);
                $("#timezone").html("");    /*추가  */
                $("#time").val("");
@@ -542,15 +541,19 @@ for(var j=0; j<placeArray.length; j++) {
            <div id="locationss"></div> 
            금액:<input type="text" name="cost" id="cost" value="" readonly="readonly"><br>           
           <!--hidden input (operationId, placeId 보낼 장소) --> 
-          <input type="hidden" name="operationIdString" id="operationIdHidden">
+           <input type="hidden" name="operationIdString" id="operationIdHidden">
           <input type="hidden" name="placeIdString" id="placeIdHidden">
-          <input id="timelook" type="button" value="시간 조회"><br><br>      <!--시간조회   -->
-         <div id="timezone"></div>                           <!-- 시간대버튼 -->
+           <input id="timelook" type="button" value="시간 조회"><br><br>        
+         <!-- <div id="timezone"></div>  -->                         
           <input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">     
-          </td>                 
+           </td>                 
           </table>      
-          </form>          
-         </div>          
+                   
+         </div> 
+         <br><br>
+         <div id="timezone" style="text-align: center;width:950px; margin:0 auto"></div>                          
+             
+         </form>      
          
                        
                       <script>
@@ -567,16 +570,16 @@ for(var j=0; j<placeArray.length; j++) {
                               contentType:"application/json;charset=utf-8",
                               
                               success:function(operationTimeList){
-                                 alert('풋살장이름, 예약날짜 정보 보내기 성공');
+                                 
                                  $("#timezone").html("");
                                  var operationIdHidden=null;
                                  var placeIdHidden=null;
+                                    $("#timezone").append("<h3>시간조회</h3>");
                                  for(var i=0; i<operationTimeList.length; i++) {
                                     var time = operationTimeList[i].fullTime;
                                     operationIdHidden=operationTimeList[i].operationId;
                                     placeIdHidden=operationTimeList[i].placeId;
-                                     
-                                    $("#timezone").append("<input id='operationTime"+i+"' type='button'>");
+                                    $("#timezone").append("<input id='operationTime"+i+"' type='button' style='margin-right:10px;'>");
                                     $("#operationTime"+i).val(time);
                                     $("#operationTime"+i).click(function() {
                                        $("#time").val($(this).val());
