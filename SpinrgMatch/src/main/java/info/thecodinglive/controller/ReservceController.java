@@ -110,10 +110,10 @@ public class ReservceController {
 	
 	//search클래스 리스트를 얻어서 뷰로 보내야 함.
 	@GetMapping(value = "/search")
-	public String searchReservation(ReserveDTO reserveDTO, HttpSession httpSession) {
+	public String searchReservation(HttpSession httpSession) {
 		Member authUser = (Member)httpSession.getAttribute("authUser");	
 		if(authUser!=null) {
-			reserveDTO.setMemberId(authUser.getMemberId());
+			System.out.println("계속 진행합니다.");
 		} else {
 			System.out.println("로그인이 필요합니다");
 			return "main";
@@ -125,12 +125,10 @@ public class ReservceController {
 			searchList.get(i).setReserveTime(operationtime.getStartTime()+"~"+operationtime.getEndTime());	// 각 리스트 요소별 예약시간대 설정
 		}
 		//여기까지하면 searchList완성 이걸 이제 뷰로 보낸다.
-		for (int i=0; i<searchList.size(); i++) {
-			System.out.println(searchList.get(i).toString());
-		}
+		httpSession.setAttribute("searchList", searchList);
 		
 		
-		return "main";
+		return "search";
 	}
 	
 	

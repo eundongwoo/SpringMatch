@@ -1,4 +1,4 @@
-<%@page import="mypage.model.ReserveInfo"%>
+<%-- <%@page import="mypage.model.ReserveInfo"%> --%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -39,7 +39,7 @@
 
 <%-- <c:set var="vals" value="<%=list%>"/> --%>
 
-<h1>${authUser.name}님 예약조회</h1>
+<h1>${authUser.memberName}님 예약조회</h1>
 
 <br>
 <table class="table table-striped">
@@ -54,36 +54,36 @@
 </tr>
 </thead>
 <tbody>
-<c:if test="${empty vals}">
+<c:if test="${empty searchList}">
 <td colspan="4">예약목록이 없습니다.</td>
 </c:if>
 
-<%-- <c:forEach var="info" items="<%=list%>"> --%>
+<c:forEach var="search" items="${searchList}"> 
 <tr>
-	<td>${info.place_name}</td>
-	<td>${info.reserve_date}</td>
-	<td>${info.reserve_time}</td>
-	<td>${info.reg_time}</td>
-	<td>
+	<td>${search.placeName}</td>
+	<td>${search.reserveDate}</td>
+	<td>${search.reserveTime}</td>
+	<td>${search.regDate}</td>
+	 <td>
 		<form action="search.do" method="get">
-		 <input type="hidden" name="place_name" value="${info.place_name}">
-		 <input type="hidden" name="reserve_date" value="${info.reserve_date}">
-		 <input type="hidden" name="reserve_time" value="${info.reserve_time}">
-		 <input type="hidden" name="reg_time" value="${info.reg_time}">
+		 <input type="hidden" name="place_name" value="${search.placeName}">
+		 <input type="hidden" name="reserve_date" value="${search.reserveDate}">
+		 <input type="hidden" name="reserve_time" value="${search.reserveTime}">
+		 <input type="hidden" name="reg_time" value="${search.regDate}">
 		 <!-- info.state에 따라 예약취소 버튼 만들기 -->
 		
-		<c:if test="${info.state ne '매칭실패'}">
+		<c:if test="${search.state ne '매칭실패'}">
 		 <input type="submit" value="예약취소">		 				
 		</c:if>		
 		</form>
-	</td>
-	<td>${info.state}</td>
+	</td> 
+	<td>${search.state}</td>
 	
 </tr>
-<%-- </c:forEach> --%>
+ </c:forEach> 
 </tbody>
 </table>
-<button type="button" onclick="location.href='mypage.do'">뒤로가기</button>
+<button type="button" onclick="location.href='/main'">뒤로가기</button>
 </div>
 <!-- Scripts -->
 	<script src="/Match/js/jquery.min.js"></script>
