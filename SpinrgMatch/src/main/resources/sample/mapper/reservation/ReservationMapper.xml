@@ -77,6 +77,15 @@
 		</update>
 		
 		
+		<select id="searchByDop" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			select count(*) from reservation where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{reserveDate} 
+			and OPERATION_ID=#{operationId}
+			]]>
+		</select>
+		
+		
 		<!-- resultType="Integer" -->
 	<!-- 
 	insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date)

@@ -517,17 +517,27 @@ for(var j=0; j<placeArray.length; j++) {
 										data:placeAndCalendar,
 										contentType:"application/json;charset=utf-8",
 										
-										success:function(operationTimeList){
+										success:function(checkButton){
 											
 											$("#timezone").html("");
 											var operationIdHidden=null;
 											var placeIdHidden=null;
-											for(var i=0; i<operationTimeList.length; i++) {
-												var time = operationTimeList[i].fullTime;
-												operationIdHidden=operationTimeList[i].operationId;
-												placeIdHidden=operationTimeList[i].placeId;
-											    
+											for(var i=0; i<checkButton.operationTimeList.length; i++) {
+												var time = checkButton.operationTimeList[i].fullTime;
+												operationIdHidden=checkButton.operationTimeList[i].operationId;
+												placeIdHidden=checkButton.operationTimeList[i].placeId;
+											   	for(var j=0; j<checkButton.checkRedList.length; j++) {
+											   		alert(checkButton.checkRedList[j].checkNum);
+											   	}
+												
 												$("#timezone").append("<input id='operationTime"+i+"' type='button'>");
+												/* if(!) {
+													$("#operationTime"+i).css({
+														background:'red',
+														opacity:0.7
+													});
+												} */
+												
 												$("#operationTime"+i).val(time);
 												$("#operationTime"+i).click(function() {
 													$("#time").val($(this).val());

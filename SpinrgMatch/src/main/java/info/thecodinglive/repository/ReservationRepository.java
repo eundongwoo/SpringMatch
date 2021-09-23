@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import info.thecodinglive.model.DateOperationPlace;
 import info.thecodinglive.model.Member;
 import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
@@ -64,6 +65,11 @@ public class ReservationRepository {
 	public void stateUpdateByReserveNum(Search search) {
 		sqlSessionTemplate.update(MAPPER_NAME_SPACE+"stateUpdateByReserveNum", search);
 		System.out.println("매칭실패로 update");
+	}
+	
+	public int searchByDop(DateOperationPlace dateOperationPlace) {
+		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"searchByDop", dateOperationPlace);
+			
 	}
 	
 }

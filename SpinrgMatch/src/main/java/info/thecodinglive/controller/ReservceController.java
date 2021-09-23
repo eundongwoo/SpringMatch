@@ -2,8 +2,7 @@ package info.thecodinglive.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,22 +16,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import info.thecodinglive.model.CalendarDate;
+import info.thecodinglive.model.CheckButton;
+import info.thecodinglive.model.CheckRed;
+import info.thecodinglive.model.DateOperationPlace;
 import info.thecodinglive.model.Member;
 import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.PlaceAndCalendar;
-import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.ReserveInfo;
 import info.thecodinglive.model.Search;
 import info.thecodinglive.repository.OperationRepository;
 import info.thecodinglive.repository.PlaceRepository;
 import info.thecodinglive.repository.ReservationRepository;
-import info.thecodinglive.service.MemberService;
 import info.thecodinglive.service.ReserveService;
 
 @Controller
@@ -83,16 +81,77 @@ public class ReservceController {
 		httpSession.setAttribute("reserveInfo", reserveInfo);
 		return new ResponseEntity<ReserveInfo>(reserveInfo,HttpStatus.OK);
 	}
-	
+	//결국해야 되는 것은 checkButton을 완성시켜야 한다.
 	@PostMapping(value = "/timelook")
-	public ResponseEntity<List<OperationTime>> getOperationTimes(@RequestBody PlaceAndCalendar placeAndCalendar, HttpSession httpSession) {
-		List<OperationTime> operationTimeList= reserveService.getOperationTimeList(placeAndCalendar);		
-		System.out.println("operationTimelist정보"+operationTimeList.get(0).getFullTime());
-		System.out.println("operationTimeList정보"+operationTimeList.get(1).getFullTime());
-		System.out.println("operationTimeList정보operationId===>"+operationTimeList.get(1).getOperationId());
-		System.out.println("operationTimeList정보placeId==>"+operationTimeList.get(1).getPlaceId());
+	public ResponseEntity<CheckButton> getOperationTimes(@RequestBody PlaceAndCalendar placeAndCalendar, HttpSession httpSession) throws ParseException {
+		//Date nowDate = new Date();	//현재시각 불러오기
+		String datefullTime;	//쿼리문에 사용될 "년 월 일"
+//		DateOperationPlace dateOperationPlace = new DateOperationPlace();	//쿼리문에 사용될 객체
+		CheckButton checkButton = new CheckButton();		//
+		
+		List<OperationTime> operationTimeList= reserveService.getOperationTimeList(placeAndCalendar);	
+		List<DateOperationPlace> dopList = new ArrayList<DateOperationPlace>();
+		List<CheckRed> checkRedList = new ArrayList<CheckRed>();
+		//dopList에다 쿼리문에 돌릴꺼 넣어주는 작업
+		for(int i=0; i<operationTimeList.size(); i++) {
+			DateOperationPlace dateOperationPlace = new DateOperationPlace();
+			dateOperationPlace.setOperationId(operationTimeList.get(i).getOperationId());
+			dateOperationPlace.setPlaceId(operationTimeList.get(i).getPlaceId());
+			dateOperationPlace.setReserveDate(placeAndCalendar.getCalendarFullDate());
+			dopList.add(dateOperationPlace);
+		}
+		
+		//checkRedList의 checkNum완성
+		for(int i=0; i<dopList.size(); i++) {
+			CheckRed cr = new CheckRed();
+			int num = reservationRepository.searchByDop(dopList.get(i));
+			if(num<3) {
+				cr.setCheckNum(true);	//3명보다 작으면 true
+			}else {
+				cr.setCheckNum(false);
+			}
+			checkRedList.add(cr);
+		}
+		//날짜 비교 해야 함  날짜 boolean완성
+		for(int i=0; i<operationTimeList.size(); i++) {
+			Date nowDate =new Date();
+			nowDate.setHours(0);
+			nowDate.setMinutes(0);
+			nowDate.setSeconds(0);	//현재날짜도 00시 
+//			String reserveDate = operationTimeList.get(i).getFullTime();
+			String reserveDate =placeAndCalendar.getCalendarFullDate();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy년MM월dd일");
+			Date reservedt = formatter.parse(reserveDate);	//예약시간 00시 
+			if(nowDate.after(reservedt)) {
+				checkRedList.get(i).setCheckDate(true);	//nowDate가 예약시간보다 지나면 true
+			}
+		}
+		//시간비교 
+		for(int i=0; i<operationTimeList.size(); i++) {
+			Date nowDate = new Date();
+			SimpleDateFormat sdf= new SimpleDateFormat("HH:mm");
+			Date reserveTime = new Date(sdf.parse(operationTimeList.get(i).getStartTime()).getTime());
+			System.out.println("reserveTIME!!!===>"+reserveTime);
+			reserveTime.setYear(nowDate.getYear());
+			reserveTime.setMonth(nowDate.getMonth());
+			reserveTime.setDate(nowDate.getDate());
+			checkRedList.get(i).setCheckTime(nowDate.after(reserveTime));
+		}
+		//이제 checkRed의 리스트 완성
+		System.out.println("checkRedList===>"+checkRedList.toString());
+		System.out.println("operationTimeList===>"+operationTimeList.toString());
+		//checkButton에 넣어서 이 데이터를 뷰에 전달
+		checkButton.setCheckRedList(checkRedList);
+		checkButton.setOperationTimeList(operationTimeList);
+		
+//		dateOperationPlace.setOperationId(operationTimeList.get(0).getOperationId());	
+//		dateOperationPlace.setPlaceId(operationTimeList.get(0).getPlaceId());
+		
+		
+		
 		httpSession.setAttribute("operationTimeList", operationTimeList);
-		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
+//		return new ResponseEntity<List<OperationTime>>(operationTimeList,HttpStatus.OK);
+		return new ResponseEntity<CheckButton>(checkButton,HttpStatus.OK);
 	}
 	
 	
