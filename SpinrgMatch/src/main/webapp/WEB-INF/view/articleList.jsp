@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,20 +33,22 @@
 						<th scope="col">조회수</th>
 					</tr>
 				</thead>
-				${articleList}
+				${articleList}///
+				
+				<%-- ${list[몇번째 행].속성} --%>
 				
 				<tbody>
-					<c:forEach items="${articleList}" var="article">
+					<%-- <c:forEach items="${articleList}" var="article"> --%>
 					<%-- <tr>
-						<td text="${article.article_no}"></td>
-						<td><a href="'/article?article_no='+${article.article_no}" 
+						<td text="${article.articleNo}"></td>
+						<td><a href="'/article?articleNo='+${article.article_no}" 
 						text="${article.title}"></a></td>
 						<td text="${article.memberId}"></td>
 						<td text="${article.regdate}"></td>
 						<td text="${article.readcnt}"></td>
 					</tr> --%>aa
-					<input type="text">${article.memberId }</input>
-					</c:forEach>
+					<%-- <input type="text">${article.memberId }</input> --%>
+					<%-- </c:forEach> --%>
 				</tbody>
 			</table>
 		</div>
