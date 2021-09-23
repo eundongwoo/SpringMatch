@@ -82,6 +82,10 @@
 			<td>풋살장 주소</td>
 			<td><input id="placeAddr" type="text" value=""></td>
 		</tr>
+		<tr>
+			<td>풋살장 관리자</td>
+			<td><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
+		</tr>
 		<%-- <tr>
 			<td>풋살장 점장</td>
 			<td><input name="placeManager" type="text" value="${authUser.author}"></td>
@@ -104,7 +108,7 @@
 		</table>	
 	</div>
 	<!-- <input type="submit" value="제출"> -->
-	<button  type="button" class="btn btn-info" id="addPlace">제출</button>
+	<button  type="button" class="btn btn-info" id="addPlace">등록</button>
 	<input type="hidden" name="timeRowNum" id="timeRowNum">
 	<!-- </form> -->
 	</div>
@@ -112,11 +116,14 @@
 	</div>
 	
 	<script>
+		
+	
 		$('#addPlace').click(function(){
 				var addPlace=JSON.stringify({
 				placeName:$('#placeName').val(),				
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
+				manager:$('#placeManager').val(),
 				timeRowNum:$('#timeRowNum').val()
 				/*운영 시간 값 반복 */
 				

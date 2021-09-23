@@ -25,6 +25,7 @@ public class AddPlaceController {
 		System.out.println(place.getPlaceName());
 		System.out.println(place.getPlaceAddr());
 		System.out.println(place.getPlaceTel());
+		System.out.println(place.getManager());
 		
 		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}
