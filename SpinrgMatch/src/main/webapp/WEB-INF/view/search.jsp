@@ -73,7 +73,7 @@
 		 <%-- <input type="hidden" name="regTime" value="${search.regDate}"> --%>
 		 <!-- info.state에 따라 예약취소 버튼 만들기 --> 
 		
-		<c:if test="${search.state ne '예약확정'or'매칭실패'}">
+		<c:if test="${search.state ne '예약확정' and search.state ne '매칭실패'}">
 		 <input type="submit" id="cancel" value="예약취소">		 				
 		</c:if>		
 		</form>

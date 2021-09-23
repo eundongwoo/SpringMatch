@@ -61,4 +61,9 @@ public class ReservationRepository {
 		System.out.println("삭제되었습니다");
 	}
 	
+	public void stateUpdateByReserveNum(Search search) {
+		sqlSessionTemplate.update(MAPPER_NAME_SPACE+"stateUpdateByReserveNum", search);
+		System.out.println("매칭실패로 update");
+	}
+	
 }

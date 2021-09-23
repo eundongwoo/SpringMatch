@@ -67,6 +67,16 @@
 		
 		
 		
+		<update id="stateUpdateByReserveNum" >
+			<![CDATA[
+			update reservation 
+			set state = '매칭실패'
+			where reserve_num=#{reserveNum} and state != '예약확정'
+			
+			]]>
+		</update>
+		
+		
 		<!-- resultType="Integer" -->
 	<!-- 
 	insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date)
