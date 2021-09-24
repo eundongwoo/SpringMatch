@@ -599,6 +599,7 @@ for(var j=0; j<placeArray.length; j++) {
 		<br> <br>
 		<div id="timezone"
 			style="text-align: center; width: 950px; margin: 0 auto"></div>
+		<div id="memberInfo" style="text-align: center; width: 950px; margin: 0 auto"></div>
 	</form>
 
 
@@ -619,7 +620,15 @@ for(var j=0; j<placeArray.length; j++) {
 										success:function(checkButton){
 											
 											$("#timezone").html("");
-											
+											/* $("#memberInfo")html(""); */
+											/* for(var j=0; j<checkButton.memberCheckList.length; j++) {
+												var maxPerson=memberCheckList[j].maxPerson;
+												var maxPerson=memberCheckList[j].maxPerson;
+												var maxPerson=memberCheckList[j].maxPerson;
+												$("#memberInfo").$("#timezone").append("<textarea id='memberCheck"+j+"'></textarea>");
+												$("#memberCheck"+j).innerText(x)
+											} */
+											alert(checkButton.memberCheckList[0].maxPerson);
 											for(var i=0; i<checkButton.operationTimeList.length; i++) {
 												var operationIdHidden=null;
 												var placeIdHidden=null; 
@@ -631,6 +640,18 @@ for(var j=0; j<placeArray.length; j++) {
 											   	} */
 												
 												$("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
+												
+												
+											   	for(var k=0; k<checkButton.memberCheckList.length; k++) {
+											   		
+											   		var t = checkButton.memberCheckList[k].operationId;
+											   		if(checkButton.operationTimeList[i].operationId==t) {
+												   		$("#timezone").append("<br><textarea id='dop"+i+"' >");
+												   		$("#dop"+i).val('최대인원'+checkButton.memberCheckList[k].maxPerson+'\n'+'현재예약인원'+checkButton.memberCheckList[k].memberGroup+'\n'+'남은 자리수'+checkButton.memberCheckList[k].possibleNum);
+												   		
+												   	}
+											   	}
+											   	
 												 if((!checkButton.checkRedList[i].checkNum||(!checkButton.checkRedList[i].checkDate&&!checkButton.checkRedList[i].checkTime))) {
 													$("#operationTime"+i).css({
 														background:'red',
