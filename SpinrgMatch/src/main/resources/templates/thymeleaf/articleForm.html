@@ -15,10 +15,10 @@
 		<div class="page-header">
 			<h1>게시글 등록</h1>
 		</div>
-		
 		<br /> 
 		<input id="id" type="hidden" th:value="${article?.articleNo}" /> 
 		<input id="article_regdate" type="hidden" th:value="${article?.regdate}" />
+		<!-- <input id="sysdate" type="hidden" th:value= "${#calendars.createNow()}" /> -->
 		<table class="table">
 			<tr>
 				<th style="padding: 13px 0 0 15px">글제목</th>
@@ -31,16 +31,21 @@
 				<td>
 					<div class="pull-left">
 						<input type="text" readonly="readonly"
-						class="col-md-1 form-control input-sm" th:value="${article?.regdate}" />
+						class="col-md-1 form-control input-sm" th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}" />
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<th style="padding: 13px 0 0 15px">작성자</th>
+				<th style="padding: 13px 0 0 15px">작성자ID</th>
 				<td>
 					<div class="pull-left">
-						<input id="uname" type="text" 
+						<!--글번호를 파라미터로 가지고 있으면 본래의 글 작성자 이름이 보이고, 그렇지 않다면 세션으로 받는 memberId가 보이게. -->
+						<!--처리되엇음.  -->
+						<input th:if="${article?.articleNo}" type="text" readonly="readonly" 
 						class="col-md-1 form-control input-sm" th:value="${article?.memberId}" />
+						
+						<input th:if="!${article?.articleNo}" id="userId" type="text" readonly="readonly"
+						class="col-md-1 form-control input-sm" th:value="${authUser?.memberId}" />
 					</div>
 				</td>
 			</tr>
@@ -63,8 +68,8 @@
 		<div class="pull-right">
 		<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
 			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert">저장</button>
-			<button type="button" class="btn btn-info" id="update">수정</button>
-			<button type="button" class="btn btn-danger" id="delete">삭제</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update">수정</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete">삭제</button>
 		</div>
 		
 	</div>
@@ -75,7 +80,7 @@
 			var jsonData=JSON.stringify({
 				title:$('#title').val(),
 				/* category:$('#category').val(), */
-				memberId:'user',
+				memberId:$('#userId').val(),
 				content:$('#content').val()
 			});
 			$.ajax({
@@ -98,12 +103,13 @@
 	</script>
 	<!-- th:if="${article?.articleNo}" -->
 	<script >
+		
 		$('#update').click(function(){
 			var update=JSON.stringify({
 				title:$('#title').val(),
-				memberId:'user',
-				content:$('#content').val(),
-				
+				memberId:$('#userId').val(),
+				content:$('#content').val()
+		
 			});
 			$.ajax({
 				url:"http://localhost:9080/article/update/"+$('#id').val(),

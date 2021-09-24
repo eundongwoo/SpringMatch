@@ -1,5 +1,11 @@
 package info.thecodinglive.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import info.thecodinglive.model.Article;
+import info.thecodinglive.model.Member;
 import info.thecodinglive.service.ArticleService;
 
 /*@Controller*/
@@ -30,7 +37,8 @@ public class ArticleController {
 	ArticleService articleService; 
 	
 	@RequestMapping(value = "/form")
-	public ModelAndView insertForm(ModelAndView mv) {
+	public ModelAndView insertForm(ModelAndView mv, HttpServletRequest req) {
+		mv.addObject("authUser",req.getSession(false).getAttribute("authUser"));
 		mv.setViewName("thymeleaf/articleForm");
 		return mv;
 	}
@@ -62,11 +70,14 @@ public class ArticleController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateBoard(@PathVariable 
 			int id,@RequestBody Article reqArticle){
-		System.out.println("id값-->"+id);
-		
 		Article article=articleService.findArticleById(id);
 		article.setTitle(reqArticle.getTitle());
 		article.setContent(reqArticle.getContent());
+		Date nowDate = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+//		Date d = simpleDateFormat.format(nowDate);
+		
+		article.setModdate(nowDate);
 		//boardService.save(board);
 		return new ResponseEntity<>("{}",HttpStatus.OK);
 	}
@@ -80,9 +91,6 @@ public class ArticleController {
 		}
 		return new ResponseEntity<>("{}",HttpStatus.OK);
 	}
-	
-	
-	
 	
 	
 	@RequestMapping("/abc")

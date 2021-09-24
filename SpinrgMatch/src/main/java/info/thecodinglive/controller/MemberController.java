@@ -73,7 +73,6 @@ public class MemberController {
 		if(user==null) {
 
 			System.out.println("로그인 실패");
-
 			session.setAttribute("authUser", null);
 			return null;
 		}else {
