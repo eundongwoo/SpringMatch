@@ -1,3 +1,4 @@
+
 <%@page import="java.util.concurrent.Callable"%>
 <%-- <%@page import="calendar.model.Calendar"%> --%>
 <%@page import="java.util.Date"%>
@@ -12,60 +13,79 @@
 
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Forty by HTML5 UP</title>	
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-			<link rel="stylesheet" href="/Match/css/main.css">
-			<link rel="stylesheet" href="/Match/qcss/quick.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script>
-		$(document).ready(function(){
-			$(".timeBtn").click(function(){
-				var value=$($(this)).val();
-				 $("#time").val(value);
-			});
+   <head>
+      <title>Forty by HTML5 UP</title>   
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+         <link rel="stylesheet" href="/css/main.css">
+         <link rel="stylesheet" href="/qcss/quick.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+       <STYLE>
+		 #wrap
+		{
+			width: 70%;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		#wrap div:first-child {
+			width: 70%;
+			box-sizing:border-box;
+			float: left;
+		}
+		#wrap div:last-child {
+			width: 70%;
 			
-			
-			$(function() {
-				var topNum=$("#place").offset().top;
-				$(window).scrollTop(topNum);
-			});
-			
-			$("#lookTotal").click(function() {
-				var topNum=$("#banner").offset().top;
-				$(window).scrollTop(topNum);
-			});
-				
-			
-			});		
-		</script>
-		<!-- 퀵메뉴-------------------- -->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				  var currentPosition = parseInt($(".quickmenu").css("top"));
-				  $(window).scroll(function() {
-				    var position = $(window).scrollTop(); 
-				    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},250);
-				  });
-				});
-		</script> 
-		<script type="text/javascript">
-	var quickBox = $('.quickBox'); //퀵메뉴 코딩한 div의 클래스 네임 - 자신의 이름에 맞게 수정하세요
-	var quick_top = 120; // 기준이 되는 높이 값입니다. 수정해서 테스트 해보시면 감이 오실꺼에요.
-	quickBox.css('top', $(window).height() );
-	$(document).ready(function(){
-	quickBox.animate( { "top": $(document).scrollTop() + quick_top +"px" },  500 ); //숫자값을 변경하시면 속도변화
-	 $(window).scroll(function(){
-	  quickBox.stop();
-	  quickBox.animate( { "top": $(document).scrollTop() + quick_top + "px" }, 500 ); //숫자값을 변경하시면 속도변화
-	 });
-	});
-	/*calendar 스타일  */
-	</script> 
-		<style type="text/css">
+			box-sizing:border-box;
+			float: center;
+		} 
+		</STYLE>
+      <script>
+      $(document).ready(function(){
+         $(".timeBtn").click(function(){
+            var value=$($(this)).val();
+             $("#time").val(value);
+         });
+         
+         
+        /*  $(function() {
+            var topNum=$("#place").offset().top;
+            $(window).scrollTop(topNum);
+         });
+         
+         $("#lookTotal").click(function() {
+            var topNum=$("#banner").offset().top;
+            $(window).scrollTop(topNum);
+         });
+            
+         
+         });      */ 
+      </script>
+      <!-- 퀵메뉴-------------------- -->
+      <script type="text/javascript">
+         $(document).ready(function(){
+              var currentPosition = parseInt($(".quickmenu").css("top"));
+              $(window).scroll(function() {
+                var position = $(window).scrollTop(); 
+                $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},250);
+              });
+            });
+      </script> 
+      <script type="text/javascript">
+   var quickBox = $('.quickBox'); //퀵메뉴 코딩한 div의 클래스 네임 - 자신의 이름에 맞게 수정하세요
+   var quick_top = 120; // 기준이 되는 높이 값입니다. 수정해서 테스트 해보시면 감이 오실꺼에요.
+   quickBox.css('top', $(window).height() );
+   $(document).ready(function(){
+   quickBox.animate( { "top": $(document).scrollTop() + quick_top +"px" },  500 ); //숫자값을 변경하시면 속도변화
+    $(window).scroll(function(){
+     quickBox.stop();
+     quickBox.animate( { "top": $(document).scrollTop() + quick_top + "px" }, 500 ); //숫자값을 변경하시면 속도변화
+    });
+   });
+   /*calendar 스타일  */
+   </script> 
+      <style type="text/css">
         a {
-            color: #000000;
+            color:#ffffff;
             text-decoration: none;
         }
 
@@ -83,50 +103,74 @@
         }
 
         .scriptCalendar>thead>tr:last-child>td {
-            background-color: #90EE90;
+            background-color:#0a8212;
         }
 
         .scriptCalendar>tbody>tr>td {
             width: 50px;
             height: 50px;
         }
-    </style>	
-	
-		</head>
-		<% String s = request.getParameter("year")+"년"+request.getParameter("month")+"월"+request.getParameter("date")+"일"; %>
-		
-	<body class="is-preload">	
-		
+        p{
+        	style="color:red";
+        }
+        
+    </style>   
+   
+      </head>
+     
+      
+   <body class="is-preload"> 
+      <!-- Header -->
+      <header id="header" class="alt">
+         <a href="/main" class="logo"><strong>matching</strong>
+            <span>kick together</span></a>
+         <nav>
+            <a href="#menu">Menu</a>
+         </nav>
+      </header>
 
-		<!-- Header -->
-		<header id="header" class="alt">
-			<a href="/main" class="logo"><strong>matching</strong>
-				<span>kick together</span></a>
-			<nav>
-				<a href="#menu">Menu</a>
-			</nav>
-		</header>
-
-		<!-- Menu -->
-		<nav id="menu">
-			<jsp:include page="/WEB-INF/view/nav.jsp" />
-		</nav>
-		
-		<!-- map start--------------------------------------- -->
-		
-		
-		<%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
-		<div id="map" style="width:70%;height:400px; margin: 0 auto;"></div>
+      <!-- Menu -->
+      <nav id="menu">
+         <jsp:include page="/WEB-INF/view/nav.jsp" />
+      </nav>
+      <!-- Banner -->
+					<section id="banner2" class="major">
+						<div class="inner">
+							<header class="major" style="margin-left:230px;margin-top:200px;">
+								<h2>주의사항</h2>
+								<h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
+								<h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이 010-4195-8016으로 전화가능합니다.</h5>
+								<h5>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h5>
+								
+							</header>
+							<div style="margin-left: 1120px;margin-top:100px;" >
+							
+							
+								<p style="color:orange">확인하셨습니까?</p>
+								<ul class="actions">
+									<li><a href="#one" class="button next scrolly">구장 선택</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+      
+     
+      <!-- map start--------------------------------------- -->
+      
+      
+      <%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
+    <section id="one" class="tiles" style="margin-top:200px;">
+    <div id="map" style="width:70%;height:400px; margin: 0 auto;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
 
 <script style="color:red">
 var placeArray = new Array();
 <c:forEach items="${placeList}" var="place">
-	placeArray.push({
-		placeAddr:"${place.placeAddr}",
-		placeName:"${place.placeName}"
-	});
+   placeArray.push({
+      placeAddr:"${place.placeAddr}",
+      placeName:"${place.placeName}"
+   });
 </c:forEach>
 /* var placeList='${placeList}'; */
 
@@ -163,32 +207,32 @@ geocoder.addressSearch(address, function(result, status) {
         
         // 마커에 클릭이벤트를 등록합니다
         kakao.maps.event.addListener(marker, 'click', function() {
-        	
-        	var placeInfo=JSON.stringify({
-    			placeName:name				
+           
+           var placeInfo=JSON.stringify({
+             placeName:name            
 
-    		});
-        	
-        	$.ajax({
-				url:"/reserve/map",
-				type:"POST",
-				data:placeInfo,
-				contentType:"application/json;charset=utf-8",
-				
-				success:function(reserveInfo){
-					
-					
-					$("#place").val(reserveInfo.placeName);
-					$("#timezone").html("");		/*추가  */
-					$("#time").val("");
-				},
-				error:function(){
-					
-					
-					alert('풋살장 정보보내기 실패');
-				}
-			});
-        	
+          });
+           
+           $.ajax({
+            url:"/reserve/map",
+            type:"POST",
+            data:placeInfo,
+            contentType:"application/json;charset=utf-8",
+            
+            success:function(reserveInfo){
+               
+             
+               $("#place").val(reserveInfo.placeName);
+               $("#timezone").html("");      /*추가  */
+               $("#time").val("");
+            },
+            error:function(){
+               
+               
+               alert('풋살장 정보보내기 실패');
+            }
+         });
+           
  
         });
         
@@ -205,22 +249,23 @@ geocoder.addressSearch(address, function(result, status) {
 }
 
 for(var j=0; j<placeArray.length; j++) {
-	searchLocation(placeArray[j].placeAddr,placeArray[j].placeName);
+   searchLocation(placeArray[j].placeAddr,placeArray[j].placeName);
 }
 
 
 </script>
+</section><br><br><br>
 
 
 
-		<!--map end -------------------------------- -->
-		
-		
-		
-		<%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
-		<%-- ${reserveInfo.placeName} --%>
-		<!-- calendar start--------------------------------- -->
-		
+      <!--map end -------------------------------- -->
+      
+      
+      
+      <%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
+      <%-- ${reserveInfo.placeName} --%>
+      <!-- calendar start--------------------------------- -->
+      
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             buildCalendar();
@@ -284,7 +329,7 @@ for(var j=0; j<placeArray.length; j++) {
 
             // @details 시작값은 1일을 직접 지정하고 요일값( doMonth.getDay() )를 빼서 마이너스( - )로 for문을 시작한다.
             for (let day = 1 - doMonth.getDay(); daysLength >= day; day++) {
-				
+            
                 let column = row.insertCell();
 
                 // @param 평일( 전월일과 익월일의 데이터 제외 )
@@ -295,13 +340,14 @@ for(var j=0; j<placeArray.length; j++) {
                     // @param 평일 날짜 데이터 삽입
 
                     column.innerText = autoLeftPad(day, 2);
-					
+               
 
 
                     // @param 일요일인 경우
                     if (dom % 7 == 1) {
                         column.style.color = "#FF4D4D";
                     }
+                    
 
                     // @param 토요일인 경우
                     if (dom % 7 == 0) {
@@ -327,19 +373,19 @@ for(var j=0; j<placeArray.length; j++) {
 
                         // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
                         if (date.getDate() > day && Math.sign(day) == 1) {
-                            column.style.backgroundColor = "#E5E5E5";
+                            column.style.backgroundColor = "#555555";
                         }
 
                         // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
                         else if (date.getDate() < day && lastDate.getDate() >= day) {
-                            column.style.backgroundColor = "#FFFFFF";
+                            column.style.backgroundColor = "#A9A9A9";
                             column.style.cursor = "pointer";
                             column.onclick = function () { calendarChoiceDay(this); }
                         }
 
                         // @details 현재일인 경우
                         else if (date.getDate() == day) {
-                            column.style.backgroundColor = "#FFFFE6";
+                            column.style.backgroundColor = "#A9A9A9";
                             column.style.cursor = "pointer";
                             column.onclick = function () { calendarChoiceDay(this); }
                         }
@@ -347,14 +393,14 @@ for(var j=0; j<placeArray.length; j++) {
                         // @details 현재월보다 이전인경우
                     } else if (today.getMonth() < date.getMonth()) {
                         if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                            column.style.backgroundColor = "#E5E5E5";
+                            column.style.backgroundColor = "#A9A9A9";
                         }
                     }
 
                     // @details 현재월보다 이후인경우
                     else {
                         if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                            column.style.backgroundColor = "#FFFFFF";
+                            column.style.backgroundColor = "#A9A9A9";
                             column.style.cursor = "pointer";
                             column.onclick = function () { calendarChoiceDay(this); }
                         }
@@ -392,14 +438,14 @@ for(var j=0; j<placeArray.length; j++) {
 
             // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
             if (document.getElementsByClassName("choiceDay")[0]) {
-                document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+                document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#A9A9A9";
                 document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
             }
 
             // @param 선택일 체크 표시
             column.style.backgroundColor = "#FF9999";
-			
-			
+         
+         
 
             // @param 선택일 클래스명 변경
             column.classList.add("choiceDay");
@@ -407,30 +453,29 @@ for(var j=0; j<placeArray.length; j++) {
             //클릭하면  ajax 방식으로 날짜 보냄
             var month=today.getMonth()+1;
             var calendarfulldate=today.getFullYear()+"년"+month+"월"+column.innerText+"일";
-            alert(calendarfulldate);
             var calendarDate=JSON.stringify({
-            	calendarYear:today.getFullYear(),				
-            	calendarMonth:month,
-				calendarDay:column.innerText,
-				calendarFullDate:calendarfulldate
-				
-			});
+               calendarYear:today.getFullYear(),            
+               calendarMonth:month,
+            calendarDay:column.innerText,
+            calendarFullDate:calendarfulldate
+            
+         });
             $.ajax({
-				url:"/reserve/calendar",
-				type:"POST",
-				data:calendarDate,
-				contentType:"application/json;charset=utf-8",
-				
-				success:function(reserveInfo){
-					
-					$("#date").val(reserveInfo.date);
-					$("#timezone").html(""); 	/*추가  */
-					$("#time").val("");
-				},
-				error:function(){
-					alert('달력값 보내기 실패');
-				}
-			}); 
+            url:"/reserve/calendar",
+            type:"POST",
+            data:calendarDate,
+            contentType:"application/json;charset=utf-8",
+            
+            success:function(reserveInfo){
+              
+               $("#date").val(reserveInfo.date);
+               $("#timezone").html("");    /*추가  */
+               $("#time").val("");
+            },
+            error:function(){
+               alert('달력값 보내기 실패');
+            }
+         }); 
         }
 
         /**
@@ -451,6 +496,7 @@ for(var j=0; j<placeArray.length; j++) {
 </head>
 
 <body>
+	<div id="wrap" style="text-align: center">
     <table class="scriptCalendar">
         <thead>
             <tr>
@@ -473,6 +519,7 @@ for(var j=0; j<placeArray.length; j++) {
         </thead>
         <tbody></tbody>
     </table>
+<<<<<<< HEAD
     ${reserveInfo.date}
 		
 		<!-- calendar end------------------------------------------- -->
@@ -491,7 +538,8 @@ for(var j=0; j<placeArray.length; j++) {
     		<%-- 날짜:<input type="text" name="date" id="date" value="<%=cal.getYear()+"년"+cal.getMonth()+"월"+cal.getDate()+"일"%>" readonly="readonly"><br>  --%>
     		</c:if>   		
     		시간:<input type="text" name="time" id="time" readonly="readonly">
-    		 <div id="locationss"></div>	  		
+    		 <div id="locationss"></div>	
+    		금액:<input type="text" name="cost" id="cost" value="" readonly="readonly"><br>   		
     		<!--hidden input (operationId, placeId 보낼 장소) --> 
     		<input type="hidden" name="operationIdString" id="operationIdHidden">
     		<input type="hidden" name="placeIdString" id="placeIdHidden">
@@ -573,14 +621,15 @@ for(var j=0; j<placeArray.length; j++) {
     						
     	
 							<br><br>
-			<!-- Scripts -->
-			<script src="/Match/js/jquery.min.js"></script>
-			<script src="/Match/js/jquery.scrolly.min.js"></script>
-			<script src="/Match/js/jquery.scrollex.min.js"></script>
-			<script src="/Match/js/browser.min.js"></script>
-			<script src="/Match/js/breakpoints.min.js"></script>
-			<script src="/Match/js/util.js"></script>
-			<script src="/Match/js/main.js"></script>
+			 <!-- Scripts -->
+         <script src="/js/jquery.min.js"></script>
+         <script src="/js/jquery.scrolly.min.js"></script>
+         <script src="/js/jquery.scrollex.min.js"></script>
+         <script src="/js/browser.min.js"></script>
+         <script src="/js/breakpoints.min.js"></script>
+         <script src="/js/util.js"></script>
+         <script src="/js/main.js"></script>
 	</body>
 	
+
 </html>

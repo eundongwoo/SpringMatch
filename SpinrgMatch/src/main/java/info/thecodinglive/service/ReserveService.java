@@ -42,14 +42,29 @@ public class ReserveService {
 	
 	public void reserve(ReserveDTO reserveDTO) {
 		int reserveCount = checkCount(reserveDTO);
-		System.out.println("reserve!!!"+reserveDTO.toString());
-		if(reserveCount<=2) {
-			reservationRepository.addReservation(reserveDTO);
-			reserveCount = checkCount(reserveDTO);
-			if(reserveCount==3) {
-				reservationRepository.stateUpdate(reserveDTO);
+
+		int reserveCheck= reserveCheck(reserveDTO);
+		if(reserveCheck==1)
+		{
+			System.out.println("이미 예약했어...");
+		}else
+		{
+			if(reserveCount<=2) {
+				reservationRepository.addReservation(reserveDTO);
+				reserveCount = checkCount(reserveDTO);
+				if(reserveCount==3) {
+					reservationRepository.stateUpdate(reserveDTO);
+				}
+
 			}
-		}
+			
+		}		
+	}
+	
+	public int reserveCheck(ReserveDTO reserveDTO)
+	{
+		int reserveCheck=reservationRepository.reserveCheck(reserveDTO);
+		return reserveCheck;
 		
 	}
 	
@@ -57,6 +72,8 @@ public class ReserveService {
 		int reserveCount = reservationRepository.reserveCount(reserveDTO);	//사람수
 		return reserveCount;
 	}
+	
+	
 	
 	/*
 	 * public void cancel(ReserveDTO reserveDTO, Member authUser) { //reserveDTO로부터

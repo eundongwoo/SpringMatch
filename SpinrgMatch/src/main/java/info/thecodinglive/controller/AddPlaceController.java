@@ -33,6 +33,7 @@ public class AddPlaceController {
 	@PostMapping(value ="/addplace")
 	public ResponseEntity<String> addPlace(@RequestBody PlaceAndOperation placeAndOperation	)
 	{
+
 		System.out.println(placeAndOperation.toString());
 		placeRepository.addPlace(placeAndOperation);
 		int placeId = placeRepository.getPlaceId(placeAndOperation.getPlaceName());
@@ -41,6 +42,7 @@ public class AddPlaceController {
 			list.get(i).setPlaceId(placeId);
 		}
 		operationRepository.addOperation(placeAndOperation);
+
 		
 		return new ResponseEntity<String>("success",HttpStatus.OK);
 	}

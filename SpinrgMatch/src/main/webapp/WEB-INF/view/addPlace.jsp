@@ -7,7 +7,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="/Match/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 <meta charset="UTF-8">
 <title>풋살장추가</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
@@ -54,7 +54,7 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<a href="/Match/main.jsp" class="logo"><strong>matching</strong>
+			<a href="/main" class="logo"><strong>matching</strong>
 				<span>kick together</span></a>
 			<nav>
 				<a href="#menu">Menu</a>
@@ -65,8 +65,7 @@
 		<nav id="menu">
 			<jsp:include page="/WEB-INF/view/nav.jsp" />
 		</nav>
-		<section id="one">
-			<div id="wrap">
+		<!-- <section id="one">	 -->		
 		<header style= "text-align: center">
 			<h1 align="center">풋살장추가</h1>
 		</header>
@@ -76,50 +75,55 @@
 	<table>
 		<tr>
 			<td>풋살장 이름</td>
-			<td><input id="placeName" type="text" value=""></td>
+			<td colspan="3"><input id="placeName" type="text" value=""></td>
 		</tr>
 		<tr>
 			<td>풋살장 관리자</td>
-			<td><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
+			<td colspan="3"><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
 		</tr>
 		<tr>
 			<td>풋살장 주소</td>
-			<td><input id="placeAddr" type="text" value=""></td>
+			<td colspan="3"><input id="placeAddr" type="text" value=""></td>
 		</tr>
 		<tr>
+
+			<td>풋살장 관리자</td>
+			<td><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
+
 			<td>풋살장 전화번호</td>
 			<td><input id="placeTel" type="text" value=""></td>
 		</tr>
 		<tr>
 			<td>타임 당 금액</td>
-			<td><input id="placeCost" type="text" value="" placeholder="10000원"></td>
+			<td colspan="3"><input id="placeCost" type="text" value="" placeholder="10000원"></td>
+
 		</tr>
 		<%-- <tr>
 			<td>풋살장 점장</td>
 			<td><input name="placeManager" type="text" value="${authUser.author}"></td>
 		</tr> --%>
 		<tr>
-			<td>풋살장 운영시간</td>
-			<td><input id="plus" type="button" value="추가"></td>
-			<td><input type='button' 
-       value='삭제' id="minus" /></td>								
-		</tr>
-				
+			<td colspan="3">풋살장 운영시간</td>
+			<td><input id="plus" type="button" value="추가"> 
+			<input type='button' value='삭제' id="minus" style="margin-left:60px;"/></td>								
+		</tr>				
 	</table>
-	<div id="placeDiv">
-		<table>
-			
-		</table>	
-	</div>
 	<!-- <input type="submit" value="제출"> -->
-	<button  type="button" class="btn btn-info" id="addPlace">제출</button>
+	<div id="placeDiv">
+      <table>
+         
+      </table>   
+   </div>
+	<button  type="button" class="btn btn-info" id="addPlace" style="margin-left:90%;">등록</button>
 	<input type="hidden" name="timeRowNum" id="timeRowNum">
 	<!-- </form> -->
 	</div>
-	</section>
+	<!-- </section> -->
 	</div>
 	
 	<script>
+		
+	
 		$('#addPlace').click(function(){
 				var operationTimeListSample = new Array();
 			
@@ -139,8 +143,10 @@
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
 				manager:$('#placeManager').val(),
+
 				operationTimeList:operationTimeListSample,
 				placeCost:$("#placeCost").val()
+
 				/*운영 시간 값 반복 */
 				
 			});
@@ -163,12 +169,12 @@
 		});
 	
 	</script>
-		<script src="/Match/js/jquery.min.js"></script>
-		<script src="/Match/js/jquery.scrolly.min.js"></script>
-		<script src="/Match/js/jquery.scrollex.min.js"></script>
-		<script src="/Match/js/browser.min.js"></script>
-		<script src="/Match/js/breakpoints.min.js"></script>
-		<script src="/Match/js/util.js"></script>
-		<script src="/Match/js/main.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.scrolly.min.js"></script>
+		<script src="/js/jquery.scrollex.min.js"></script>
+		<script src="/js/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
 </body>
 </html>
