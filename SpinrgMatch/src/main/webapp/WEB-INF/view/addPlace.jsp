@@ -78,10 +78,6 @@
 			<td colspan="3"><input id="placeName" type="text" value=""></td>
 		</tr>
 		<tr>
-			<td>풋살장 관리자</td>
-			<td colspan="3"><input id="placeManager" type="text" value="${authUser.memberId}" disabled="disabled"></td>
-		</tr>
-		<tr>
 			<td>풋살장 주소</td>
 			<td colspan="3"><input id="placeAddr" type="text" value=""></td>
 		</tr>
@@ -92,6 +88,11 @@
 
 			<td>풋살장 전화번호</td>
 			<td><input id="placeTel" type="text" value=""></td>
+		</tr>
+		<tr>
+			<td colspan="1">최대 인원 수</td>
+			<td colspan="2"><input id="maxPerson" type="text" value="" ></td>
+			<td><strong>명</strong></td>
 		</tr>
 		<tr>
 			<td>타임 당 금액</td>
@@ -143,7 +144,7 @@
 				placeAddr:$('#placeAddr').val(),
 				placeTel:$('#placeTel').val(),
 				manager:$('#placeManager').val(),
-
+				maxPerson:$('#maxPerson').val(),
 				operationTimeList:operationTimeListSample,
 				placeCost:$("#placeCost").val()
 

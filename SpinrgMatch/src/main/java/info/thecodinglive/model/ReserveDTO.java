@@ -11,5 +11,7 @@ public class ReserveDTO {
 	private String placeIdString;
 	private String operationIdString;
 	private int placeId;
+	private int memberGroup;
+	private String memberGroupString;
 	private int operationId;
 }

@@ -5,46 +5,50 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%-- <%@page import="map.model.Place"%> --%>
 <%@page import="java.util.List"%>
-<%@page import="java.util.HashMap" %>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE HTML>
 <html>
-   <head>
-      <title>Forty by HTML5 UP</title>   
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-         <link rel="stylesheet" href="/css/main.css">
-         <link rel="stylesheet" href="/qcss/quick.css">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-       <STYLE>
-		 #wrap
-		{
-			width: 70%;
-			overflow: hidden;
-			margin: 0 auto;
-		}
-		#wrap div:first-child {
-			width: 70%;
-			box-sizing:border-box;
-			float: left;
-		}
-		#wrap div:last-child {
-			width: 70%;
-			
-			box-sizing:border-box;
-			float: center;
-		} 
-		</STYLE>
-      <script>
+<head>
+<title>Forty by HTML5 UP</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/qcss/quick.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<STYLE>
+#wrap {
+	width: 70%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#wrap div:first-child {
+	width: 70%;
+	box-sizing: border-box;
+	float: left;
+}
+
+#wrap div:last-child {
+	width: 70%;
+	box-sizing: border-box;
+	float: center;
+}
+</STYLE>
+<script>
       $(document).ready(function(){
          $(".timeBtn").click(function(){
             var value=$($(this)).val();
              $("#time").val(value);
          });
+         
+         
          
          
         /*  $(function() {
@@ -60,17 +64,32 @@
          
          });      */ 
       </script>
-      <!-- 퀵메뉴-------------------- -->
-      <script type="text/javascript">
+<!-- 퀵메뉴-------------------- -->
+<script type="text/javascript">
          $(document).ready(function(){
+        	 
+        	  var group=$($('#group')).val();
               var currentPosition = parseInt($(".quickmenu").css("top"));
               $(window).scroll(function() {
                 var position = $(window).scrollTop(); 
                 $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},250);
               });
+              
+              $("#plus").click(function(){
+              	    value=parseInt(++group);
+              		$('#group').val(group);              	 
+               });
+              
+              $("#minus").click(function(){
+            	   if(group>1)
+            		   {
+            		  		value=parseInt(--group);
+               				$('#group').val(group); 
+            		   }
+             });
             });
-      </script> 
-      <script type="text/javascript">
+      </script>
+<script type="text/javascript">
    var quickBox = $('.quickBox'); //퀵메뉴 코딩한 div의 클래스 네임 - 자신의 이름에 맞게 수정하세요
    var quick_top = 120; // 기준이 되는 높이 값입니다. 수정해서 테스트 해보시면 감이 오실꺼에요.
    quickBox.css('top', $(window).height() );
@@ -82,89 +101,91 @@
     });
    });
    /*calendar 스타일  */
-   </script> 
-      <style type="text/css">
-        a {
-            color:#ffffff;
-            text-decoration: none;
-        }
+   </script>
+<style type="text/css">
+a {
+	color: #ffffff;
+	text-decoration: none;
+}
 
-        .scriptCalendar {
-            text-align: center;
-        }
+.scriptCalendar {
+	text-align: center;
+}
 
-        .scriptCalendar>thead>tr>td {
-            width: 50px;
-            height: 50px;
-        }
+.scriptCalendar>thead>tr>td {
+	width: 50px;
+	height: 50px;
+}
 
-        .scriptCalendar>thead>tr:first-child>td {
-            font-weight: bold;
-        }
+.scriptCalendar>thead>tr:first-child>td {
+	font-weight: bold;
+}
 
-        .scriptCalendar>thead>tr:last-child>td {
-            background-color:#0a8212;
-        }
+.scriptCalendar>thead>tr:last-child>td {
+	background-color: #0a8212;
+}
 
-        .scriptCalendar>tbody>tr>td {
-            width: 50px;
-            height: 50px;
-        }
-        p{
-        	style="color:red";
-        }
-        
-    </style>   
-   
-      </head>
-     
-      
-   <body class="is-preload"> 
-      <!-- Header -->
-      <header id="header" class="alt">
-         <a href="/main" class="logo"><strong>matching</strong>
-            <span>kick together</span></a>
-         <nav>
-            <a href="#menu">Menu</a>
-         </nav>
-      </header>
+.scriptCalendar>tbody>tr>td {
+	width: 50px;
+	height: 50px;
+}
 
-      <!-- Menu -->
-      <nav id="menu">
-         <jsp:include page="/WEB-INF/view/nav.jsp" />
-      </nav>
-      <!-- Banner -->
-					<section id="banner2" class="major">
-						<div class="inner">
-							<header class="major" style="margin-left:230px;margin-top:200px;">
-								<h2>주의사항</h2>
-								<h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
-								<h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이 010-4195-8016으로 전화가능합니다.</h5>
-								<h5>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h5>
-								
-							</header>
-							<div style="margin-left: 1120px;margin-top:100px;" >
-							
-							
-								<p style="color:orange">확인하셨습니까?</p>
-								<ul class="actions">
-									<li><a href="#one" class="button next scrolly">구장 선택</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-      
-     
-      <!-- map start--------------------------------------- -->
-      
-      
-      <%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
-    <section id="one" class="tiles" style="margin-top:200px;">
-    <div id="map" style="width:70%;height:400px; margin: 0 auto;"></div>
+p {
+	style ="color: red";
+}
+</style>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
+</head>
 
-<script style="color:red">
+
+<body class="is-preload">
+	<!-- Header -->
+	<header id="header" class="alt">
+		<a href="/main" class="logo"><strong>matching</strong> <span>kick
+				together</span></a>
+		<nav>
+			<a href="#menu">Menu</a>
+		</nav>
+	</header>
+
+	<!-- Menu -->
+	<nav id="menu">
+		<jsp:include page="/WEB-INF/view/nav.jsp" />
+	</nav>
+	<!-- Banner -->
+	<section id="banner2" class="major">
+		<div class="inner">
+			<header class="major" style="margin-left: 230px; margin-top: 200px;">
+				<h2>주의사항</h2>
+				<h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
+				<h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
+					010-4195-8016으로 전화가능합니다.</h5>
+				<h5>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h5>
+
+			</header>
+			<div style="margin-left: 1120px; margin-top: 100px;">
+
+
+				<p style="color: orange">확인하셨습니까?</p>
+				<ul class="actions">
+					<li><a href="#one" class="button next scrolly">구장 선택</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- map start--------------------------------------- -->
+
+
+	<%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
+	<section id="one" class="tiles" style="margin-top: 200px;">
+		<div id="map" style="width: 70%; height: 400px; margin: 0 auto;"></div>
+
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
+
+		<script style="color: red">
 var placeArray = new Array();
 <c:forEach items="${placeList}" var="place">
    placeArray.push({
@@ -254,19 +275,22 @@ for(var j=0; j<placeArray.length; j++) {
 
 
 </script>
-</section><br><br><br>
+	</section>
+	<br>
+	<br>
+	<br>
 
 
 
-      <!--map end -------------------------------- -->
-      
-      
-      
-      <%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
-      <%-- ${reserveInfo.placeName} --%>
-      <!-- calendar start--------------------------------- -->
-      
-    <script type="text/javascript">
+	<!--map end -------------------------------- -->
+
+
+
+	<%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
+	<%-- ${reserveInfo.placeName} --%>
+	<!-- calendar start--------------------------------- -->
+
+	<script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             buildCalendar();
         });
@@ -497,67 +521,89 @@ for(var j=0; j<placeArray.length; j++) {
 
 <body>
 	<div id="wrap" style="text-align: center">
-    <table class="scriptCalendar">
-        <thead>
-            <tr>
-                <td onClick="prevCalendar();" style="cursor:pointer;">&#60;&#60;</td>
-                <td colspan="5">
-                    <span id="calYear">YYYY</span>년
-                    <span id="calMonth">MM</span>월
-                </td>
-                <td onClick="nextCalendar();" style="cursor:pointer;">&#62;&#62;</td>
-            </tr>
-            <tr>
-                <td>일</td>
-                <td>월</td>
-                <td>화</td>
-                <td>수</td>
-                <td>목</td>
-                <td>금</td>
-                <td>토</td>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+		<table class="scriptCalendar">
+			<thead>
+				<tr>
+					<td onClick="prevCalendar();" style="cursor: pointer;">&#60;&#60;</td>
+					<td colspan="5"><span id="calYear">YYYY</span>년 <span
+						id="calMonth">MM</span>월</td>
+					<td onClick="nextCalendar();" style="cursor: pointer;">&#62;&#62;</td>
+				</tr>
+				<tr>
+					<td>일</td>
+					<td>월</td>
+					<td>화</td>
+					<td>수</td>
+					<td>목</td>
+					<td>금</td>
+					<td>토</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
 
-    </div>
-		
-		<!-- calendar end------------------------------------------- -->
-		
-		<!-- input3개-------------------------------- -->
-		 <form action="/reserve/reserveSubmit" method="post"> 
-		 <div class="quickmenu">
-		   
-   			<table>
-    		<td>  		
-    		풋살장:	
-    		<input type="text" name="place" id="place" value="" readonly="readonly"><br>   	
-    		<c:if test="${empty param.year}">
-    		날짜:<input type="text" name="date" id="date" value="" readonly="readonly"><br>  
-    		</c:if>	 
-    		<c:if test="${!empty param.year }">  		
-    		<%-- 날짜:<input type="text" name="date" id="date" value="<%=cal.getYear()+"년"+cal.getMonth()+"월"+cal.getDate()+"일"%>" readonly="readonly"><br>  --%>
-    		</c:if>   		
-    		시간:<input type="text" name="time" id="time" readonly="readonly">
-    		 <div id="locationss"></div>	
-    		금액:<input type="text" name="cost" id="cost" value="" readonly="readonly"><br>   		
-    		<!--hidden input (operationId, placeId 보낼 장소) --> 
-    		<input type="hidden" name="operationIdString" id="operationIdHidden">
-    		<input type="hidden" name="placeIdString" id="placeIdHidden">
-    		<input id="timelook" type="button" value="시간 조회">		<!--시간조회   -->
-			<!-- <div id="timezone"></div>	 -->								<!-- 시간대버튼 -->
-    		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
-    		</td>     	   		
-		    </table>
-		    
-		    </div> 
-         	<br><br>
-         	<div id="timezone" style="text-align: center;width:950px; margin:0 auto"></div>        	
-		    </form>		    
-			 			
-			
-						     
-						    <script>
+	</div>
+
+	<!-- calendar end------------------------------------------- -->
+
+	<!-- input3개-------------------------------- -->
+	<form action="/reserve/reserveSubmit" method="post">
+		<div class="quickmenu">
+
+			<table>
+				<tr>
+					<td>풋살장: <input type="text" name="place" id="place" value=""
+						readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td><c:if test="${empty param.year}">
+    		날짜:<input type="text" name="date" id="date" value=""
+								readonly="readonly">
+						</c:if> <c:if test="${!empty param.year }">
+
+						</c:if></td>
+				</tr>
+				<tr>
+					<td>시간:<input type="text" name="time" id="time"
+						readonly="readonly">
+						<div id="locationss"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>금액:<input type="text" name="cost" id="cost" value=""
+						readonly="readonly"> <!--hidden input (operationId, placeId 보낼 장소) -->
+						<input type="hidden" name="operationIdString"
+						id="operationIdHidden"> <input type="hidden"
+						name="placeIdString" id="placeIdHidden">
+					</td>
+				</tr>
+				<tr>
+					<td>인원:<input type="button" value="+" id="plus"><input
+						id="group" name="memberGroupString" type="text" value="1"><input type="button"
+						value="-" id="minus">
+					</td>
+				</tr>
+				<tr>
+					<td><input id="timelook" type="button" value="시간 조회">
+						<!--시간조회   --></td>
+				</tr>
+				<!-- <div id="timezone"></div>	 -->
+				<tr>
+					<td>
+						<!-- 시간대버튼 --> <input type="submit" value="예약하기"onclick="return confirm('예약하시겠습니까?')">
+					</td>
+				</tr>
+			</table>
+
+		</div>
+		<br> <br>
+		<div id="timezone"
+			style="text-align: center; width: 950px; margin: 0 auto"></div>
+	</form>
+
+
+
+	<script>
 						    	$("#timelook").click(function() {
 						    		
 						    		var placeAndCalendar=JSON.stringify({
@@ -622,21 +668,22 @@ for(var j=0; j<placeArray.length; j++) {
 						    	});
 						    
 						    </script>
-						    
-						    
-						    <div id="hidden_div" style="text-align: center"></div>
-    						
-    	
-							<br><br>
-			 <!-- Scripts -->
-         <script src="/js/jquery.min.js"></script>
-         <script src="/js/jquery.scrolly.min.js"></script>
-         <script src="/js/jquery.scrollex.min.js"></script>
-         <script src="/js/browser.min.js"></script>
-         <script src="/js/breakpoints.min.js"></script>
-         <script src="/js/util.js"></script>
-         <script src="/js/main.js"></script>
-	</body>
-	
+
+
+	<div id="hidden_div" style="text-align: center"></div>
+
+
+	<br>
+	<br>
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.scrolly.min.js"></script>
+	<script src="/js/jquery.scrollex.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+</body>
+
 
 </html>

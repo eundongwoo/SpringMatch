@@ -12,6 +12,7 @@ public class Place {
 	private String placeName;
 	private String placeAddr;
 	private String placeTel;
+	private int maxPerson;
 	private String manager;
 	
 }

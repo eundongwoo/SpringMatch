@@ -21,8 +21,8 @@
 	
 	<insert id="addPlace">
 		<![CDATA[
-			insert into place(place_id, place_name, place_addr, place_tel, manager, place_cost)
-			values(place_num.nextVal, #{placeName}, #{placeAddr}, #{placeTel}, #{manager}, #{placeCost})
+			insert into place(place_id, place_name, place_addr, place_tel, manager, place_cost,max_person)
+			values(place_num.nextVal, #{placeName}, #{placeAddr}, #{placeTel}, #{manager}, #{placeCost},#{maxPerson})
 			]]>
 		</insert>
 	

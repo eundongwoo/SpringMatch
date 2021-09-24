@@ -177,6 +177,8 @@ public class ReservceController {
 		System.out.println("전~~~~~"+reserveDTO.toString());
 		reserveDTO.setPlaceId(Integer.parseInt(reserveDTO.getPlaceIdString()));
 		reserveDTO.setOperationId(Integer.parseInt(reserveDTO.getOperationIdString()));
+		reserveDTO.setMemberGroup(Integer.parseInt(reserveDTO.getMemberGroupString()));
+		System.out.println("은동우->"+reserveDTO.getMemberGroup());
 		System.out.println(reserveDTO.toString());
 		reserveService.reserve(reserveDTO);
 		System.out.println("예약되었습니다.");

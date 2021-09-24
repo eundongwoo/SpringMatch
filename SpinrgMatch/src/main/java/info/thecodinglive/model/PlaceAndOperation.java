@@ -10,6 +10,7 @@ public class PlaceAndOperation {
 	private String placeAddr;
 	private String placeTel;
 	private String manager;
+	private int maxPerson;
 	private List<OperationTime> operationTimeList;
 	private int placeCost;
 	
