@@ -50,7 +50,7 @@
 			     from
 			      reservation r,
 			       place p 
-			       where r.place_id=p.place_id and member_id=#{memberId}
+			       where r.place_id=p.place_id and member_id=#{memberId} order by reserve_num asc
 			]]>
 		</select>
 		

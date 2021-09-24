@@ -222,7 +222,7 @@ public class ReservceController {
 			}
 		}
 		
-
+		searchList = reservationRepository.searchJoinById(authUser);		
 		
 		//이제 operationId로 예약시간대 구하는 작업 하고 각 Search객체에 넣어준다.
 		for(int i=0; i<searchList.size(); i++) {
