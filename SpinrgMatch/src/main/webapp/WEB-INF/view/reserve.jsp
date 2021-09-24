@@ -519,14 +519,15 @@ for(var j=0; j<placeArray.length; j++) {
         </thead>
         <tbody></tbody>
     </table>
-<<<<<<< HEAD
-    ${reserveInfo.date}
+
+    </div>
 		
 		<!-- calendar end------------------------------------------- -->
 		
 		<!-- input3개-------------------------------- -->
+		 <form action="/reserve/reserveSubmit" method="post"> 
 		 <div class="quickmenu">
-		   <form action="/reserve/reserveSubmit" method="post"> 
+		   
    			<table>
     		<td>  		
     		풋살장:	
@@ -544,12 +545,16 @@ for(var j=0; j<placeArray.length; j++) {
     		<input type="hidden" name="operationIdString" id="operationIdHidden">
     		<input type="hidden" name="placeIdString" id="placeIdHidden">
     		<input id="timelook" type="button" value="시간 조회">		<!--시간조회   -->
-			<div id="timezone"></div>									<!-- 시간대버튼 -->
+			<!-- <div id="timezone"></div>	 -->								<!-- 시간대버튼 -->
     		<input type="submit" value="예약하기" onclick="return confirm('예약하시겠습니까?')">  	
     		</td>     	   		
-		    </table>   	
+		    </table>
+		    
+		    </div> 
+         	<br><br>
+         	<div id="timezone" style="text-align: center;width:950px; margin:0 auto"></div>        	
 		    </form>		    
-			</div> 			
+			 			
 			
 						     
 						    <script>
