@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.DateOperationPlace;
 import info.thecodinglive.model.Member;
+import info.thecodinglive.model.PlaceAndCalendar;
 import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.Search;
@@ -80,6 +81,11 @@ public class ReservationRepository {
 		int reserveCheck = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"reserveCheck", reserveDTO);
 		return reserveCheck;
 
+	}
+
+	public int getCost(PlaceAndCalendar placeAndCalendar) {
+		int cost=sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getCost",placeAndCalendar);
+		return cost;
 	}
 	
 }

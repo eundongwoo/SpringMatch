@@ -93,6 +93,12 @@
 			]]>
 		</select>
 		
+		<!-- 	풋살장의 가격 들고오기 -->
+		<select id="getCost" parameterType="info.thecodinglive.model.PlaceAndCalendar" resultType="Integer">
+		<![CDATA[
+			select PLACE_COST from place where PLACE_NAME=#{placeName}
+			]]>
+		</select>
 		
 		<!-- resultType="Integer" -->
 	<!-- 

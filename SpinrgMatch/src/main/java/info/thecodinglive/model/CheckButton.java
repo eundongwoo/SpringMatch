@@ -8,4 +8,5 @@ import lombok.Data;
 public class CheckButton {
 	private List<OperationTime> operationTimeList;
 	private List<CheckRed> checkRedList;
+	private int cost;
 }

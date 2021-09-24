@@ -150,6 +150,10 @@ public class ReservceController {
 		checkButton.setCheckRedList(checkRedList);
 		checkButton.setOperationTimeList(operationTimeList);
 		
+		//풋살장 비용 가져오기
+		int cost=reserveService.cost(placeAndCalendar);
+		checkButton.setCost(cost);
+		
 //		dateOperationPlace.setOperationId(operationTimeList.get(0).getOperationId());	
 //		dateOperationPlace.setPlaceId(operationTimeList.get(0).getPlaceId());
 		

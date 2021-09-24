@@ -610,6 +610,8 @@ for(var j=0; j<placeArray.length; j++) {
 											/*  $("#operationIdHidden").val(operationIdHidden);
 											$("#placeIdHidden").val(placeIdHidden); */
 											
+									 	$('#cost').val(checkButton.cost);
+											
 										},
 										error:function(){
 											alert('풋살장이름, 예약날짜 정보 보내기 실패');

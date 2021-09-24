@@ -73,6 +73,12 @@ public class ReserveService {
 		return reserveCount;
 	}
 	
+	public int cost(PlaceAndCalendar placeAndCalendar)
+	{
+		int cost=reservationRepository.getCost(placeAndCalendar);
+		return cost;
+	}
+	
 	
 	
 	/*
