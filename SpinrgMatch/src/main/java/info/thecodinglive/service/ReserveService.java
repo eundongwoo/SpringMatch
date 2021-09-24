@@ -41,7 +41,7 @@ public class ReserveService {
 	
 	
 	public void reserve(ReserveDTO reserveDTO) {
-		int reserveCount = checkCount(reserveDTO);
+		int reserveCount = checkCount(reserveDTO);	
 
 		int reserveCheck= reserveCheck(reserveDTO);
 		if(reserveCheck==1)

@@ -88,4 +88,15 @@ public class ReservationRepository {
 		return cost;
 	}
 	
+	public List<DateOperationPlace> getMemberGroup(DateOperationPlace dop) {
+		int maxPerson = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getMaxPerson", dop);
+		List<DateOperationPlace> dopList= sqlSessionTemplate.selectList(MAPPER_NAME_SPACE+"getMemberGroup", dop);
+		for(int i=0; i<dopList.size(); i++) {
+			dopList.get(i).setMaxPerson(maxPerson); 	
+			dopList.get(i).setPossibleNum(maxPerson-dopList.get(i).getMemberGroup());
+		}
+		return dopList;		//이 dopList에는 operationId랑 memberGroup만 있는 상태
+		
+	}
+	
 }

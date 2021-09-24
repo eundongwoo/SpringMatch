@@ -69,7 +69,7 @@ public class ReservceController {
 		reserveInfo.setPlaceName(place.getPlaceName());	
 		httpSession.setAttribute("reserveInfo", reserveInfo);
 		ReserveInfo ts=(ReserveInfo)httpSession.getAttribute("reserveInfo");
-		System.out.println("test"+ts.getPlaceName());
+		
 		return new ResponseEntity<ReserveInfo>(reserveInfo,HttpStatus.OK);
 	}
 	
@@ -100,6 +100,9 @@ public class ReservceController {
 			dateOperationPlace.setReserveDate(placeAndCalendar.getCalendarFullDate());
 			dopList.add(dateOperationPlace);
 		}
+		//dopList로 예약가능인원 처리
+		List<DateOperationPlace> dopMemberList = reservationRepository.getMemberGroup(dopList.get(0));
+		//dopMemberList에는 operationId, maxPerson, memberGroup, possbleNum 있다.
 		
 		//checkRedList의 checkNum완성
 		for(int i=0; i<dopList.size(); i++) {
@@ -149,14 +152,18 @@ public class ReservceController {
 		//checkButton에 넣어서 이 데이터를 뷰에 전달
 		checkButton.setCheckRedList(checkRedList);
 		checkButton.setOperationTimeList(operationTimeList);
+		checkButton.setMemberCheckList(dopMemberList);
+		System.out.println("test~~dopMeberList~~~~~~~~~~~~");
+		
+		for(int i=0; i<dopMemberList.size(); i++)  {
+			System.out.println(dopMemberList.get(i).toString());
+		}
 		
 		//풋살장 비용 가져오기
 		int cost=reserveService.cost(placeAndCalendar);
 		checkButton.setCost(cost);
 		
-//		dateOperationPlace.setOperationId(operationTimeList.get(0).getOperationId());	
-//		dateOperationPlace.setPlaceId(operationTimeList.get(0).getPlaceId());
-		
+
 		
 		
 		httpSession.setAttribute("operationTimeList", operationTimeList);
@@ -174,12 +181,12 @@ public class ReservceController {
 			System.out.println("로그인이 필요합니다");
 			return "main";
 		}
-		System.out.println("전~~~~~"+reserveDTO.toString());
+	
 		reserveDTO.setPlaceId(Integer.parseInt(reserveDTO.getPlaceIdString()));
 		reserveDTO.setOperationId(Integer.parseInt(reserveDTO.getOperationIdString()));
 		reserveDTO.setMemberGroup(Integer.parseInt(reserveDTO.getMemberGroupString()));
-		System.out.println("은동우->"+reserveDTO.getMemberGroup());
-		System.out.println(reserveDTO.toString());
+		
+		
 		reserveService.reserve(reserveDTO);
 		System.out.println("예약되었습니다.");
 		

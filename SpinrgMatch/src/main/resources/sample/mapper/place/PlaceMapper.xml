@@ -33,7 +33,9 @@
 				WHERE place_id=#{placeId}
 			]]>
 	</select>
-
+	
+	
+	
 	
     <resultMap type="info.thecodinglive.model.Place" id="placeRs">
 		<result property="placeId" column="place_id"/>

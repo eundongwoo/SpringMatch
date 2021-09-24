@@ -100,6 +100,24 @@
 			]]>
 		</select>
 		
+		<select id="getMemberGroup" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="info.thecodinglive.model.DateOperationPlace">
+		<![CDATA[
+			select operation_id as "operationId",
+			sum(member_group) as "memberGroup"
+			from reservation 
+			where place_id=#{placeId} and reserve_date=#{reserveDate} and state='예약대기' 
+			group by operation_id order by operation_id asc
+			]]>
+		</select>
+		
+		<select id="getMaxPerson" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			SELECT max_person as "maxPerson"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+		</select>
+		
 		<!-- resultType="Integer" -->
 	<!-- 
 	insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date)
