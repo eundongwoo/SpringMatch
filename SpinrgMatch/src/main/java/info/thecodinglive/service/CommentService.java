@@ -22,8 +22,8 @@ public class CommentService {
 		return commentRepository.findAllCommentByArticleNo(articleNo);
 	}
 	
-	public void deleteById(Integer seq) {
-		commentRepository.deleteById(seq);
+	public void deleteById(Integer commentNum) {
+		commentRepository.deleteById(commentNum);
 	}
 	
 }

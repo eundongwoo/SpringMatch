@@ -71,15 +71,16 @@
 		</div>
 		<div class="pull-right">
 			<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
-			<button th:if="!${article?.articleNo}" type="button"class="btn btn-primary" id="insert">저장</button>
-			<button th:if="${article?.articleNo}" type="button"class="btn btn-info" id="update">수정</button>
-			<button th:if="${article?.articleNo}" type="button"class="btn btn-danger" id="delete">삭제</button>
+			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert">저장</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update">수정</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete">삭제</button>
 		</div>
 
 		<!-- 댓글 작성 -->
 		<!-- authUser없으면 댓글 작성안나오게하거나 댓글 작성 못하게 해야됨. -->
-
-		<div th:if="${article?.articleNo}" name="댓글전체div">
+		
+		<!-- 글 상세보기 일때만 댓글이 나오게 됨. -->
+		<div th:if="${article?.articleNo}">
 		
 			<input type="hidden" name="comment_article" value="${article.comment_no}">
 			<!-- <input type="hidden" name="id" value="${authUser.memberId }"> -->
@@ -110,23 +111,26 @@
 			th:text=${comment.commentDate}-->
 			<!-- 댓글 목록들 -->
 			<br>
+			
 			<table th:if="${commentList}" id="commentsList">
 				<tr>
 					<td>#</td>
+					<td>index</td>
 					<td>유저이름</td>
 					<td>댓글내용</td>
 					<td>댓글 단 날짜</td>
 				</tr>
+				
 				<tr th:each="comment:${commentList}">
-					<td><span id="" th:text=${comment.commentNum} th:value=${comment.commentNum}></span></td>
-					<td><span th:text="${commentStat.index}"></span>
-					<td><span th:text=${comment.memberId}></span></td>
-					<td><span th:text=${comment.commentContent}></span></td>
-					<td><span th:text=${comment.commentDate}></span></td>
-					<td><button type="button" class="btn btn-danger" id="cmtDelete">삭제</button></td>
+					<td th:text=${comment.commentNum}></td>
+					<td th:text=${commentStat.index}></td>
+					<td th:text=${comment.memberId}></td>
+					<td th:text=${comment.commentContent}></td>
+					<td th:text="${#calendars.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}"></td>
+					<td><button type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
 				</tr>
 			</table>
-			
+			<div th:if="(${commentList} == null)">댓글이 없습니다.</div>
 		</div>
 		</div>
 		<!-- <div th:replace="layout/footer::footer" /> -->
@@ -158,21 +162,21 @@
 					});
 				});
 			</script>
+			<!--th:inline="javascript" script안에 이걸 넣으면 thymeleaf값을 가져올 수 있게된다.  -->
 			<script>
-			$('#cmtDelete').click(
-				
+			$('[name=cmtDelete]').click(
 				function() {
-					alert('commentN');
+					var commentNum = $(this).val();
 					$.ajax({
 						url : "http://localhost:9080/article/cmtDelete/"
-								+ $('#cmtNum').val(),
+								+ commentNum,
 						type : "DELETE",
 						success : function() {
 							alert('삭제 성공!');
 							location.reload();
 						},
 						error : function() {
-							/* alert($('#cmtNum').val()); */
+							alert(commentNum); 
 							alert('삭제실패');
 						}
 					});

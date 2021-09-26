@@ -92,10 +92,10 @@ public class ArticleController {
 		return new ResponseEntity<>("{}",HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/cmtDelete/{id}")
+	@DeleteMapping("/cmtDelete/{commentNum}")
 	public ResponseEntity<?> deleteComment(@PathVariable int commentNum){
 		try {	
-		articleService.deleteById(commentNum);
+		commentService.deleteById(commentNum);
 		}catch(Exception e) {
 			System.out.println(e);
 		}
