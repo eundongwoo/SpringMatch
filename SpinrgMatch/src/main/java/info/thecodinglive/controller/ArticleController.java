@@ -46,7 +46,14 @@ public class ArticleController {
 	@RequestMapping(value = "/list")
 	public ModelAndView list(@PageableDefault(
 			size=5,sort="articleNo",direction=Sort.Direction.DESC) Pageable pageble,
-			ModelAndView mv) {
+			ModelAndView mv, HttpSession httpSession) {
+		if(httpSession.getAttribute("authUser")==null) {
+			System.out.println("로그인이 필요합니다.");
+			httpSession.setAttribute("loginCheck", "no");
+			
+		} else {
+			httpSession.setAttribute("loginCheck", "yes");
+		}
 		mv.addObject("articleList", articleService.findArticleList(pageble));
 		mv.setViewName("thymeleaf/articleList");
 		return mv;

@@ -42,6 +42,14 @@
 }
 </STYLE>
 <script>
+	
+    if('${loginCheck}' == 'no') {
+		alert('로그인이 필요합니다');
+		location.href='/main';
+		
+	}
+</script>
+<script>
       $(document).ready(function(){
          $(".timeBtn").click(function(){
             var value=$($(this)).val();

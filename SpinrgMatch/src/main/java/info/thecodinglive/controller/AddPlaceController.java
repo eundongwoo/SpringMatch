@@ -2,6 +2,8 @@ package info.thecodinglive.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +33,9 @@ public class AddPlaceController {
 	}
 	
 	@PostMapping(value ="/addplace")
-	public ResponseEntity<String> addPlace(@RequestBody PlaceAndOperation placeAndOperation	)
+	public ResponseEntity<String> addPlace(@RequestBody PlaceAndOperation placeAndOperation)
 	{
-
+			
 		System.out.println(placeAndOperation.toString());
 		placeRepository.addPlace(placeAndOperation);
 		int placeId = placeRepository.getPlaceId(placeAndOperation.getPlaceName());
