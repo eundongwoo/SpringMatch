@@ -3,6 +3,7 @@ package info.thecodinglive.controller;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -121,17 +122,5 @@ public class ArticleController {
 	
 	
 	
-	@RequestMapping("/abc")
-	public String welcome(Model model) throws Exception {
-
-	    model.addAttribute("greeting", "Hello Thymeleaf!");
-	    return "/abc";
-	}
-	
-	@RequestMapping(value = "/formTest")
-	public ModelAndView insertFormTest(ModelAndView mv) {
-		mv.setViewName("/aFormTest");
-		return mv;
-	}
 
 }
