@@ -76,6 +76,7 @@
               });
               
               $("#plus").click(function(){
+            	  if(group<5)
               	    value=parseInt(++group);
               		$('#group').val(group);              	 
                });
@@ -646,9 +647,9 @@ for(var j=0; j<placeArray.length; j++) {
 											   		
 											   		var t = checkButton.memberCheckList[k].operationId;
 											   		if(checkButton.operationTimeList[i].operationId==t) {
-												   		$("#timezone").append("<br><textarea id='dop"+i+"' >");
+												   		$("#memberInfo").append("<br><textarea id=dop'"+i+"'>");
 												   		$("#dop"+i).val('최대인원'+checkButton.memberCheckList[k].maxPerson+'\n'+'현재예약인원'+checkButton.memberCheckList[k].memberGroup+'\n'+'남은 자리수'+checkButton.memberCheckList[k].possibleNum);
-												   		
+												   		$("#memberInfo").append("</textarea>");
 												   	}
 											   	}
 											   	
