@@ -11,6 +11,7 @@ import info.thecodinglive.model.Member;
 import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.PlaceAndOperation;
+import info.thecodinglive.model.ReserveDTO;
 import info.thecodinglive.model.Search;
 
 @Repository
@@ -52,5 +53,8 @@ public class PlaceRepository {
 		sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getPlaceName", search);
 	}
 	
-	
+	public int getMaxPersonPlace(ReserveDTO reserveDTO) {
+		int maxNum = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getMaxPersonPlace",reserveDTO);
+		return maxNum;
+	}
 }

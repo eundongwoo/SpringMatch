@@ -203,9 +203,15 @@ public class ReservceController {
 		reserveDTO.setMemberGroup(Integer.parseInt(reserveDTO.getMemberGroupString()));
 		
 		
-		reserveService.reserve(reserveDTO);
+		String memberNumCheck = reserveService.reserve(reserveDTO, httpSession);
+		if(memberNumCheck.equals("full")) {
+			httpSession.setAttribute("memberNumCheck", "full");
+			return "redirect:/reserve/reserveHome";
+		} else {
+			httpSession.setAttribute("memberNumCheck", "good");
+		}
 		System.out.println("예약되었습니다.");
-		
+		httpSession.setAttribute("memberNumCheck", "good");
 		return "main";
 	}
 	
