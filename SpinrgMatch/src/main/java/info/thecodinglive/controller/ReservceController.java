@@ -142,17 +142,24 @@ public class ReservceController {
 			reserveTime.setYear(nowDate.getYear());
 			reserveTime.setMonth(nowDate.getMonth());
 			reserveTime.setDate(nowDate.getDate());
-			System.out.println("변경 후 currentTIME!!!===>"+nowDate);
-			System.out.println("변경 후 reserveTIME!!!===>"+reserveTime);
+//			System.out.println("변경 후 currentTIME!!!===>"+nowDate);
+//			System.out.println("변경 후 reserveTIME!!!===>"+reserveTime);
 			checkRedList.get(i).setCheckTime(reserveTime.after(nowDate));
 		}
 		//이제 checkRed의 리스트 완성
 		System.out.println("checkRedList===>"+checkRedList.toString());
 		System.out.println("operationTimeList===>"+operationTimeList.toString());
+		for(int i=0;i<operationTimeList.size(); i++) {
+			operationTimeList.get(i).setMaxNum(reservationRepository.getMaxPersonOperation(operationTimeList.get(i)));
+			
+		}
+		
+		
 		//checkButton에 넣어서 이 데이터를 뷰에 전달
 		checkButton.setCheckRedList(checkRedList);
 		checkButton.setOperationTimeList(operationTimeList);
 		checkButton.setMemberCheckList(dopMemberList);
+		System.out.println(dopMemberList.toString());
 		System.out.println("test~~dopMeberList~~~~~~~~~~~~");
 		
 		for(int i=0; i<dopMemberList.size(); i++)  {

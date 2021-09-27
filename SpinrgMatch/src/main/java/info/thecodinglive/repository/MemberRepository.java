@@ -30,4 +30,6 @@ public class MemberRepository {
 		return sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"loginUser",params);		
 	}
 	
+	
+	
 }
