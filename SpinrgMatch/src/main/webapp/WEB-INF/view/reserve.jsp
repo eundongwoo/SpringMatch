@@ -48,6 +48,10 @@
 		location.href='/main';
 		
 	}
+    if('${memberNumCheck}' == 'full') {
+    	alert('예약인원수를 확인해주세요');
+    	
+    }
 </script>
 <script>
       $(document).ready(function(){

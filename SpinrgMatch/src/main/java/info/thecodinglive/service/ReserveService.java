@@ -2,6 +2,8 @@ package info.thecodinglive.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,25 +42,39 @@ public class ReserveService {
 	}
 	
 	
-	public void reserve(ReserveDTO reserveDTO) {
-		int reserveCount = checkCount(reserveDTO);	
-
+	public String reserve(ReserveDTO reserveDTO, HttpSession httpSession) {
+		/* int reserveCount = checkCount(reserveDTO); */		//아이디 수	
+		int maxNum = placeRepository.getMaxPersonPlace(reserveDTO);	//최대인원
+		int reserveCount = reservationRepository.getMemberSum(reserveDTO);	//맨 처음 예약테이블 인원수 합
 		int reserveCheck= reserveCheck(reserveDTO);
+		System.out.println("maxNum==>"+maxNum+"reserveCount==>"+reserveCount);
 		if(reserveCheck==1)
 		{
 			System.out.println("이미 예약했어...");
+			
 		}else
 		{
-			if(reserveCount<=2) {
-				reservationRepository.addReservation(reserveDTO);
-				reserveCount = checkCount(reserveDTO);
-				if(reserveCount==3) {
+			if(reserveCount<=maxNum-1) {
+				int requestNum = reserveDTO.getMemberGroup();	//예약 요청 인원 수 
+				if(requestNum+reserveCount<=maxNum) {
+					reservationRepository.addReservation(reserveDTO);
+				}
+				
+				/* reserveCount = checkCount(reserveDTO); */
+				reserveCount = reservationRepository.getMemberSum(reserveDTO);	//예약 후 인원수 합
+				if(reserveCount==maxNum) {
 					reservationRepository.stateUpdate(reserveDTO);
 				}
-
+				
+				
+			}if(reserveCount>maxNum) {
+				System.out.println("예약인원을 확인해주세요");
+				
+				return "full";
 			}
 			
-		}		
+		}
+		return null;		
 	}
 	
 	public int reserveCheck(ReserveDTO reserveDTO)

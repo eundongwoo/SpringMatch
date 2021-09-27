@@ -34,6 +34,13 @@
 			]]>
 	</select>
 	
+	<select id="getMaxPersonPlace" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			SELECT max_person as "maxPerson"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+		</select>
 	
 	
 	
