@@ -1,7 +1,5 @@
 package info.thecodinglive.service;
 
-import java.util.Date;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +19,7 @@ public class ArticleService {
 		pageable=PageRequest.of(pageable.getPageNumber()<=0?0:
 			pageable.getPageNumber()-1
 			, pageable.getPageSize(),pageable.getSort());
+		
 		return articleRepository.findAll(pageable);
 	}
 	
@@ -28,6 +27,7 @@ public class ArticleService {
 //		article.setModdate(new Date());
 		articleRepository.save(article);
 	}
+	
 	public Article findArticleById(Integer id) {
 		return articleRepository.findById(id).orElse(new Article());
 	}
