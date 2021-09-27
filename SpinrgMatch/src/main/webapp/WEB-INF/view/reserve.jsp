@@ -20,6 +20,8 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/qcss/quick.css">
+<link rel="stylesheet" href="/css1/bootstrap.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <STYLE>
@@ -147,6 +149,7 @@ p {
 
 
 <body class="is-preload">
+
 	<!-- Header -->
 	<header id="header" class="alt">
 		<a href="/main" class="logo"><strong>matching</strong> <span>kick
@@ -185,6 +188,25 @@ p {
 
 	<!-- map start--------------------------------------- -->
 
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">풋살장</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">날 짜</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">시 간</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">인 원</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+</div>
 
 	<%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
 	<section id="one" class="tiles" style="margin-top: 200px;">
@@ -528,7 +550,7 @@ for(var j=0; j<placeArray.length; j++) {
 </head>
 
 <body>
-	<div id="wrap" style="text-align: center">
+	<div id="wrap" style="text-align:center">
 		<table class="scriptCalendar">
 			<thead>
 				<tr>
@@ -552,8 +574,8 @@ for(var j=0; j<placeArray.length; j++) {
 
 	</div>
 
-	<!-- calendar end------------------------------------------- -->
-
+	<!-- calendar end------------------------------------------- -->	
+	
 	<!-- input3개-------------------------------- -->
 	<form action="/reserve/reserveSubmit" method="post">
 		<div class="quickmenu">
