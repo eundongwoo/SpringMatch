@@ -134,6 +134,7 @@ a {
 p {
 	style ="color: red";
 }
+
 </style>
 
 </head>
@@ -580,7 +581,7 @@ for(var j=0; j<placeArray.length; j++) {
 				</tr>
 				<tr>
 					<td>인원:<input type="button" value="+" id="plus"><input
-						id="group" name="memberGroupString" type="text" value="1"><input type="button"
+						id="group" name="memberGroupString" type="text" value="1" readonly="readonly"><input type="button"
 						value="-" id="minus">
 					</td>
 				</tr>
@@ -635,7 +636,8 @@ for(var j=0; j<placeArray.length; j++) {
 												alert('선택한 날의 예약된 인원 없음');
 											} 
 											/* alert(checkButton.memberCheckList[0].maxPerson); */
-											
+											$("#timezone").append("<table id='timeZoneTable'><tr>");
+											$("#memberInfo").append("<table id='memberInfoTable'><tr>");
 											for(var i=0; i<checkButton.operationTimeList.length; i++) {
 												var operationIdHidden=null;
 												var placeIdHidden=null; 
@@ -645,19 +647,19 @@ for(var j=0; j<placeArray.length; j++) {
 											   /* 	for(var j=0; j<checkButton.checkRedList.length; j++) {
 											   		alert(checkButton.checkRedList[j].checkNum);
 											   	} */
-												
-												$("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
+											   	
+												$("#timezone").append("<td><input id='operationTime"+i+"' type='button' data-operationId='' data-placeId=''></td>");
 												
 												if(checkButton.memberCheckList.length!=0 ) {
 													
 												var check=0;
-													
+												
 											   	for(var k=0; k<checkButton.memberCheckList.length; k++) {
 											   		
 											   		var t = checkButton.memberCheckList[k].operationId;
 											   		if(checkButton.operationTimeList[i].operationId==t) {
 
-												   		$("#timezone").append("<br><textarea id='dop"+i+"' ></textarea>");
+												   		$("#memberInfo").append("<td><textarea id='dop"+i+"' ></textarea></td>");
 
 												   		$("#dop"+i).val('최대인원'+checkButton.memberCheckList[k].maxPerson+'\n'+'현재예약인원'+checkButton.memberCheckList[k].memberGroup+'\n'+'남은 자리수'+checkButton.memberCheckList[k].possibleNum);
 												   		check++;
@@ -665,12 +667,17 @@ for(var j=0; j<placeArray.length; j++) {
 												   	}
 											   		
 											   	}
+											   	
 											   	if(check==0) {
-											   		$("#timezone").append("<br><textarea id='dop"+i+"' >");
+											   		$("#memberInfo").append("<td><textarea id='dop"+i+"' ></td>");
 											   		$("#dop"+i).val('최대인원'+checkButton.operationTimeList[i].maxNum+'\n'+'현재예약인원0');
+											   		
 											   	}
 											   	
 												}
+												$("#timezone").append("</tr></table>");
+												$("#memberInfo").append("</tr></table>");
+												
 												 if((!checkButton.checkRedList[i].checkNum||(!checkButton.checkRedList[i].checkDate&&!checkButton.checkRedList[i].checkTime))) {
 													$("#operationTime"+i).css({
 														background:'red',
