@@ -54,27 +54,28 @@ public class ReserveService {
 			
 		}else
 		{
-			if(reserveCount<=maxNum-1) {
+			//if(reserveCount<=maxNum-1) {
 				int requestNum = reserveDTO.getMemberGroup();	//예약 요청 인원 수 
 				if(requestNum+reserveCount<=maxNum) {
 					reservationRepository.addReservation(reserveDTO);
+					/* reserveCount = checkCount(reserveDTO); */
+					reserveCount = reservationRepository.getMemberSum(reserveDTO);	//예약 후 인원수 합
+					if(reserveCount==maxNum) {
+						reservationRepository.stateUpdate(reserveDTO);
+					}
+					httpSession.setAttribute("memberNumCheck", "good");
+				}else if(reserveCount+requestNum>maxNum) {
+					System.out.println("예약인원을 확인해주세요");					
+					return "full";
 				}
 				
-				/* reserveCount = checkCount(reserveDTO); */
-				reserveCount = reservationRepository.getMemberSum(reserveDTO);	//예약 후 인원수 합
-				if(reserveCount==maxNum) {
-					reservationRepository.stateUpdate(reserveDTO);
-				}
 				
 				
-			}if(reserveCount>maxNum) {
-				System.out.println("예약인원을 확인해주세요");
 				
-				return "full";
-			}
+			//}
 			
 		}
-		return null;		
+		return "good";		
 	}
 	
 	public int reserveCheck(ReserveDTO reserveDTO)

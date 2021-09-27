@@ -207,9 +207,11 @@ public class ReservceController {
 		if(memberNumCheck.equals("full")) {
 			httpSession.setAttribute("memberNumCheck", "full");
 			return "redirect:/reserve/reserveHome";
+		} else {
+			httpSession.setAttribute("memberNumCheck", "good");
 		}
 		System.out.println("예약되었습니다.");
-		
+		httpSession.setAttribute("memberNumCheck", "good");
 		return "main";
 	}
 	
