@@ -106,4 +106,9 @@ public class ReservationRepository {
 		return maxNum;
 	}
 	
+	public int getMemberSum(ReserveDTO reserveDTO) {
+		int memberNum = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getMemberSum",reserveDTO);
+		return memberNum;
+	}
+	
 }

@@ -8,5 +8,5 @@ import info.thecodinglive.model.Article;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Integer>{
-	Article findBymemberId(@Param("memberId") String memberid);
+	Article findByMemberId(@Param("memberId") String memberid);
 }

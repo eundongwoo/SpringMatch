@@ -42,6 +42,18 @@
 }
 </STYLE>
 <script>
+	
+    if('${loginCheck}' == 'no') {
+		alert('로그인이 필요합니다');
+		location.href='/main';
+		
+	}
+    if('${memberNumCheck}' == 'full') {
+    	alert('예약인원수를 확인해주세요');
+    	
+    }
+</script>
+<script>
       $(document).ready(function(){
          $(".timeBtn").click(function(){
             var value=$($(this)).val();

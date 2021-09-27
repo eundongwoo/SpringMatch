@@ -3,22 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- <link rel="stylesheet" th:href="@{/css/base.css}" />
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" /> -->
 </head>
 <body>
- <!--  ===><span th:text=${article?.title}></span> -->
-	
+	<!--  ===><span th:text=${article?.title}></span> -->
+
 	<div class="container">
 		<div class="page-header">
 			<h1>게시글 등록</h1>
 		</div>
 		<br /> 
-		<input id="id" type="hidden" th:value="${article?.articleNo}" /> 
-		<input id="article_regdate" type="hidden" th:value="${article?.regdate}" />
-		<!-- <input id="sysdate" type="hidden" th:value= "${#calendars.createNow()}" /> -->
+		<input id="articleNum" type="hidden" th:value="${article?.articleNo}" />
+		<input id="article_regdate" type="hidden"
+			th:value="${article?.regdate}" />
+		<input id="writer" th:if="${authUser?.memberId}" type="hidden"  th:value="${authUser?.memberId}" />
+		
 		<table class="table">
 			<tr>
 				<th style="padding: 13px 0 0 15px">글제목</th>
@@ -31,7 +35,8 @@
 				<td>
 					<div class="pull-left">
 						<input type="text" readonly="readonly"
-						class="col-md-1 form-control input-sm" th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}" />
+							class="col-md-1 form-control input-sm"
+							th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}" />
 					</div>
 				</td>
 			</tr>
@@ -41,22 +46,21 @@
 					<div class="pull-left">
 						<!--글번호를 파라미터로 가지고 있으면 본래의 글 작성자 이름이 보이고, 그렇지 않다면 세션으로 받는 memberId가 보이게. -->
 						<!--처리되엇음.  -->
-						<input th:if="${article?.articleNo}" type="text" readonly="readonly" 
-						class="col-md-1 form-control input-sm" th:value="${article?.memberId}" />
-						
-						<input th:if="!${article?.articleNo}" id="userId" type="text" readonly="readonly"
-						class="col-md-1 form-control input-sm" th:value="${authUser?.memberId}" />
+						<input th:if="${article?.articleNo}" type="text"
+							readonly="readonly" class="col-md-1 form-control input-sm"
+							th:value="${article?.memberId}" /> <input
+							th:if="!${article?.articleNo}" id="userId" type="text"
+							readonly="readonly" class="col-md-1 form-control input-sm"
+							th:value="${authUser?.memberId}" />
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<th style="padding: 13px 0 0 15px">내용</th>
-				<td>
-					<textarea id="content" maxlength="100" rows="4" style="height:90px"
-					class="col-md-1 form-control input-sm" th:text="${article?.content}" >
-					</textarea>
-					<span class="help-block"></span>
-				</td>
+				<td><textarea id="content" maxlength="100" rows="4"
+						style="height: 90px" class="col-md-1 form-control input-sm"
+						th:text="${article?.content}">
+					</textarea> <span class="help-block"></span></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -66,80 +70,188 @@
 			<a href="/article/list" class="btn btn-default">목록으로</a>
 		</div>
 		<div class="pull-right">
-		<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
+			<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
 			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert">저장</button>
 			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update">수정</button>
 			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete">삭제</button>
 		</div>
+
+		<!-- 댓글 작성 -->
+		<!-- authUser없으면 댓글 작성안나오게하거나 댓글 작성 못하게 해야됨. -->
 		
-	</div>
-	<!-- <div th:replace="layout/footer::footer" /> -->
+		<!-- 글 상세보기 일때만 댓글이 나오게 됨. -->
+		<div th:if="${article?.articleNo}">
+		
+			<input type="hidden" name="comment_article" value="${article.comment_no}">
+			<!-- <input type="hidden" name="id" value="${authUser.memberId }"> -->
+			<!-- 아이디 -->
+			
+			<td width="150">
+				<div>
+					userName : <span th:text=${authUser?.memberId}></span>
+				</div>
+			</td>
+			<!-- 본문 작성 -->
+			<td width="550">
+				<div>
+					<textarea id="cmtContent" placeholder="댓글을 입력해주세요."></textarea>
+				</div>
+			</td>
+			<!--댓글 등록 버튼 -->
+			<td width="100">
+				<div class="comment-button">
+					<input type="button" class="btn btn-default" value="댓글 쓰기"
+						id="commentWrite">
+				</div>
+			</td>
+			
+			<!--  ===><span th:text=${article?.title}></span> 
+			th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}"
+			${#calendars.format(comment.commentDate,'yyyy-MM-dd HH:mm')}
+			th:text=${comment.commentDate}-->
+			<!-- 댓글 목록들 -->
+			<br>
+			
+			<table th:if="${commentList}" id="commentsList">
+				<tr>
+					<td>#</td>
+					<td>index</td>
+					<td>유저이름</td>
+					<td>댓글내용</td>
+					<td>댓글 단 날짜</td>
+				</tr>
+				
+				<tr th:each="comment:${commentList}">
+					<td th:text=${comment.commentNum}></td>
+					<td th:text=${commentStat.index}></td>
+					<td th:text=${comment.memberId}></td>
+					<td th:text=${comment.commentContent}></td>
+					<td th:text="${#calendars.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}"></td>
+					<td><button type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
+				</tr>
+			</table>
+			<div th:if="(${commentList} == null)">댓글이 없습니다.</div>
+		</div>
+		</div>
+		<!-- <div th:replace="layout/footer::footer" /> -->
+		
+		<script>
+				$("#commentWrite").click(function() {
+					if ($("#cmtContent").val() == "") {
+						alert('댓글 내용을 입력해주세요');
+						return null;
+					};
+					var commentData = JSON.stringify({
+						memberId :  $('#writer').val(), 
+						articleNo : $('#articleNum').val(),
+						commentContent : $('#cmtContent').val()
+					});
+					$.ajax({
+						url : "http://localhost:9080/article/commentInsert",
+						type : "POST",
+						dataType : "json",
+						data : commentData,
+						contentType : "application/json",
+						success : function() {
+							alert('댓글 쓰기 성공!');
+							location.reload();
+						},
+						error : function() {
+							alert(commentData), alert('댓글 저장 실패');
+						}
+					});
+				});
+			</script>
+			<!--th:inline="javascript" script안에 이걸 넣으면 thymeleaf값을 가져올 수 있게된다.  -->
+			<script>
+			$('[name=cmtDelete]').click(
+				function() {
+					var commentNum = $(this).val();
+					$.ajax({
+						url : "http://localhost:9080/article/cmtDelete/"
+								+ commentNum,
+						type : "DELETE",
+						success : function() {
+							alert('삭제 성공!');
+							location.reload();
+						},
+						error : function() {
+							alert(commentNum); 
+							alert('삭제실패');
+						}
+					});
+				});
+			</script>
+			
+			<script th:if="!${article?.articleNo}">
+				$('#insert').click(function() {
+					var jsonData = JSON.stringify({
+						title : $('#title').val(),
+						memberId : $('#userId').val(),
+						content : $('#content').val()
+					});
+					$.ajax({
+						url : "http://localhost:9080/article/insert",
+						type : "POST",
+						data : jsonData,
+						contentType : "application/json",
+						dataType : "json",
+						success : function() {
+							alert('저장 성공');
+							location.href = '/article/list';
+						},
+						error : function() {
+							alert(jsonData), alert('저장 실패');
+						}
+					});
+				});
+			</script>
+			<!-- th:if="${article?.articleNo}" -->
+			<script>
+				$('#update').click(
+						function() {
+							var update = JSON.stringify({
+								title : $('#title').val(),
+								memberId : $('#userId').val(),
+								content : $('#content').val()
 	
-	<script th:if="!${article?.articleNo}">
-		$('#insert').click(function(){
-			var jsonData=JSON.stringify({
-				title:$('#title').val(),
-				/* category:$('#category').val(), */
-				memberId:$('#userId').val(),
-				content:$('#content').val()
-			});
-			$.ajax({
-				url:"http://localhost:9080/article/insert",
-				type:"POST",
-				data:jsonData,
-				contentType:"application/json",
-				dataType:"json",
-				success:function(){
-					alert('저장 성공');
-					location.href='/article/list';
-				},
-				error:function(){
-					alert(jsonData),
-					alert('저장 실패');
-				}
-			});
-		});
-		
-	</script>
-	<!-- th:if="${article?.articleNo}" -->
-	<script >
-		
-		$('#update').click(function(){
-			var update=JSON.stringify({
-				title:$('#title').val(),
-				memberId:$('#userId').val(),
-				content:$('#content').val()
-		
-			});
-			$.ajax({
-				url:"http://localhost:9080/article/update/"+$('#id').val(),
-				type:"PUT",
-				data:update,
-				contentType:"application/json",
-				dataType:"json",
-				success:function(){
-					alert('수정 성공!');
-					location.href='/article/list';
-				},
-				error:function(){
-					alert(this.url);
-				}
-			});
-		});
+							});
+							$.ajax({
+								url : "http://localhost:9080/article/update/"
+										+ $('#articleNum').val(),
+								type : "PUT",
+								data : update,
+								contentType : "application/json",
+								dataType : "json",
+								success : function() {
+									alert('수정 성공!');
+									location.href = '/article/list';
+								},
+								error : function() {
+									alert(this.url);
+								}
+							});
+						});
 	
-		$('#delete').click(function(){
-			$.ajax({
-				url:"http://localhost:9080/article/delete/"+$('#id').val(),
-				type:"DELETE",
-				success:function(){
-					alert('삭제 성공!');
-					location.href='/article/list';
-				},
-				error:function(){
-					alert('삭제실패');
-				}
-			});
-		});
-	</script>
+				$('#delete').click(
+						function() {
+							$.ajax({
+								url : "http://localhost:9080/article/delete/"
+										+ $('#articleNum').val(),
+								type : "DELETE",
+								success : function() {
+									alert('삭제 성공!');
+									location.href = '/article/list';
+								},
+								error : function() {
+									alert('삭제실패');
+								}
+							});
+						});
+			</script>
+	
+			
+			
+		
 </body>
 </html>

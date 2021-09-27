@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 </head>
+
 <body>
 <body>
+
 	<div class="container">
 		<div class="page-header">
 			<h1>게시글 목록</h1>

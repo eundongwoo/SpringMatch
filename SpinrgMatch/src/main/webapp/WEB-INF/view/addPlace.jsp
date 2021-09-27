@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>풋살장추가</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
 <script>
 
 	 $(document).ready(function() {

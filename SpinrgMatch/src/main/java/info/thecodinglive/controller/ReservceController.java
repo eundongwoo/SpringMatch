@@ -51,6 +51,13 @@ public class ReservceController {
 	//하나의 날짜, 풋살장, 시간대 정보 있는 객체 만들어서 세션에 넣기
 	@GetMapping(value = "/reserveHome")
 	public String init(HttpSession httpSession) {
+		if(httpSession.getAttribute("authUser")==null) {
+			System.out.println("로그인이 필요합니다.");
+			httpSession.setAttribute("loginCheck", "no");
+			
+		} else {
+			httpSession.setAttribute("loginCheck", "yes");
+		}
 		if(httpSession.getAttribute("reserveInfo")==null) {
 			httpSession.setAttribute("reserveInfo", new ReserveInfo());
 			System.out.println("reserveInfo생성");
@@ -185,7 +192,9 @@ public class ReservceController {
 		if(authUser!=null) {
 			reserveDTO.setMemberId(authUser.getMemberId());
 		} else {
+			
 			System.out.println("로그인이 필요합니다");
+			
 			return "main";
 		}
 	
@@ -194,9 +203,15 @@ public class ReservceController {
 		reserveDTO.setMemberGroup(Integer.parseInt(reserveDTO.getMemberGroupString()));
 		
 		
-		reserveService.reserve(reserveDTO);
+		String memberNumCheck = reserveService.reserve(reserveDTO, httpSession);
+		if(memberNumCheck.equals("full")) {
+			httpSession.setAttribute("memberNumCheck", "full");
+			return "redirect:/reserve/reserveHome";
+		} else {
+			httpSession.setAttribute("memberNumCheck", "good");
+		}
 		System.out.println("예약되었습니다.");
-		
+		httpSession.setAttribute("memberNumCheck", "good");
 		return "main";
 	}
 	

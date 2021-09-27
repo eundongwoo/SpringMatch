@@ -1,6 +1,5 @@
 package info.thecodinglive.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,15 +25,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import info.thecodinglive.model.Article;
-import info.thecodinglive.model.Member;
+import info.thecodinglive.model.Comment;
 import info.thecodinglive.service.ArticleService;
+import info.thecodinglive.service.CommentService;
 
-/*@Controller*/
 @RestController
 @RequestMapping(value = "/article")
 public class ArticleController {
 	@Autowired
 	ArticleService articleService; 
+	
+	@Autowired
+	CommentService commentService;
 	
 	@RequestMapping(value = "/form")
 	public ModelAndView insertForm(ModelAndView mv, HttpServletRequest req) {
@@ -46,7 +48,14 @@ public class ArticleController {
 	@RequestMapping(value = "/list")
 	public ModelAndView list(@PageableDefault(
 			size=5,sort="articleNo",direction=Sort.Direction.DESC) Pageable pageble,
-			ModelAndView mv) {
+			ModelAndView mv, HttpSession httpSession) {
+		if(httpSession.getAttribute("authUser")==null) {
+			System.out.println("로그인이 필요합니다.");
+			httpSession.setAttribute("loginCheck", "no");
+			
+		} else {
+			httpSession.setAttribute("loginCheck", "yes");
+		}
 		mv.addObject("articleList", articleService.findArticleList(pageble));
 		mv.setViewName("thymeleaf/articleList");
 		return mv;
@@ -58,10 +67,21 @@ public class ArticleController {
 		return new ResponseEntity<Article>(article,HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/commentInsert")
+	public ResponseEntity<Comment> commentInsert(@RequestBody Comment comment) {
+		System.out.println("commnetInsert 진입!!!");
+		commentService.save(comment);
+		return new ResponseEntity<Comment>(comment,HttpStatus.CREATED);
+	}
+	
 	@GetMapping("")
 	public ModelAndView article(ModelAndView mv,
-		@RequestParam(value = "articleNo",defaultValue="0") Integer id) {
+		@RequestParam(value = "articleNo",defaultValue="0") Integer id, HttpServletRequest req) {
+		
+		mv.addObject("authUser",req.getSession(false).getAttribute("authUser"));
 		mv.addObject("article",articleService.findArticleById(id));
+		mv.addObject("commentList",commentService.findAllByArticle(id));
+		System.out.println("!!!"+commentService.findAllByArticle(id)+"@@@");
 		mv.setViewName("thymeleaf/articleForm");
 		return mv;
 	}
@@ -73,12 +93,20 @@ public class ArticleController {
 		Article article=articleService.findArticleById(id);
 		article.setTitle(reqArticle.getTitle());
 		article.setContent(reqArticle.getContent());
-		Date nowDate = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
-//		Date d = simpleDateFormat.format(nowDate);
 		
+		Date nowDate = new Date();
 		article.setModdate(nowDate);
 		//boardService.save(board);
+		return new ResponseEntity<>("{}",HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/cmtDelete/{commentNum}")
+	public ResponseEntity<?> deleteComment(@PathVariable int commentNum){
+		try {	
+		commentService.deleteById(commentNum);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		return new ResponseEntity<>("{}",HttpStatus.OK);
 	}
 	
@@ -93,17 +121,6 @@ public class ArticleController {
 	}
 	
 	
-	@RequestMapping("/abc")
-	public String welcome(Model model) throws Exception {
-
-	    model.addAttribute("greeting", "Hello Thymeleaf!");
-	    return "/abc";
-	}
 	
-	@RequestMapping(value = "/formTest")
-	public ModelAndView insertFormTest(ModelAndView mv) {
-		mv.setViewName("/aFormTest");
-		return mv;
-	}
 
 }
