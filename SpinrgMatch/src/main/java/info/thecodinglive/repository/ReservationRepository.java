@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.DateOperationPlace;
 import info.thecodinglive.model.Member;
+import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.PlaceAndCalendar;
 import info.thecodinglive.model.ReservationDTO;
 import info.thecodinglive.model.ReserveDTO;
@@ -94,9 +95,15 @@ public class ReservationRepository {
 		for(int i=0; i<dopList.size(); i++) {
 			dopList.get(i).setMaxPerson(maxPerson); 	
 			dopList.get(i).setPossibleNum(maxPerson-dopList.get(i).getMemberGroup());
+			System.out.println("dopList의 한 요소==>"+dopList.get(i).toString());
 		}
 		return dopList;		//이 dopList에는 operationId랑 memberGroup만 있는 상태
 		
+	}
+	
+	public int getMaxPersonOperation(OperationTime operationTime) {
+		int maxNum = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getMaxPersonOperation",operationTime);
+		return maxNum;
 	}
 	
 }

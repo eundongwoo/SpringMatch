@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import info.thecodinglive.model.Member;
+import info.thecodinglive.model.OperationTime;
 import info.thecodinglive.model.Place;
 import info.thecodinglive.model.PlaceAndOperation;
 import info.thecodinglive.model.Search;
@@ -50,5 +51,6 @@ public class PlaceRepository {
 	public void getPlaceName(Search search) {
 		sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getPlaceName", search);
 	}
+	
 	
 }

@@ -105,12 +105,20 @@
 			select operation_id as "operationId",
 			sum(member_group) as "memberGroup"
 			from reservation 
-			where place_id=#{placeId} and reserve_date=#{reserveDate} and state='예약대기' 
+			where place_id=#{placeId} and reserve_date=#{reserveDate} and (state='예약대기' or state='예약확정')
 			group by operation_id order by operation_id asc
 			]]>
 		</select>
 		
 		<select id="getMaxPerson" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			SELECT max_person as "maxPerson"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+		</select>
+		
+		<select id="getMaxPersonOperation" parameterType="info.thecodinglive.model.OperationTime" resultType="Integer">
 		<![CDATA[
 			SELECT max_person as "maxPerson"
 				FROM place 

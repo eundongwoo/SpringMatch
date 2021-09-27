@@ -13,7 +13,7 @@ public class OperationTime {
 	private String startTime;
 	private String endTime;
 	private String fullTime;
-	
+	private int maxNum;	//잠정 추가
 	/*
 	 * OperationTime(String startTime, String endTime) { this.fullTime=
 	 * startTime+"~"+endTime; }
