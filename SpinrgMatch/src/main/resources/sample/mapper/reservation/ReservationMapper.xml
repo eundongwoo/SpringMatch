@@ -134,6 +134,14 @@
 			]]>
 		</select>
 		
+		<select id="getMemberSumDOP" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			select NVL(SUM(MEMBER_GROUP),0)
+			from RESERVATION
+			where PLACE_ID=#{placeId} and OPERATION_ID=#{operationId} and RESERVE_DATE=#{reserveDate}
+			]]>
+		</select>
+		
 		<!-- resultType="Integer" -->
 	<!-- 
 	insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date)

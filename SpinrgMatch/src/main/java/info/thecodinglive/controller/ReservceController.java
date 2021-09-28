@@ -114,8 +114,9 @@ public class ReservceController {
 		//checkRedList의 checkNum완성
 		for(int i=0; i<dopList.size(); i++) {
 			CheckRed cr = new CheckRed();
-			int num = reservationRepository.searchByDop(dopList.get(i));
-			if(num<3) {
+			int maxNum = reservationRepository.getMaxPerson(dopList.get(i));	//풋살장 최대인원 
+			int num = reservationRepository.getMemberSumDOP(dopList.get(i));	//이것도 수정
+			if(num<maxNum) {
 				cr.setCheckNum(true);	//3명보다 작으면 true
 			}else {
 				cr.setCheckNum(false);

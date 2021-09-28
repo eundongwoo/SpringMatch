@@ -4,7 +4,42 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+
 <link rel="stylesheet" th:href="@{/css/main.css}">
+<style>
+#wrap
+{
+	width: 70%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#wrap div:first-child {
+	width: 70%;
+	box-sizing:border-box;
+	float: left;
+}
+#wrap div:last-child {
+	width: 70%;
+	
+	box-sizing:border-box;
+	float: center;
+} 
+table,th,td
+{
+	text-align: center;
+}
+thead
+{
+	background-color: #69a832;
+	
+}
+
+thead tr th
+{
+	text-align: center;	
+}
+
+</style>
 </head>
 
 <!-- <script th:inline="javascript">
@@ -16,28 +51,93 @@
 </script> -->
 
 <body>
+	<header id="header" class="alt">
+			<a href="/main" class="logo"><strong>matching</strong>
+				<span>kick together</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+	</header>
 	
+	<!-- Menu -->
+		<nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="!${authUser}">
+                <ul class="links">
+                  
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    	</li>               
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/article/list">자유게시판</a>
+                    	</li>
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약페이지</a>
+                    	</li>
+                 </ul>
+                 <ul class="actions stacked">
+						<li><a href="/member/joinForm" class="button primary fit">회원가입</a></li>
+						<li><a href="/member/loginForm" class="button fit">로그인</a></li>
+				 </ul>
+            </div>  
+
+
+                   
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="${authUser}">       
+                    
+                 <ul class="links">
+                    
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    	</li>
+                    	 <li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/reserveHome">예약페이지</a>
+                    	</li> 
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약조회</a>
+                    	</li>                
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/article/list">자유게시판</a>
+                    	</li>                 
+                                    
+                    	 <span th:if="${#strings.equals(authUser.author,'1')}">
+                    		<li class="nav-item">
+                        		<a class="nav-link active" aria-current="page" href="/admin/addplaceForm">풋살장 등록</a>
+                    		</li>
+                    	</span>  
+                    	 <ul class="actions stacked">
+								<li>
+								<a href="/member/logout" class="button primary fit">로그아웃</a>
+								</li>
+								 
+						 </ul>         
+                </ul>                                                         
+                    </div>
+		</nav>
+		<section id="one">
+			<div id="wrap">
+		<header style= "text-align: center">
+			<h1 align="center"></h1>
+		</header>
+
+
 	<div class="container">
 		<div class="page-header">
 			<h1>게시글 목록</h1>
 		</div>
 		<!-- ====><span th:text="${boardList}">abc</span> -->
-		<div class="pull-right" style="width: 100px; margin: 10px 0;">
-			<a href="/article/form" class="btn btn-primary btn-block">등록</a>
+		<div class="pull-right" style="width: 100px; margin: 200px 20px 10px 0;float: right ">
+			<button type="button" class="btn btn-outline-danger"><a a href="/article/form">등록</a></button>
 		</div>
-		<br />
-		<br />
-		<br />
+		<br/>
 		<div id="mainHide">
-			<table class="table table-hover">
+			<table class="table-success">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
-						
-						<th scope="col">제목</th>
-						<th scope="col">작성자</th>
-						<th scope="col">작성날짜</th>
-						<th scope="col">수정날짜</th>
+						<th>글 번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성날짜</th>
+						<th>수정날짜</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,23 +158,31 @@
 		   	<ul class="pagination" 
 		   	th:with="startNumber=${T(Math).floor(articleList.number/5)}*5+1,
 		   	endNumber=(${articleList.totalPages})>${startNumber}+9?${startNumber}+4:${articleList.totalPages}">
-		   		<li><a href="/article/list?page=1">&laquo;</a></li>
+		   		<li><a href="/article/list?page=1" style="font-size:2em;">&laquo;</a></li>
 		   		<li th:style="${articleList.first}?'display:none'">
-		   			<a th:href="@{/article/list(page=${articleList.number})}">&lsaquo;</a>
+		   			<a th:href="@{/article/list(page=${articleList.number})}" style="font-size:2em;">&lsaquo;</a>
 		   		</li>
 		   		
 		   		<li th:each="page:${#numbers.sequence(startNumber,endNumber)}"
 		   		th:class="(${page}==${articleList.number}+1)?'active'">
-		   			<a th:href="@{/article/list(page=${page})}" th:text="${page}"></a>
+		   			<button type="button" class="btn btn-outline-danger"><a th:href="@{/article/list(page=${page})}" th:text="${page}"></a></button>
 		   		</li>
 		   		
 		   		<li th:style="${articleList.last}?'display:none'">
-		   			<a th:href="@{/article/list(page=${articleList.number}+2)}">&rsaquo;</a>
+		   			<a th:href="@{/article/list(page=${articleList.number}+2)}" style="font-size:2em;">&rsaquo;</a>
 		   		</li>
-		   		<li><a th:href="@{/article/list(page=${articleList.totalPages})}">&raquo;</a></li>
+		   		<li><a th:href="@{/article/list(page=${articleList.totalPages})}" style="font-size:2em;">&raquo;</a></li>
 		   	</ul>
 		   </nav>
 	</div>
 	
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.scrolly.min.js"></script>
+	<script src="/js/jquery.scrollex.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>

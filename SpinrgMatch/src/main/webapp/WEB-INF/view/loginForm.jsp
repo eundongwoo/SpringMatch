@@ -38,7 +38,7 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<a href="/Match/main.jsp" class="logo"><strong>matching</strong>
+			<a href="/main" class="logo"><strong>matching</strong>
 				<span>kick together</span></a>
 			<nav>
 				<a href="#menu">Menu</a>
