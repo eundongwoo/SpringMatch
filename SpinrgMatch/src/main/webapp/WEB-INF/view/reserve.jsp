@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -17,40 +17,40 @@
 <title>Forty by HTML5 UP</title>
 <meta charset="utf-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+   content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/qcss/quick.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <STYLE>
 #wrap {
-	width: 70%;
-	overflow: hidden;
-	margin: 0 auto;
+   width: 70%;
+   overflow: hidden;
+   margin: 0 auto;
 }
 
 #wrap div:first-child {
-	width: 70%;
-	box-sizing: border-box;
-	float: left;
+   width: 70%;
+   box-sizing: border-box;
+   float: left;
 }
 
 #wrap div:last-child {
-	width: 70%;
-	box-sizing: border-box;
-	float: center;
+   width: 70%;
+   box-sizing: border-box;
+   float: center;
 }
 </STYLE>
 <script>
-	
+   
     if('${loginCheck}' == 'no') {
-		alert('로그인이 필요합니다');
-		location.href='/main';
-		
-	}
+      alert('로그인이 필요합니다');
+      location.href='/main';
+      
+   }
     if('${memberNumCheck}' == 'full') {
-    	alert('예약인원수를 확인해주세요');
-    	
+       alert('예약인원수를 확인해주세요');
+       
     }
 </script>
 <script>
@@ -79,8 +79,8 @@
 <!-- 퀵메뉴-------------------- -->
 <script type="text/javascript">
          $(document).ready(function(){
-        	 
-        	  var group=$($('#group')).val();
+            
+             var group=$($('#group')).val();
               var currentPosition = parseInt($(".quickmenu").css("top"));
               $(window).scroll(function() {
                 var position = $(window).scrollTop(); 
@@ -88,16 +88,16 @@
               });
               
               $("#plus").click(function(){
-              	    value=parseInt(++group);
-              		$('#group').val(group);              	 
+                     value=parseInt(++group);
+                    $('#group').val(group);                  
                });
               
               $("#minus").click(function(){
-            	   if(group>1)
-            		   {
-            		  		value=parseInt(--group);
-               				$('#group').val(group); 
-            		   }
+                  if(group>1)
+                     {
+                          value=parseInt(--group);
+                           $('#group').val(group); 
+                     }
              });
             });
       </script>
@@ -116,34 +116,34 @@
    </script>
 <style type="text/css">
 a {
-	color: #ffffff;
-	text-decoration: none;
+   color: #ffffff;
+   text-decoration: none;
 }
 
 .scriptCalendar {
-	text-align: center;
+   text-align: center;
 }
 
 .scriptCalendar>thead>tr>td {
-	width: 50px;
-	height: 50px;
+   width: 50px;
+   height: 50px;
 }
 
 .scriptCalendar>thead>tr:first-child>td {
-	font-weight: bold;
+   font-weight: bold;
 }
 
 .scriptCalendar>thead>tr:last-child>td {
-	background-color: #0a8212;
+   background-color: #0a8212;
 }
 
 .scriptCalendar>tbody>tr>td {
-	width: 50px;
-	height: 50px;
+   width: 50px;
+   height: 50px;
 }
 
 p {
-	style ="color: red";
+   style ="color: red";
 }
 </style>
 
@@ -151,53 +151,53 @@ p {
 
 
 <body class="is-preload">
-	<!-- Header -->
-	<header id="header" class="alt">
-		<a href="/main" class="logo"><strong>matching</strong> <span>kick
-				together</span></a>
-		<nav>
-			<a href="#menu">Menu</a>
-		</nav>
-	</header>
+   <!-- Header -->
+   <header id="header" class="alt">
+      <a href="/main" class="logo"><strong>matching</strong> <span>kick
+            together</span></a>
+      <nav>
+         <a href="#menu">Menu</a>
+      </nav>
+   </header>
 
-	<!-- Menu -->
-	<nav id="menu">
-		<jsp:include page="/WEB-INF/view/nav.jsp" />
-	</nav>
-	<!-- Banner -->
-	<section id="banner2" class="major">
-		<div class="inner">
-			<header class="major" style="margin-left: 230px; margin-top: 200px;">
-				<h2>주의사항</h2>
-				<h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
-				<h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
-					010-4195-8016으로 전화가능합니다.</h5>
-				<h5>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h5>
+   <!-- Menu -->
+   <nav id="menu">
+      <jsp:include page="/WEB-INF/view/nav.jsp" />
+   </nav>
+   <!-- Banner -->
+   <section id="banner2" class="major">
+      <div class="inner">
+         <header class="major" style="margin-left: 230px; margin-top: 200px;">
+            <h2>주의사항</h2>
+            <h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
+            <h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
+               010-4195-8016으로 전화가능합니다.</h5>
+            <h5>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h5>
 
-			</header>
-			<div style="margin-left: 1120px; margin-top: 100px;">
-
-
-				<p style="color: orange">확인하셨습니까?</p>
-				<ul class="actions">
-					<li><a href="#one" class="button next scrolly">구장 선택</a></li>
-				</ul>
-			</div>
-		</div>
-	</section>
+         </header>
+         <div style="margin-left: 1120px; margin-top: 100px;">
 
 
-	<!-- map start--------------------------------------- -->
+            <p style="color: orange">확인하셨습니까?</p>
+            <ul class="actions">
+               <li><a href="#one" class="button next scrolly">구장 선택</a></li>
+            </ul>
+         </div>
+      </div>
+   </section>
 
 
-	<%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
-	<section id="one" class="tiles" style="margin-top: 200px;">
-		<div id="map" style="width: 70%; height: 400px; margin: 0 auto;"></div>
+   <!-- map start--------------------------------------- -->
 
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
 
-		<script style="color: red">
+   <%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
+   <section id="one" class="tiles" style="margin-top: 200px;">
+      <div id="map" style="width: 70%; height: 400px; margin: 0 auto;"></div>
+
+      <script type="text/javascript"
+         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
+
+      <script style="color: red">
 var placeArray = new Array();
 <c:forEach items="${placeList}" var="place">
    placeArray.push({
@@ -287,22 +287,22 @@ for(var j=0; j<placeArray.length; j++) {
 
 
 </script>
-	</section>
-	<br>
-	<br>
-	<br>
+   </section>
+   <br>
+   <br>
+   <br>
 
 
 
-	<!--map end -------------------------------- -->
+   <!--map end -------------------------------- -->
 
 
 
-	<%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
-	<%-- ${reserveInfo.placeName} --%>
-	<!-- calendar start--------------------------------- -->
+   <%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
+   <%-- ${reserveInfo.placeName} --%>
+   <!-- calendar start--------------------------------- -->
 
-	<script type="text/javascript">
+   <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             buildCalendar();
         });
@@ -532,205 +532,205 @@ for(var j=0; j<placeArray.length; j++) {
 </head>
 
 <body>
-	<div id="wrap" style="text-align: center">
-		<table class="scriptCalendar">
-			<thead>
-				<tr>
-					<td onClick="prevCalendar();" style="cursor: pointer;">&#60;&#60;</td>
-					<td colspan="5"><span id="calYear">YYYY</span>년 <span
-						id="calMonth">MM</span>월</td>
-					<td onClick="nextCalendar();" style="cursor: pointer;">&#62;&#62;</td>
-				</tr>
-				<tr>
-					<td>일</td>
-					<td>월</td>
-					<td>화</td>
-					<td>수</td>
-					<td>목</td>
-					<td>금</td>
-					<td>토</td>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
+   <div id="wrap" style="text-align: center">
+      <table class="scriptCalendar">
+         <thead>
+            <tr>
+               <td onClick="prevCalendar();" style="cursor: pointer;">&#60;&#60;</td>
+               <td colspan="5"><span id="calYear">YYYY</span>년 <span
+                  id="calMonth">MM</span>월</td>
+               <td onClick="nextCalendar();" style="cursor: pointer;">&#62;&#62;</td>
+            </tr>
+            <tr>
+               <td>일</td>
+               <td>월</td>
+               <td>화</td>
+               <td>수</td>
+               <td>목</td>
+               <td>금</td>
+               <td>토</td>
+            </tr>
+         </thead>
+         <tbody></tbody>
+      </table>
 
-	</div>
+   </div>
 
-	<!-- calendar end------------------------------------------- -->
+   <!-- calendar end------------------------------------------- -->
 
-	<!-- input3개-------------------------------- -->
-	<form action="/reserve/reserveSubmit" method="post">
-		<div class="quickmenu">
+   <!-- input3개-------------------------------- -->
+   <form action="/reserve/reserveSubmit" method="post">
+      <div class="quickmenu">
 
-			<table>
-				<tr>
-					<td>풋살장: <input type="text" name="place" id="place" value=""
-						readonly="readonly"></td>
-				</tr>
-				<tr>
-					<td><c:if test="${empty param.year}">
-    		날짜:<input type="text" name="date" id="date" value=""
-								readonly="readonly">
-						</c:if> <c:if test="${!empty param.year }">
+         <table>
+            <tr>
+               <td>풋살장: <input type="text" name="place" id="place" value=""
+                  readonly="readonly"></td>
+            </tr>
+            <tr>
+               <td><c:if test="${empty param.year}">
+          날짜:<input type="text" name="date" id="date" value=""
+                        readonly="readonly">
+                  </c:if> <c:if test="${!empty param.year }">
 
-						</c:if></td>
-				</tr>
-				<tr>
-					<td>시간:<input type="text" name="time" id="time"
-						readonly="readonly">
-						<div id="locationss"></div>
-					</td>
-				</tr>
-				<tr>
-					<td>금액:<input type="text" name="cost" id="cost" value=""
-						readonly="readonly"> <!--hidden input (operationId, placeId 보낼 장소) -->
-						<input type="hidden" name="operationIdString"
-						id="operationIdHidden"> <input type="hidden"
-						name="placeIdString" id="placeIdHidden">
-					</td>
-				</tr>
-				<tr>
-					<td>인원:<input type="button" value="+" id="plus"><input
-						id="group" name="memberGroupString" type="text" value="1"><input type="button"
-						value="-" id="minus">
-					</td>
-				</tr>
-				<tr>
-					<td><input id="timelook" type="button" value="시간 조회">
-						<!--시간조회   --></td>
-				</tr>
-				<!-- <div id="timezone"></div>	 -->
-				<tr>
-					<td>
-						<!-- 시간대버튼 --> <input type="submit" value="예약하기"onclick="return confirm('예약하시겠습니까?')">
-					</td>
-				</tr>
-			</table>
+                  </c:if></td>
+            </tr>
+            <tr>
+               <td>시간:<input type="text" name="time" id="time"
+                  readonly="readonly">
+                  <div id="locationss"></div>
+               </td>
+            </tr>
+            <tr>
+               <td>금액:<input type="text" name="cost" id="cost" value=""
+                  readonly="readonly"> <!--hidden input (operationId, placeId 보낼 장소) -->
+                  <input type="hidden" name="operationIdString"
+                  id="operationIdHidden"> <input type="hidden"
+                  name="placeIdString" id="placeIdHidden">
+               </td>
+            </tr>
+            <tr>
+               <td>인원:<input type="button" value="+" id="plus"><input
+                  id="group" name="memberGroupString" type="text" value="1"><input type="button"
+                  value="-" id="minus">
+               </td>
+            </tr>
+            <tr>
+               <td><input id="timelook" type="button" value="시간 조회">
+                  <!--시간조회   --></td>
+            </tr>
+            <!-- <div id="timezone"></div>    -->
+            <tr>
+               <td>
+                  <!-- 시간대버튼 --> <input type="submit" value="예약하기"onclick="return confirm('예약하시겠습니까?')">
+               </td>
+            </tr>
+         </table>
 
-		</div>
-		<br> <br>
-		<div id="timezone"
-			style="text-align: center; width: 950px; margin: 0 auto"></div>
-		<div id="memberInfo" style="text-align: center; width: 950px; margin: 0 auto"></div>
-	</form>
-
-
-
-	<script>
-						    	$("#timelook").click(function() {
-						    		
-						    		var placeAndCalendar=JSON.stringify({
-						            	placeName:$("#place").val(),
-										calendarFullDate:$("#date").val()										
-									});
-						            $.ajax({
-										url:"/reserve/timelook",
-										type:"POST",
-										data:placeAndCalendar,
-										contentType:"application/json;charset=utf-8",
-										
-										success:function(checkButton){
-											alert('hello');
-											$("#timezone").html("");
-											/* $("#memberInfo")html(""); */
-											/* for(var j=0; j<checkButton.memberCheckList.length; j++) {
-												var maxPerson=memberCheckList[j].maxPerson;
-												var maxPerson=memberCheckList[j].maxPerson;
-												var maxPerson=memberCheckList[j].maxPerson;
-												$("#memberInfo").$("#timezone").append("<textarea id='memberCheck"+j+"'></textarea>");
-												$("#memberCheck"+j).innerText(x)
-											} */
-											
-											
-											if(checkButton.memberCheckList.length==0) {
-												alert('선택한 날의 예약된 인원 없음');
-											} 
-											/* alert(checkButton.memberCheckList[0].maxPerson); */
-											
-											for(var i=0; i<checkButton.operationTimeList.length; i++) {
-												var operationIdHidden=null;
-												var placeIdHidden=null; 
-												var time = checkButton.operationTimeList[i].fullTime;
-												 operationIdHidden=checkButton.operationTimeList[i].operationId;
-												placeIdHidden=checkButton.operationTimeList[i].placeId; 
-											   /* 	for(var j=0; j<checkButton.checkRedList.length; j++) {
-											   		alert(checkButton.checkRedList[j].checkNum);
-											   	} */
-												
-												$("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
-												
-												if(checkButton.memberCheckList.length!=0 ) {
-													
-												var check=0;
-													
-											   	for(var k=0; k<checkButton.memberCheckList.length; k++) {
-											   		
-											   		var t = checkButton.memberCheckList[k].operationId;
-											   		if(checkButton.operationTimeList[i].operationId==t) {
-												   		$("#timezone").append("<br><textarea id='dop"+i+"' ></textarea>");
-												   		$("#dop"+i).val('최대인원'+checkButton.memberCheckList[k].maxPerson+'\n'+'현재예약인원'+checkButton.memberCheckList[k].memberGroup+'\n'+'남은 자리수'+checkButton.memberCheckList[k].possibleNum);
-												   		check++;
-												   	}
-											   		
-											   	}
-											   	if(check==0) {
-											   		$("#timezone").append("<br><textarea id='dop"+i+"' >");
-											   		$("#dop"+i).val('최대인원'+checkButton.operationTimeList[i].maxNum+'\n'+'현재예약인원0');
-											   	}
-											   	
-												}
-												 if((!checkButton.checkRedList[i].checkNum||(!checkButton.checkRedList[i].checkDate&&!checkButton.checkRedList[i].checkTime))) {
-													$("#operationTime"+i).css({
-														background:'red',
-														opacity:0.7
-													});
-													$("#operationTime"+i).attr('disabled','disabled');
-												} 
-												
-												$("#operationTime"+i).val(time);
-												$("#operationTime"+i).attr("data-operationId",operationIdHidden);
-												$("#operationTime"+i).attr("data-placeId",placeIdHidden);
-												$("#operationTime"+i).click(function() {
-												/* 	operationIdHidden= checkButton.operationTimeList[i].operationId;
-													placeIdHidden=checkButton.operationTimeList[i].placeId; */
-													$("#time").val($(this).val());
-													$("#operationIdHidden").val($(this).attr("data-operationId"));
-													$("#placeIdHidden").val($(this).attr("data-placeId"));
-													/* $("#operationIdHidden").val(operationIdHidden);
-													$("#placeIdHidden").val(placeIdHidden);  */
-												});
-											}
-											
-											/*  $("#operationIdHidden").val(operationIdHidden);
-											$("#placeIdHidden").val(placeIdHidden); */
-											
-									 	$('#cost').val(checkButton.cost);
-											
-										},
-										error:function(){
-											alert('풋살장이름, 예약날짜 정보 보내기 실패');
-										}
-									});
-						    		
-						    		
-						    	});
-						    
-						    </script>
+      </div>
+      <br> <br>
+      <div id="timezone"
+         style="text-align: center; width: 950px; margin: 0 auto"></div>
+      <div id="memberInfo" style="text-align: center; width: 950px; margin: 0 auto"></div>
+   </form>
 
 
-	<div id="hidden_div" style="text-align: center"></div>
+
+   <script>
+                         $("#timelook").click(function() {
+                            
+                            var placeAndCalendar=JSON.stringify({
+                                 placeName:$("#place").val(),
+                              calendarFullDate:$("#date").val()                              
+                           });
+                              $.ajax({
+                              url:"/reserve/timelook",
+                              type:"POST",
+                              data:placeAndCalendar,
+                              contentType:"application/json;charset=utf-8",
+                              
+                              success:function(checkButton){
+                                 alert('hello');
+                                 $("#timezone").html("");
+                                 /* $("#memberInfo")html(""); */
+                                 /* for(var j=0; j<checkButton.memberCheckList.length; j++) {
+                                    var maxPerson=memberCheckList[j].maxPerson;
+                                    var maxPerson=memberCheckList[j].maxPerson;
+                                    var maxPerson=memberCheckList[j].maxPerson;
+                                    $("#memberInfo").$("#timezone").append("<textarea id='memberCheck"+j+"'></textarea>");
+                                    $("#memberCheck"+j).innerText(x)
+                                 } */
+                                 
+                                 
+                                 if(checkButton.memberCheckList.length==0) {
+                                    alert('선택한 날의 예약된 인원 없음');
+                                 } 
+                                 /* alert(checkButton.memberCheckList[0].maxPerson); */
+                                 
+                                 for(var i=0; i<checkButton.operationTimeList.length; i++) {
+                                    var operationIdHidden=null;
+                                    var placeIdHidden=null; 
+                                    var time = checkButton.operationTimeList[i].fullTime;
+                                     operationIdHidden=checkButton.operationTimeList[i].operationId;
+                                    placeIdHidden=checkButton.operationTimeList[i].placeId; 
+                                    /*    for(var j=0; j<checkButton.checkRedList.length; j++) {
+                                          alert(checkButton.checkRedList[j].checkNum);
+                                       } */
+                                    
+                                    $("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
+                                    
+                                    if(checkButton.memberCheckList.length!=0 ) {
+                                       
+                                    var check=0;
+                                       
+                                       for(var k=0; k<checkButton.memberCheckList.length; k++) {
+                                          
+                                          var t = checkButton.memberCheckList[k].operationId;
+                                          if(checkButton.operationTimeList[i].operationId==t) {
+                                             $("#timezone").append("<br><textarea id='dop"+i+"' ></textarea>");
+                                             $("#dop"+i).val('최대인원'+checkButton.memberCheckList[k].maxPerson+'\n'+'현재예약인원'+checkButton.memberCheckList[k].memberGroup+'\n'+'남은 자리수'+checkButton.memberCheckList[k].possibleNum);
+                                             check++;
+                                          }
+                                          
+                                       }
+                                       if(check==0) {
+                                          $("#timezone").append("<br><textarea id='dop"+i+"' >");
+                                          $("#dop"+i).val('최대인원'+checkButton.operationTimeList[i].maxNum+'\n'+'현재예약인원0');
+                                       }
+                                       
+                                    }
+                                     if((!checkButton.checkRedList[i].checkNum||(!checkButton.checkRedList[i].checkDate&&!checkButton.checkRedList[i].checkTime))) {
+                                       $("#operationTime"+i).css({
+                                          background:'red',
+                                          opacity:0.7
+                                       });
+                                       $("#operationTime"+i).attr('disabled','disabled');
+                                    } 
+                                    
+                                    $("#operationTime"+i).val(time);
+                                    $("#operationTime"+i).attr("data-operationId",operationIdHidden);
+                                    $("#operationTime"+i).attr("data-placeId",placeIdHidden);
+                                    $("#operationTime"+i).click(function() {
+                                    /*    operationIdHidden= checkButton.operationTimeList[i].operationId;
+                                       placeIdHidden=checkButton.operationTimeList[i].placeId; */
+                                       $("#time").val($(this).val());
+                                       $("#operationIdHidden").val($(this).attr("data-operationId"));
+                                       $("#placeIdHidden").val($(this).attr("data-placeId"));
+                                       /* $("#operationIdHidden").val(operationIdHidden);
+                                       $("#placeIdHidden").val(placeIdHidden);  */
+                                    });
+                                 }
+                                 
+                                 /*  $("#operationIdHidden").val(operationIdHidden);
+                                 $("#placeIdHidden").val(placeIdHidden); */
+                                 
+                               $('#cost').val(checkButton.cost);
+                                 
+                              },
+                              error:function(){
+                                 alert('풋살장이름, 예약날짜 정보 보내기 실패');
+                              }
+                           });
+                            
+                            
+                         });
+                      
+                      </script>
 
 
-	<br>
-	<br>
-	<!-- Scripts -->
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/jquery.scrolly.min.js"></script>
-	<script src="/js/jquery.scrollex.min.js"></script>
-	<script src="/js/browser.min.js"></script>
-	<script src="/js/breakpoints.min.js"></script>
-	<script src="/js/util.js"></script>
-	<script src="/js/main.js"></script>
+   <div id="hidden_div" style="text-align: center"></div>
+
+
+   <br>
+   <br>
+   <!-- Scripts -->
+   <script src="/js/jquery.min.js"></script>
+   <script src="/js/jquery.scrolly.min.js"></script>
+   <script src="/js/jquery.scrollex.min.js"></script>
+   <script src="/js/browser.min.js"></script>
+   <script src="/js/breakpoints.min.js"></script>
+   <script src="/js/util.js"></script>
+   <script src="/js/main.js"></script>
 </body>
 
 

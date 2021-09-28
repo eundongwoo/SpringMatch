@@ -7,11 +7,101 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <link rel="stylesheet" th:href="@{/css/base.css}" />
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" /> -->
+ <link rel="stylesheet" th:href="@{/css/main.css}">
+<!--  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" /> -->
+<style>
+#wrap
+{
+	width: 70%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#wrap div:first-child {
+	width: 70%;
+	box-sizing:border-box;
+	float: left;
+}
+#wrap div:last-child {
+	width: 70%;
+	
+	box-sizing:border-box;
+	float: center;
+} 
+th
+{
+ border-bottom:1px solid orange;
+}
+</style>
 </head>
 <body>
 	<!--  ===><span th:text=${article?.title}></span> -->
+	<header id="header" class="alt">
+			<a href="/main" class="logo"><strong>matching</strong>
+				<span>kick together</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+	</header>
+	
+	<nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="!${authUser}">
+                <ul class="links">
+                  
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    	</li>               
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/article/list">자유게시판</a>
+                    	</li>
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약페이지</a>
+                    	</li>
+                 </ul>
+                 <ul class="actions stacked">
+						<li><a href="/member/joinForm" class="button primary fit">회원가입</a></li>
+						<li><a href="/member/loginForm" class="button fit">로그인</a></li>
+				 </ul>
+            </div>  
+
+
+                   
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="${authUser}">       
+                    
+                 <ul class="links">
+                    
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    	</li>
+                    	 <li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/reserveHome">예약페이지</a>
+                    	</li> 
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약조회</a>
+                    	</li>                
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/article/list">자유게시판</a>
+                    	</li>                 
+                                    
+                    	 <span th:if="${#strings.equals(authUser.author,'1')}">
+                    		<li class="nav-item">
+                        		<a class="nav-link active" aria-current="page" href="/admin/addplaceForm">풋살장 등록</a>
+                    		</li>
+                    	</span>  
+                    	 <ul class="actions stacked">
+								<li>
+								<a href="/member/logout" class="button primary fit">로그아웃</a>
+								</li>
+								 
+						 </ul>         
+                </ul>                                                         
+                    </div>
+		</nav>
+		<section id="one">
+			<div id="wrap">
+		<header style= "text-align: center">
+			<h1 align="center"></h1>
+		</header>
+	
 
 	<div class="container">
 		<div class="page-header">
@@ -62,18 +152,16 @@
 						th:text="${article?.content}">
 					</textarea> <span class="help-block"></span></td>
 			</tr>
-			<tr>
-				<td></td>
-			</tr>
 		</table>
 		<div class="pull-left">
-			<a href="/article/list" class="btn btn-default">목록으로</a>
+			
 		</div>
-		<div class="pull-right">
+		<div class="pull-right" style="float:right;">
 			<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
-			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert">저장</button>
-			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update">수정</button>
-			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete">삭제</button>
+			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert" style="float:right; margin-left:10px;">저장</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update" style="float:right; margin-left:10px;">수정</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete" style="float:right; margin-left:10px;">삭제</button>
+			<button type="button" class="btn btn-primary" style="float:right;"><a href="/article/list" class="btn btn-default">목록</a></button>
 		</div>
 
 		<!-- 댓글 작성 -->
@@ -114,8 +202,8 @@
 			
 			<table th:if="${commentList}" id="commentsList">
 				<tr>
-					<td>#</td>
-					<td>index</td>
+					<td>번호</td>
+					<!-- <td>index</td> -->
 					<td>유저이름</td>
 					<td>댓글내용</td>
 					<td>댓글 단 날짜</td>
@@ -123,7 +211,7 @@
 				
 				<tr th:each="comment:${commentList}">
 					<td th:text=${comment.commentNum}></td>
-					<td th:text=${commentStat.index}></td>
+					<!-- <td th:text=${commentStat.index}></td> -->
 					<td th:text=${comment.memberId}></td>
 					<td th:text=${comment.commentContent}></td>
 					<td th:text="${#calendars.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}"></td>
@@ -250,6 +338,14 @@
 						});
 			</script>
 	
+		<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.scrolly.min.js"></script>
+	<script src="/js/jquery.scrollex.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
 			
 			
 		
