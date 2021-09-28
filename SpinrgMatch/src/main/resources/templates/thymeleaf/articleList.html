@@ -24,6 +24,21 @@
 	box-sizing:border-box;
 	float: center;
 } 
+table,th,td
+{
+	text-align: center;
+}
+thead
+{
+	background-color: #69a832;
+	
+}
+
+thead tr th
+{
+	text-align: center;	
+}
+
 </style>
 </head>
 
@@ -110,23 +125,19 @@
 			<h1>게시글 목록</h1>
 		</div>
 		<!-- ====><span th:text="${boardList}">abc</span> -->
-		<div class="pull-right" style="width: 100px; margin: 10px 0;">
-			<a href="/article/form" class="btn btn-primary btn-block">등록</a>
+		<div class="pull-right" style="width: 100px; margin: 200px 20px 10px 0;float: right ">
 			<button type="button" class="btn btn-outline-danger"><a a href="/article/form">등록</a></button>
 		</div>
-		<br />
-		<br />
-		<br />
+		<br/>
 		<div id="mainHide">
-			<table class="table table-hover">
+			<table class="table-success">
 				<thead>
 					<tr>
-						<th scope="col">글 번호</th>
-						
-						<th scope="col">제목</th>
-						<th scope="col">작성자</th>
-						<th scope="col">작성날짜</th>
-						<th scope="col">수정날짜</th>
+						<th>글 번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성날짜</th>
+						<th>수정날짜</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -147,20 +158,20 @@
 		   	<ul class="pagination" 
 		   	th:with="startNumber=${T(Math).floor(articleList.number/5)}*5+1,
 		   	endNumber=(${articleList.totalPages})>${startNumber}+9?${startNumber}+4:${articleList.totalPages}">
-		   		<li><a href="/article/list?page=1">&laquo;</a></li>
+		   		<li><a href="/article/list?page=1" style="font-size:2em;">&laquo;</a></li>
 		   		<li th:style="${articleList.first}?'display:none'">
-		   			<a th:href="@{/article/list(page=${articleList.number})}">&lsaquo;</a>
+		   			<a th:href="@{/article/list(page=${articleList.number})}" style="font-size:2em;">&lsaquo;</a>
 		   		</li>
 		   		
 		   		<li th:each="page:${#numbers.sequence(startNumber,endNumber)}"
 		   		th:class="(${page}==${articleList.number}+1)?'active'">
-		   			<a th:href="@{/article/list(page=${page})}" th:text="${page}"></a>
+		   			<button type="button" class="btn btn-outline-danger"><a th:href="@{/article/list(page=${page})}" th:text="${page}"></a></button>
 		   		</li>
 		   		
 		   		<li th:style="${articleList.last}?'display:none'">
-		   			<a th:href="@{/article/list(page=${articleList.number}+2)}">&rsaquo;</a>
+		   			<a th:href="@{/article/list(page=${articleList.number}+2)}" style="font-size:2em;">&rsaquo;</a>
 		   		</li>
-		   		<li><a th:href="@{/article/list(page=${articleList.totalPages})}">&raquo;</a></li>
+		   		<li><a th:href="@{/article/list(page=${articleList.totalPages})}" style="font-size:2em;">&raquo;</a></li>
 		   	</ul>
 		   </nav>
 	</div>
