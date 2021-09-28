@@ -111,4 +111,14 @@ public class ReservationRepository {
 		return memberNum;
 	}
 	
+	public int getMaxPerson(DateOperationPlace dop) {
+		int maxPerson = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getMaxPerson",dop);
+		return maxPerson;
+	}
+	
+	public int getMemberSumDOP(DateOperationPlace dop) {
+		int memberNum = sqlSessionTemplate.selectOne(MAPPER_NAME_SPACE+"getMemberSumDOP",dop);
+		return memberNum;
+	}
+	
 }
