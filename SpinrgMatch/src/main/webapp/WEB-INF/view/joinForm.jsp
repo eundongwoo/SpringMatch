@@ -55,26 +55,36 @@
 		</header>
 
 <div id="wrap" style="text-align: center">
-
-<input id="member_id" type="text" name="id"  placeholder="ID">
+<table>
+<tr>
+<td>아이디</td>
+<td><input id="member_id" type="text" name="id"  placeholder="ID"></td>
+</tr>
 <%-- <c:if test="${errors.id}">아이디를 입력하세요.</c:if>
 <c:if test="${errors.duplicateId}">이미 사용중인 아이디 입니다.</c:if> --%>
-<br>
-<input id="member_name" type="text" name="name"  placeholder="name">
+<tr>
+<td>이름</td>
+<td><input id="member_name" type="text" name="name"  placeholder="name"></td>
 <%-- <c:if test="${errors.name}">이름을 입력하세요.</c:if> --%>
-<br>
-
-<input id="member_password" type="password" name="password" placeholder="Password">
+</tr>
+<tr>
+<td>비밀번호</td>
+<td><input id="member_password" type="password" name="password" placeholder="Password"></td>
 <%-- <c:if test="${errors.password}">패스워드를 입력하세요.</c:if> --%>
-<br>
-
-<input type="password" name="confirm" placeholder="PasswordConfirm">
+</tr>
+<tr>
+<td>비밀번호 확인</td>
+<td><input type="password" name="confirm" placeholder="PasswordConfirm"></td>
 <%-- <c:if test="${errors.confirm}">패스워드 확인을 입력하세요.</c:if>
 <c:if test="${errors.notMatch}">패스워드와 확인이 일치하지 않습니다.</c:if> --%>
-<br>
+</tr>
 
-<input id="member_tel" type="text" name="tel" value="" placeholder="ex) 010-1234-5678">
+<tr>
+<td>전화번호</td>
+<td><input id="member_tel" type="text" name="tel" value="" placeholder="ex) 010-1234-5678"></td>
 <%-- <c:if test="${errors.tel}">전화번호를 입력하세요.</c:if> --%>
+</tr>
+</table>
 <br>
 <button  type="button" class="btn btn-info" id="register">등록</button>
 

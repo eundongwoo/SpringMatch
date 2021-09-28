@@ -117,7 +117,7 @@ thead tr th
 			<div id="wrap">
 		<header style= "text-align: center">
 			<h1 align="center"></h1>
-		</header>
+		</header><br><br><br>
 
 
 	<div class="container">
@@ -125,10 +125,10 @@ thead tr th
 			<h1>게시글 목록</h1>
 		</div>
 		<!-- ====><span th:text="${boardList}">abc</span> -->
-		<div class="pull-right" style="width: 100px; margin: 200px 20px 10px 0;float: right ">
+		<!-- <div class="pull-right" style="width: 100px; margin: 200px 20px 10px 0;float: right ">
 			<button type="button" class="btn btn-outline-danger"><a a href="/article/form">등록</a></button>
-		</div>
-		<br/>
+		</div> -->
+		
 		<div id="mainHide">
 			<table class="table-success">
 				<thead>
@@ -148,10 +148,14 @@ thead tr th
 						 <td th:text="${article.memberId}"></td> 
 						<td th:text="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}"></td>
 						<td th:text="${#calendars.format(article?.moddate, 'yyyy-MM-dd HH:mm')}"></td>
-					</tr>
+					</tr>					
 				</tbody>
-			</table>
+				<div class="pull-right" style="width: 100px; margin: 150px 20px 10px 0;float: right ">
+			<button type="button" class="btn btn-outline-danger"> <a a href="/article/form">등록</a></button>
+				</div>				
+			</table>			
 		</div>
+		
 		<br/>
 		 <!--  페이지 네비게이션 -->
 		   <nav style="text-align:center;">

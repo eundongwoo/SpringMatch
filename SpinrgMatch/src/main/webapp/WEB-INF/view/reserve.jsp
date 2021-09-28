@@ -83,7 +83,7 @@
          $(document).ready(function(){
             
              var group=$($('#group')).val();
-              var currentPosition = parseInt($(".quickmenu").css("top"));
+             var currentPosition = parseInt($(".quickmenu").css("top"));
               $(window).scroll(function() {
                 var position = $(window).scrollTop(); 
                 $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},250);
@@ -169,8 +169,7 @@ p {
 <body class="is-preload">
    <!-- Header -->
    <header id="header" class="alt">
-      <a href="/main" class="logo"><strong>matching</strong> <span>kick
-            together</span></a>
+      <a href="/main" class="logo"><strong>matching</strong> <span>kick together</span></a>
       <nav>
          <a href="#menu">Menu</a>
       </nav>
@@ -197,7 +196,7 @@ p {
 
             <p style="color: orange">확인하셨습니까?</p>
             <ul class="actions">
-               <li><a href="#one" class="button next scrolly">구장 선택</a></li>
+               <li><a href="#one"class="button next scrolly">구장 선택</a></li>
             </ul>
          </div>
       </div>
@@ -225,11 +224,17 @@ p {
   </li>
 </ul>
 </div>
+
+
    <!-- map start--------------------------------------- -->
 	<div class="tab-content" id="myTabContent">
   	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   		<jsp:include page="/WEB-INF/view/map.jsp" />	
 	</div>
+	
+	<div id="eundongwoo" style="width:500px; height:100px; background-color:white">
+	
+   </div>
 	<!-- 풋살장 끝 -->
 	<!-- 달력 시작 -->
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
