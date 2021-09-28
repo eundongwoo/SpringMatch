@@ -102,7 +102,7 @@
 					location.href='/main';
 				},
 				error:function(){
-					alert(member);
+					/* alert(member); */
 					alert('회원가입 실패');
 				}
 			});

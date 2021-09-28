@@ -152,14 +152,33 @@ p {
 {
 	width: 1000px;
 	margin: 0 auto;
+	margin-top:500px
 	
 }
 #home-tab
 {
 	margin-left:300px;
 }
-	
 
+#countPerson
+{
+	overflow: hidden;
+}
+
+#countPerson input , #countPerson div
+{
+	float:left;
+}
+#countPerson div
+{
+	margin-right: 6px;
+}
+
+.go
+{
+	font-size: 1.5em;
+	resize: none;
+}
 </style>
 
 </head>
@@ -184,7 +203,7 @@ p {
    <!-- Banner -->
    <section id="banner2" class="major">
       <div class="inner" >
-         <header class="major" style="margin-left: 300px; margin-top: 200px;">
+         <header class="major" style="margin-left: 300px; margin-top: 300px;">
             <h2>주의사항</h2>
             <h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
             <h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
@@ -220,11 +239,12 @@ p {
   <!-- <li class="nav-item" role="presentation">
   <input id="timelook" type="button" text-align="right" value="시간 조회">
   </li> -->
-  <li class="nav-item" role="presentation">
+  <!-- <li class="nav-item" role="presentation">
     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#player" type="button" role="tab" aria-controls="contact" aria-selected="true">인 원</button>
-  </li>
+  </li> -->
 </ul>
 </div>
+		
    <!-- map start--------------------------------------- -->
 	<div class="tab-content" id="myTabContent">
   	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -237,7 +257,7 @@ p {
     </div>
   	<!-- 달력 끝 -->
   	
-  	<!-- 시간조회 시작 -->
+  	<!-- 시간,조회 시작 -->
   
   			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
   					<table>
@@ -251,7 +271,7 @@ p {
 			</div>
   
   
- 		<form action="/reserve/reserveSubmit" method="post">
+ 		<!-- <form action="/reserve/reserveSubmit" method="post">
  		<div id="wrap" style="text-align: center">
   			<div class="tab-pane fade" id="player" role="tabpanel" aria-labelledby="contact-tab" style="text-align: center">					
   					<tr>
@@ -262,12 +282,12 @@ p {
 					</tr>	
 					</table>
 			</div>
-		</div>
+		</div> -->
 </head>
 <body>
 	<!-- calendar end------------------------------------------- -->	
    <!-- input3개-------------------------------- -->
-   <!-- <form action="/reserve/reserveSubmit" method="post"> -->
+   <form action="/reserve/reserveSubmit" method="post">
       <div class="quickmenu">
          <table>
             <tr>
@@ -295,12 +315,16 @@ p {
                   name="placeIdString" id="placeIdHidden">
                </td>
             </tr>
-          <!--   <tr>
-               <td>인원:<input type="button" value="+" id="plus"><input
-                  id="group" name="memberGroupString" type="text" value="1"><input type="button"
-                  value="-" id="minus">
-               </td>
-            </tr> -->
+			<tr>
+				<td>
+				<div id="countPerson">
+					<div>인원:</div>
+					<input type="button" value="-" id="minus" style="width:20px;">
+					<input id="group" name="memberGroupString" type="text" value="1" style="text-align:center; width:60px; height:50px;" readonly="readonly">
+					<input type="button" value="+" id="plus" style="width:20px;">
+				</div>
+				</td>
+			</tr>
             <!-- <tr>
                <td><input id="timelook" type="button" value="시간 조회">
                   시간조회  </td>
@@ -308,7 +332,7 @@ p {
             <!-- <div id="timezone"></div>    -->
             <tr>
                <td>
-                  <!-- 시간대버튼 --> <input type="submit" value="예약하기"onclick="return confirm('예약하시겠습니까?')">
+                  <!-- 시간대버튼 --> <input type="submit" style="margin-left:40px" value="예약하기" onclick="return confirm('예약하시겠습니까?')">
                </td>
             </tr>
          </table>
@@ -336,7 +360,7 @@ p {
                               contentType:"application/json;charset=utf-8",
                               
                               success:function(checkButton){
-                                 alert('hello');
+                                
                                  $("#timezone").html("");
                                  /* $("#memberInfo")html(""); */
                                  /* for(var j=0; j<checkButton.memberCheckList.length; j++) {
@@ -373,15 +397,15 @@ p {
                                           
                                           var t = checkButton.memberCheckList[k].operationId;
                                           if(checkButton.operationTimeList[i].operationId==t) {
-                                             $("#timezone").append("<br><textarea id='dop"+i+"' ></textarea>");
-                                             $("#dop"+i).val('최대인원'+checkButton.memberCheckList[k].maxPerson+'\n'+'현재예약인원'+checkButton.memberCheckList[k].memberGroup+'\n'+'남은 자리수'+checkButton.memberCheckList[k].possibleNum);
+                                             $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'></textarea>");
+                                             $("#dop"+i).val('최대인원: '+checkButton.memberCheckList[k].maxPerson+'명 / 현재예약인원: '+checkButton.memberCheckList[k].memberGroup+'명 / 남은 자리수: '+checkButton.memberCheckList[k].possibleNum+"명");
                                              check++;
                                           }
                                           
                                        }
                                        if(check==0) {
-                                          $("#timezone").append("<br><textarea id='dop"+i+"' >");
-                                          $("#dop"+i).val('최대인원'+checkButton.operationTimeList[i].maxNum+'\n'+'현재예약인원0');
+                                          $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'>");
+                                          $("#dop"+i).val('최대인원: '+checkButton.operationTimeList[i].maxNum+'명 / 현재예약인원: 0명');
                                        }
                                        
                                     }

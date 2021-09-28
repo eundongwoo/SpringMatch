@@ -227,7 +227,7 @@ geocoder.addressSearch(address, function(result, status) {
         
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<span style="color:black; text-align:center; margin-left:25px;">'+name+'</span>'
+            content: '<span style="color:black; text-align:center; ">'+name+'</span>'
         });
         infowindow.open(map, marker);
 
