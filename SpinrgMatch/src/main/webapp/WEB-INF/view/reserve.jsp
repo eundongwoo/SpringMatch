@@ -1,4 +1,3 @@
-
 <%@page import="java.util.concurrent.Callable"%>
 <%-- <%@page import="calendar.model.Calendar"%> --%>
 <%@page import="java.util.Date"%>
@@ -482,6 +481,4 @@ p {
 	<script src="/js1/bootstrap.js"></script>
 	<script src="/js1/bootstrap.min.js"></script>
 </body>
-
-
 </html>
