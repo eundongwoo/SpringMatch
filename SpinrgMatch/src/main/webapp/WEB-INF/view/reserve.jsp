@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -17,42 +17,41 @@
 <title>Forty by HTML5 UP</title>
 <meta charset="utf-8" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+   content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/qcss/quick.css">
 <link rel="stylesheet" href="/css1/bootstrap.css">
-
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <STYLE>
 #wrap {
-	width: 70%;
-	overflow: hidden;
-	margin: 0 auto;
+   width: 70%;
+   overflow: hidden;
+   margin: 0 auto;
 }
 
 #wrap div:first-child {
-	width: 70%;
-	box-sizing: border-box;
-	float: left;
+   width: 70%;
+   box-sizing: border-box;
+   float: left;
 }
 
 #wrap div:last-child {
-	width: 70%;
-	box-sizing: border-box;
-	float: center;
+   width: 70%;
+   box-sizing: border-box;
+   float: center;
 }
 </STYLE>
 <script>
-	
+   
     if('${loginCheck}' == 'no') {
-		alert('로그인이 필요합니다');
-		location.href='/main';
-		
-	}
+      alert('로그인이 필요합니다');
+      location.href='/main';
+      
+   }
     if('${memberNumCheck}' == 'full') {
-    	alert('예약인원수를 확인해주세요');
-    	
+       alert('예약인원수를 확인해주세요');
+       
     }
 </script>
 <script>
@@ -81,8 +80,8 @@
 <!-- 퀵메뉴-------------------- -->
 <script type="text/javascript">
          $(document).ready(function(){
-        	 
-        	  var group=$($('#group')).val();
+            
+             var group=$($('#group')).val();
               var currentPosition = parseInt($(".quickmenu").css("top"));
               $(window).scroll(function() {
                 var position = $(window).scrollTop(); 
@@ -90,16 +89,16 @@
               });
               
               $("#plus").click(function(){
-              	    value=parseInt(++group);
-              		$('#group').val(group);              	 
+                     value=parseInt(++group);
+                    $('#group').val(group);                  
                });
               
               $("#minus").click(function(){
-            	   if(group>1)
-            		   {
-            		  		value=parseInt(--group);
-               				$('#group').val(group); 
-            		   }
+                  if(group>1)
+                     {
+                          value=parseInt(--group);
+                           $('#group').val(group); 
+                     }
              });
             });
       </script>
@@ -118,55 +117,72 @@
    </script>
 <style type="text/css">
 a {
-	color: #ffffff;
-	text-decoration: none;
+   color: #ffffff;
+   text-decoration: none;
 }
 
 .scriptCalendar {
-	text-align: center;
+   text-align: center;
 }
 
 .scriptCalendar>thead>tr>td {
-	width: 50px;
-	height: 50px;
+   width: 50px;
+   height: 50px;
 }
 
 .scriptCalendar>thead>tr:first-child>td {
-	font-weight: bold;
+   font-weight: bold;
 }
 
 .scriptCalendar>thead>tr:last-child>td {
-	background-color: #0a8212;
+   background-color: #0a8212;
 }
 
 .scriptCalendar>tbody>tr>td {
-	width: 50px;
-	height: 50px;
+   width: 50px;
+   height: 50px;
 }
 
 p {
-	style ="color: red";
+   style ="color: red";
 }
+
+#selectBtn
+{
+	width: 1000px;
+	margin: 0 auto;
+}
+#home-tab
+{
+	margin-left:300px;
+}
+
+
 </style>
 
 </head>
 
 
+
 <body class="is-preload">
 
-	<!-- Header -->
-	<header id="header" class="alt">
-		<a href="/main" class="logo"><strong>matching</strong> <span>kick
-				together</span></a>
-		<nav>
-			<a href="#menu">Menu</a>
-		</nav>
-	</header>
+	
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<a href="/main" class="logo"><strong>matching</strong>
+				<span>kick together</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+	
 
 	<!-- Menu -->
 	<nav id="menu">
 		<jsp:include page="/WEB-INF/view/nav.jsp" />
 	</nav>
+	
 	<!-- Banner -->
 	<section id="banner2" class="major">
 		<div class="inner">
@@ -191,30 +207,11 @@ p {
 
 
 	<!-- map start--------------------------------------- -->
-
-<!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+<!-- tabs -->
+<div id="selectBtn">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" aria-controls="home" aria-selected="true">풋살장</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">날 짜</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">시 간</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">인 원</button>
-  </li>
-</ul>
-
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="map" role="tabpanel" aria-labelledby="home-tab"><h3>풋살장</h3></div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><h3>날 짜</h3></div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><h3>시 간</h3></div>
-</div> -->
-<ul class="tab_info noscript">
-  <li class="on" data-wscrollspy-tab="productList">
-    <a href="/reserve/map"></a>
+    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">풋살장</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">날 짜</button>
@@ -223,359 +220,54 @@ p {
     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">시 간</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">인 원</button>
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#player" type="button" role="tab" aria-controls="contact" aria-selected="true">인 원</button>
   </li>
 </ul>
-
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="map" role="tabpanel" aria-labelledby="home-tab"><h3>풋살장</h3></div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><h3>날 짜</h3></div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"><h3>시 간</h3></div>
 </div>
 
-	<%-- <jsp:include page="/WEB-INF/view/map.jsp" flush="false"/> --%>
-	<section id="one" class="tiles">
-		<div id="map" style="width: 70%; height: 400px; margin: 0 auto;"></div>
-
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>
-
-		<script style="color: red">
-var placeArray = new Array();
-<c:forEach items="${placeList}" var="place">
-   placeArray.push({
-      placeAddr:"${place.placeAddr}",
-      placeName:"${place.placeName}"
-   });
-</c:forEach>
-/* var placeList='${placeList}'; */
-
-
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 9 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-function searchLocation(address, name) {
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch(address, function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords,    
-            clickable:true
-        });
-        
-        
-        
-        // 마커에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(marker, 'click', function() {
-           
-           var placeInfo=JSON.stringify({
-             placeName:name            
-
-          });
-           
-           $.ajax({
-            url:"/reserve/map",
-            type:"POST",
-            data:placeInfo,
-            contentType:"application/json;charset=utf-8",
-            
-            success:function(reserveInfo){
-               
-             
-               $("#place").val(reserveInfo.placeName);
-               $("#timezone").html("");      /*추가  */
-               $("#time").val("");
-            },
-            error:function(){
-               
-               
-               alert('풋살장 정보보내기 실패');
-            }
-         });
-           
- 
-        });
-        
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<span style="color:black; text-align:center; margin-left:25px;">'+name+'</span>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});  
-}
-
-for(var j=0; j<placeArray.length; j++) {
-   searchLocation(placeArray[j].placeAddr,placeArray[j].placeName);
-}
-
-
-</script>
-	</section>
-	<br>
-	<br>
-	<br>
-
-
-
-	<!--map end -------------------------------- -->
-
-
-
-	<%-- <jsp:include page="/WEB-INF/view/calendar.jsp" flush="false"/> --%>
-	<%-- ${reserveInfo.placeName} --%>
-	<!-- calendar start--------------------------------- -->
-
-	<script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
-            buildCalendar();
-        });
-
-        var today = new Date(); // @param 전역 변수, 오늘 날짜 / 내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
-        var date = new Date();  // @param 전역 변수, today의 Date를 세어주는 역할
-
-        /**
-         * @brief   이전달 버튼 클릭
-         */
-        function prevCalendar() {
-            this.today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-            buildCalendar();    // @param 전월 캘린더 출력 요청
-        }
-
-        /**
-         * @brief   다음달 버튼 클릭
-         */
-        function nextCalendar() {
-            this.today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-            buildCalendar();    // @param 명월 캘린더 출력 요청
-        }
-
-        /**
-         * @brief   캘린더 오픈
-         * @details 날짜 값을 받아 캘린더 폼을 생성하고, 날짜값을 채워넣는다.
-         */
-        function buildCalendar() {
-
-            let doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-            let lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-
-            let tbCalendar = document.querySelector(".scriptCalendar > tbody");
-
-
-            document.getElementById("calYear").innerText = today.getFullYear();                                  // @param YYYY월
-            document.getElementById("calMonth").innerText = autoLeftPad((today.getMonth() + 1), 2);   // @param MM월
-
-
-            // @details 이전 캘린더의 출력결과가 남아있다면, 이전 캘린더를 삭제한다.
-            while (tbCalendar.rows.length > 0) {
-                tbCalendar.deleteRow(tbCalendar.rows.length - 1);
-            }
-
-
-
-            // @param 첫번째 개행
-            let row = tbCalendar.insertRow();
-
-
-
-            // @param 날짜가 표기될 열의 증가값
-            let dom = 1;
-
-            // @details 시작일의 요일값( doMonth.getDay() ) + 해당월의 전체일( lastDate.getDate())을  더해준 값에서
-            //               7로 나눈값을 올림( Math.ceil() )하고 다시 시작일의 요일값( doMonth.getDay() )을 빼준다.
-            let daysLength = (Math.ceil((doMonth.getDay() + lastDate.getDate()) / 7) * 7) - doMonth.getDay();
-
-            // @param 달력 출력
-
-            // @details 시작값은 1일을 직접 지정하고 요일값( doMonth.getDay() )를 빼서 마이너스( - )로 for문을 시작한다.
-            for (let day = 1 - doMonth.getDay(); daysLength >= day; day++) {
-            
-                let column = row.insertCell();
-
-                // @param 평일( 전월일과 익월일의 데이터 제외 )
-                if (Math.sign(day) == 1 && lastDate.getDate() >= day) {
-
-
-
-                    // @param 평일 날짜 데이터 삽입
-
-                    column.innerText = autoLeftPad(day, 2);
-               
-
-
-                    // @param 일요일인 경우
-                    if (dom % 7 == 1) {
-                        column.style.color = "#FF4D4D";
-                    }
-                    
-
-                    // @param 토요일인 경우
-                    if (dom % 7 == 0) {
-                        column.style.color = "#4D4DFF";
-                        row = tbCalendar.insertRow();   // @param 토요일이 지나면 다시 가로 행을 한줄 추가한다.
-                    }
-
-                }
-
-                // @param 평일 전월일과 익월일의 데이터 날짜변경
-                else {
-                    let exceptDay = new Date(doMonth.getFullYear(), doMonth.getMonth(), day);
-                    column.innerText = autoLeftPad(exceptDay.getDate(), 2);
-                    column.style.color = "#A9A9A9";
-                }
-
-                // @brief   전월, 명월 음영처리
-                // @details 현재년과 선택 년도가 같은경우
-                if (today.getFullYear() == date.getFullYear()) {
-
-                    // @details 현재월과 선택월이 같은경우
-                    if (today.getMonth() == date.getMonth()) {
-
-                        // @details 현재일보다 이전인 경우이면서 현재월에 포함되는 일인경우
-                        if (date.getDate() > day && Math.sign(day) == 1) {
-                            column.style.backgroundColor = "#555555";
-                        }
-
-                        // @details 현재일보다 이후이면서 현재월에 포함되는 일인경우
-                        else if (date.getDate() < day && lastDate.getDate() >= day) {
-                            column.style.backgroundColor = "#A9A9A9";
-                            column.style.cursor = "pointer";
-                            column.onclick = function () { calendarChoiceDay(this); }
-                        }
-
-                        // @details 현재일인 경우
-                        else if (date.getDate() == day) {
-                            column.style.backgroundColor = "#A9A9A9";
-                            column.style.cursor = "pointer";
-                            column.onclick = function () { calendarChoiceDay(this); }
-                        }
-
-                        // @details 현재월보다 이전인경우
-                    } else if (today.getMonth() < date.getMonth()) {
-                        if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                            column.style.backgroundColor = "#A9A9A9";
-                        }
-                    }
-
-                    // @details 현재월보다 이후인경우
-                    else {
-                        if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                            column.style.backgroundColor = "#A9A9A9";
-                            column.style.cursor = "pointer";
-                            column.onclick = function () { calendarChoiceDay(this); }
-                        }
-                    }
-                }
-
-                // @details 선택한년도가 현재년도보다 작은경우
-                else if (today.getFullYear() < date.getFullYear()) {
-                    if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                        column.style.backgroundColor = "#E5E5E5";
-                    }
-                }
-
-                // @details 선택한년도가 현재년도보다 큰경우
-                else {
-                    if (Math.sign(day) == 1 && day <= lastDate.getDate()) {
-                        column.style.backgroundColor = "#FFFFFF";
-                        column.style.cursor = "pointer";
-                        column.onclick = function () { calendarChoiceDay(this); }
-                    }
-                }
-
-
-
-                dom++;
-
-            }
-        }
-
-        /**
-         * @brief   날짜 선택
-         * @details 사용자가 선택한 날짜에 체크표시를 남긴다.
-         */
-        function calendarChoiceDay(column) {
-
-            // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
-            if (document.getElementsByClassName("choiceDay")[0]) {
-                document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#A9A9A9";
-                document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
-            }
-
-            // @param 선택일 체크 표시
-            column.style.backgroundColor = "#FF9999";
-         
-         
-
-            // @param 선택일 클래스명 변경
-            column.classList.add("choiceDay");
-            
-            //클릭하면  ajax 방식으로 날짜 보냄
-            var month=today.getMonth()+1;
-            var calendarfulldate=today.getFullYear()+"년"+month+"월"+column.innerText+"일";
-            var calendarDate=JSON.stringify({
-               calendarYear:today.getFullYear(),            
-               calendarMonth:month,
-            calendarDay:column.innerText,
-            calendarFullDate:calendarfulldate
-            
-         });
-            $.ajax({
-            url:"/reserve/calendar",
-            type:"POST",
-            data:calendarDate,
-            contentType:"application/json;charset=utf-8",
-            
-            success:function(reserveInfo){
-              
-               $("#date").val(reserveInfo.date);
-               $("#timezone").html("");    /*추가  */
-               $("#time").val("");
-            },
-            error:function(){
-               alert('달력값 보내기 실패');
-            }
-         }); 
-        }
-
-        /**
-         * @brief   숫자 두자릿수( 00 ) 변경
-         * @details 자릿수가 한지라인 ( 1, 2, 3등 )의 값을 10, 11, 12등과 같은 두자리수 형식으로 맞추기위해 0을 붙인다.
-         * @param   num     앞에 0을 붙일 숫자 값
-         * @param   digit   글자의 자릿수를 지정 ( 2자릿수인 경우 00, 3자릿수인 경우 000 … )
-         */
-        function autoLeftPad(num, digit) {
-            if (String(num).length < digit) {
-                num = new Array(digit - String(num).length + 1).join("0") + num;
-            }
-            return num;
-
-        }
-
-    </script>
+	<div class="tab-content" id="myTabContent">
+  	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  		<jsp:include page="/WEB-INF/view/map.jsp" />	
+	</div>
+	<!-- 풋살장 끝 -->
+	<!-- 달력 시작 -->
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  	<jsp:include page="/WEB-INF/view/calendar.jsp" />
+    </div>
+  	<!-- 달력 끝 -->
+  	
+  	<!-- 시간조회 시작 -->
+  
+  			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  				
+  					<table><br><br><br>
+  						<tr>
+							<td><input id="timelook" type="button" value="시간 조회">
+							<div id="timezone"style="text-align: center; width: 950px; margin: 0 auto"></div>
+							<div id="memberInfo" style="text-align: center; width: 950px; margin: 0 auto"></div>
+							</td>						
+						</tr>
+					</table>
+						
+			</div>
+  
+  
+ 		<form action="/reserve/reserveSubmit" method="post">
+  			<div class="tab-pane fade" id="player" role="tabpanel" aria-labelledby="contact-tab">
+ 					<table>
+  					<tr>
+					<td>인원:</td><td><input type="button" value="+" id="plus"></td><td><input
+						id="group" name="memberGroupString" type="text" value="1">
+					</td><td><input type="button"
+						value="-" id="minus"></td>
+					</tr>	
+					</table>
+			</div>
+		</div>
 </head>
 
 <body>
-	<div id="wrap" style="text-align:center">
+	<!-- <div id="wrap" style="text-align:center">
 		<table class="scriptCalendar">
 			<thead>
 				<tr>
@@ -596,13 +288,12 @@ for(var j=0; j<placeArray.length; j++) {
 			</thead>
 			<tbody></tbody>
 		</table>
-
-	</div>
+	</div> -->
 
 	<!-- calendar end------------------------------------------- -->	
 	
 	<!-- input3개-------------------------------- -->
-	<form action="/reserve/reserveSubmit" method="post">
+	<!-- <form action="/reserve/reserveSubmit" method="post"> -->
 		<div class="quickmenu">
 
 			<table>
@@ -612,7 +303,7 @@ for(var j=0; j<placeArray.length; j++) {
 				</tr>
 				<tr>
 					<td><c:if test="${empty param.year}">
-    		날짜:<input type="text" name="date" id="date" value=""
+    					날짜:<input type="text" name="date" id="date" value=""
 								readonly="readonly">
 						</c:if> <c:if test="${!empty param.year }">
 
@@ -632,16 +323,13 @@ for(var j=0; j<placeArray.length; j++) {
 						name="placeIdString" id="placeIdHidden">
 					</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>인원:<input type="button" value="+" id="plus"><input
 						id="group" name="memberGroupString" type="text" value="1"><input type="button"
 						value="-" id="minus">
 					</td>
-				</tr>
-				<tr>
-					<td><input id="timelook" type="button" value="시간 조회">
-						<!--시간조회   --></td>
-				</tr>
+				</tr> -->
+				
 				<!-- <div id="timezone"></div>	 -->
 				<tr>
 					<td>
@@ -764,6 +452,7 @@ for(var j=0; j<placeArray.length; j++) {
 	<div id="hidden_div" style="text-align: center"></div>
 
 
+	
 	<br>
 	<br>
 	<!-- Scripts -->
@@ -774,6 +463,14 @@ for(var j=0; j<placeArray.length; j++) {
 	<script src="/js/breakpoints.min.js"></script>
 	<script src="/js/util.js"></script>
 	<script src="/js/main.js"></script>
+	
+	<script src="/js1/bootstrap.bundle.js"></script>
+	<script src="/js1/bootstrap.bundle.min.js"></script>
+	<script src="/js1/bootstrap.esm.js"></script>
+	<script src="/js1/bootstrap.esm.min.js"></script>
+	<script src="/js1/bootstrap.js"></script>
+	<script src="/js1/bootstrap.min.js"></script>
+	
 </body>
 
 

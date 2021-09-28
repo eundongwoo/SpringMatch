@@ -222,7 +222,7 @@ public class ReservceController {
 		if(authUser!=null) {
 			System.out.println("계속 진행합니다.");
 		} else {
-			System.out.println("로그인이 필요합니다");
+			System.out.println("로그인이 필요합니다.");
 			return "main";
 		}
 		
