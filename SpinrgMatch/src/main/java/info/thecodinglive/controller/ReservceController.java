@@ -167,6 +167,7 @@ public class ReservceController {
 		checkButton.setCheckRedList(checkRedList);
 		checkButton.setOperationTimeList(operationTimeList);
 		checkButton.setMemberCheckList(dopMemberList);
+		System.out.println("후operationTimeList===>"+operationTimeList.toString());
 		System.out.println(dopMemberList.toString());
 		System.out.println("test~~dopMeberList~~~~~~~~~~~~");
 		

@@ -400,7 +400,10 @@ p {
                                           $("#dop"+i).val('최대인원: '+checkButton.operationTimeList[i].maxNum+'명 / 현재예약인원: 0명 / 이용가능한 자리수: '+checkButton.operationTimeList[i].maxNum+"명");
                                        }
                                        
-                                    }
+                                    } else{
+                                    	$("#timezone").append(abcd1 + "<td><input type='text' id='dop"+i+"' class='go' readonly='readonly' style='width:1000px;'></input></td></tr>");
+                                        $("#dop"+i).val('최대인원: '+checkButton.operationTimeList[i].maxNum+'명 / 현재예약인원: 0명 / 이용가능한 자리수: '+checkButton.operationTimeList[i].maxNum+"명");
+                                    }/* 9.29임시추가 */
                                      if((!checkButton.checkRedList[i].checkNum||(!checkButton.checkRedList[i].checkDate&&!checkButton.checkRedList[i].checkTime))) {
                                        $("#operationTime"+i).css({
                                           background:'red',
