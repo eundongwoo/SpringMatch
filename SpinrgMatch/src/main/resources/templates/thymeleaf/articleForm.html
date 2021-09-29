@@ -147,8 +147,8 @@ th
 			</tr>
 			<tr>
 				<th style="padding: 13px 0 0 15px">내용</th>
-				<td><textarea id="content" maxlength="100" rows="4"
-						style="height: 90px" class="col-md-1 form-control input-sm"
+				<td><textarea id="content" maxlength="500" rows="4"
+						style="height: 400px;resize: none;" class="col-md-1 form-control input-sm"
 						th:text="${article?.content}">
 					</textarea> <span class="help-block"></span></td>
 			</tr>
@@ -159,8 +159,10 @@ th
 		<div class="pull-right" style="float:right;">
 			<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
 			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert" style="float:right; margin-left:10px;">저장</button>
+			<span th:if="${article?.memberId == authUser?.memberId}">
 			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update" style="float:right; margin-left:10px;">수정</button>
 			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete" style="float:right; margin-left:10px;">삭제</button>
+			</span>
 			<button type="button" class="btn btn-primary" style="float:right;"><a href="/article/list" class="btn btn-default">목록</a></button>
 		</div>
 
@@ -174,7 +176,6 @@ th
 			<input type="hidden" name="comment_article" value="${article.comment_no}">
 			<!-- <input type="hidden" name="id" value="${authUser.memberId }"> -->
 			<!-- 아이디 -->
-			
 			<td width="150">
 				<div style="font-size:1.5em">
 					아이디 : <span th:text=${authUser?.memberId}></span>
@@ -183,7 +184,7 @@ th
 			<!-- 본문 작성 -->
 			<td width="550">
 				<div>
-					<textarea id="cmtContent" placeholder="댓글을 입력해주세요."></textarea>
+					<input type=text id="cmtContent" placeholder="댓글을 입력해주세요."></input>
 				</div>
 			</td>
 			<!--댓글 등록 버튼 -->
@@ -216,7 +217,7 @@ th
 					<td th:text=${comment.memberId}></td>
 					<td th:text=${comment.commentContent}></td>
 					<td th:text="${#calendars.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}"></td>
-					<td><button type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
+					<td><button th:if="${comment.memberId == authUser?.memberId}" type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
 				</tr>
 			</table>
 			<div th:if="(${commentList} == null)">댓글이 없습니다.</div>
@@ -246,7 +247,7 @@ th
 							location.reload();
 						},
 						error : function() {
-							alert(commentData), alert('댓글 저장 실패');
+							alert("로그인을 해주세요"), alert('댓글 저장 실패');
 						}
 					});
 				});
