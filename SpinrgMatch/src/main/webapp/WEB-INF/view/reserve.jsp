@@ -53,6 +53,11 @@
        alert('예약인원수를 확인해주세요');
        
     }
+    
+    if('${DoubleReserve}' == 'DoubleReserve') {
+        alert('이미 예약 정보가 있습니다.');
+        
+     }
 </script>
 <script>
       $(document).ready(function(){
@@ -397,14 +402,14 @@ p {
                                           var t = checkButton.memberCheckList[k].operationId;
                                           if(checkButton.operationTimeList[i].operationId==t) {
                                              $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'></textarea>");
-                                             $("#dop"+i).val('최대인원: '+checkButton.memberCheckList[k].maxPerson+'명 / 현재예약인원: '+checkButton.memberCheckList[k].memberGroup+'명 / 남은 자리수: '+checkButton.memberCheckList[k].possibleNum+"명");
+                                             $("#dop"+i).val('최대인원: '+checkButton.memberCheckList[k].maxPerson+'명 / 현재예약인원: '+checkButton.memberCheckList[k].memberGroup+'명 / 이용가능한 자리수: '+checkButton.memberCheckList[k].possibleNum+"명");
                                              check++;
                                           }
                                           
                                        }
                                        if(check==0) {
                                           $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'>");
-                                          $("#dop"+i).val('최대인원: '+checkButton.operationTimeList[i].maxNum+'명 / 현재예약인원: 0명');
+                                          $("#dop"+i).val('최대인원: '+checkButton.operationTimeList[i].maxNum+'명 / 현재예약인원: 0명 / 이용가능한 자리수: '+checkButton.operationTimeList[i].maxNum+"명");
                                        }
                                        
                                     }
