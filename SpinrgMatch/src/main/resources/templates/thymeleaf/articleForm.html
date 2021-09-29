@@ -36,6 +36,11 @@ th
 	background-color:#ca72ed;
 	
 }
+#commentList, th, tr, td
+{
+	text-align: center;
+}
+
 </style>
 </head>
 <body>
@@ -198,18 +203,20 @@ th
 				</div>
 			</td>
 			<!-- 본문 작성 -->
-			<td width="550">
-				<div>
-					<input type=text id="cmtContent" placeholder="댓글을 입력해주세요."></input>
+			<!-- <td width="550"> -->
+				<div style="overflow:hidden;width:1480px;">
+					<input type=text id="cmtContent" placeholder="댓글을 입력해주세요." style="width:1200px;height:80px;float:left;margin-right:19px">
+					<input type="button" class="btn btn-default" value="댓글 쓰기"
+						id="commentWrite" style="float:right">
 				</div>
-			</td>
-			<!--댓글 등록 버튼 -->
+			<!-- </td> -->
+			<!-- 댓글 등록 버튼
 			<td width="100">
 				<div class="comment-button" style="padding-left:1050px">
 					<input type="button" class="btn btn-default" value="댓글 쓰기"
 						id="commentWrite">
 				</div>
-			</td>
+			</td> -->
 			
 			<!--  ===><span th:text=${article?.title}></span> 
 			th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}"
@@ -234,7 +241,8 @@ th
 					<td th:text=${comment.memberId}></td>
 					<td th:text=${comment.commentContent}></td>
 					<td th:text="${#calendars.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}"></td>
-					<td><button th:if="${comment.memberId == authUser?.memberId}" type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
+					
+					<td style="text-align:right;"><button style="margin-right:10px;" th:if="${comment.memberId == authUser?.memberId}" type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
 				</tr>
 			</table>
 			<div th:if="(${commentList} == null)">댓글이 없습니다.</div>

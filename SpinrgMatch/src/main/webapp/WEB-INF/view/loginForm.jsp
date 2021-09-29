@@ -101,7 +101,7 @@
 					location.href='/main';
 				},
 				error:function(){
-					alert(member);
+					/* alert(member); */
 					alert('로그인 실패');
 				}
 			});
