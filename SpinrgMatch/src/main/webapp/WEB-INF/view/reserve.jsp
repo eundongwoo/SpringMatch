@@ -183,20 +183,9 @@ p {
 {
 	font-size: 1.5em;
 	resize: none;
+	width: 800px;
 }
 </style>
-<script type="text/javascript">
-	function btnActive()  {
-		  const target = document.getElementById('profile-tab');
-	  	target.disabled = false;
-	}
-	function btnActive2()  {
-		  const target = document.getElementById('timelook');
-	  	target.disabled = false;
-	}
-	
-</script>
-
 </head>
 
 
@@ -221,16 +210,16 @@ p {
       <div class="inner" >
          <header class="major" style="margin-left: 300px; margin-top: 300px;">
             <h2>주의사항</h2>
-            <h5>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h5>
-            <h5>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
-               010-4195-8016으로 전화가능합니다.</h5>
-            <h5>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h5>
+            <h3>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h3>
+            <h3>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
+               010-4195-8016으로 전화가능합니다.</h3>
+            <h3>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h3>
          </header>
          
-         <div style="margin-left: 1450px; margin-top: 100px;">
+         <div style="margin-left: 1650px; margin-top: 100px;">
 
 
-            <p style="color: orange">확인하셨습니까?</p>
+            <p style="color: orange;font-size:1.2em">확인하셨습니까?</p>
             <ul class="actions">
                <li><a href="#one" class="button next scrolly">구장 선택</a></li>
             </ul>
@@ -246,10 +235,10 @@ p {
     <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick='btnActive()'>풋살장</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" disabled='disabled' data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" onclick='btnActive2()'>날 짜</button>
+    <button class="nav-link" id="profile-tab"  data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" onclick='btnActive2()'>날 짜</button>
   </li>
    <li class="nav-item" role="presentation">
-    <button class="nav-link" id="timelook" disabled='disabled' data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
+    <button class="nav-link" id="timelook"  data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
      시간조회 </button>
   </li> 
 </ul>
@@ -273,7 +262,7 @@ p {
   					<table>
   						<tr>
 							<td>
-							<div id="timezone"style="text-align: center; width: 950px; margin: 0 auto"></div>
+							<div id="timezone"style="text-align: center; width: 1200px; margin-left: 400px"></div>
 							</td>
 						</tr>
 						<tr>
@@ -341,7 +330,7 @@ p {
       </div>
       <br> <br>
       <div id="timezone"
-         style="text-align: center; width: 950px; margin: 0 auto"></div>
+         style="text-align: center; width: 1200px; margin: 0 auto"></div>
       <div id="memberInfo" style="text-align: center; width: 950px; margin: 0 auto"></div>
    </form>
 
@@ -377,7 +366,7 @@ p {
                                     alert('선택한 날의 예약된 인원 없음');
                                  } 
                                  /* alert(checkButton.memberCheckList[0].maxPerson); */
-                                 
+                                 $("#timezone").append("<table style='border:1px solid red'>");
                                  for(var i=0; i<checkButton.operationTimeList.length; i++) {
                                     var operationIdHidden=null;
                                     var placeIdHidden=null; 
@@ -388,7 +377,8 @@ p {
                                           alert(checkButton.checkRedList[j].checkNum);
                                        } */
                                     
-                                    $("#timezone").append("<input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' >");
+                                       var abcd1 = "<tr><td><input id='operationTime"+i+"' type='button' data-operationId='' data-placeId=''></td>";
+                                    //$("#timezone").append("<tr><td><input id='operationTime"+i+"' type='button' data-operationId='' data-placeId='' ></td>");
                                     
                                     if(checkButton.memberCheckList.length!=0 ) {
                                        
@@ -398,7 +388,7 @@ p {
                                           
                                           var t = checkButton.memberCheckList[k].operationId;
                                           if(checkButton.operationTimeList[i].operationId==t) {
-                                             $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'></textarea>");
+                                             $("#timezone").append(abcd1 + "<td><input type='text' id='dop"+i+"' class='go' readonly='readonly' style='width:1000px;'></input></td></tr>");
                                              $("#dop"+i).val('최대인원: '+checkButton.memberCheckList[k].maxPerson+'명 / 현재예약인원: '+checkButton.memberCheckList[k].memberGroup+'명 / 이용가능한 자리수: '+checkButton.memberCheckList[k].possibleNum+"명");
 
                                              check++;
@@ -406,7 +396,7 @@ p {
                                           
                                        }
                                        if(check==0) {
-                                          $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'>");
+                                          $("#timezone").append(abcd1 + "<td><input type='text' id='dop"+i+"' class='go' readonly='readonly' style='width:1000px;'></input></td></tr>");
                                           $("#dop"+i).val('최대인원: '+checkButton.operationTimeList[i].maxNum+'명 / 현재예약인원: 0명 / 이용가능한 자리수: '+checkButton.operationTimeList[i].maxNum+"명");
                                        }
                                        
@@ -418,6 +408,7 @@ p {
                                        });
                                        $("#operationTime"+i).attr('disabled','disabled');
                                     } 
+                                     
                                     
                                     $("#operationTime"+i).val(time);
                                     $("#operationTime"+i).attr("data-operationId",operationIdHidden);
@@ -432,7 +423,7 @@ p {
                                        $("#placeIdHidden").val(placeIdHidden);  */
                                     });
                                  }
-                                 
+                                 $("#timezone").append("</table>");
                                  /*  $("#operationIdHidden").val(operationIdHidden);
                                  $("#placeIdHidden").val(placeIdHidden); */
                                  

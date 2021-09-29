@@ -31,6 +31,11 @@ th
 {
  border-bottom:1px solid orange;
 }
+#purple
+{
+	background-color:#ca72ed;
+	
+}
 </style>
 </head>
 <body>
@@ -102,13 +107,14 @@ th
 		
 		<section id="one">
 			<div id="wrap">
-		</div>
+		
 		<header style= "text-align: center">
 			<h1 align="center"></h1>
 		</header><br><br>
 		
 	<div th:if="!${authUser}">
 		<script>
+			alert("로그인 해주세요");
 		 	location.href='/member/loginForm';
 		</script>
 	</div>
@@ -212,13 +218,14 @@ th
 			<!-- 댓글 목록들 -->
 			<br>
 			
-			<table th:if="${commentList}" id="commentsList">
-				<tr>
+			<table th:if="${commentList}" id="commentsList" style="width:1500px">
+				<tr id="purple">
 					<td>번호</td>
 					<!-- <td>index</td> -->
 					<td>유저이름</td>
 					<td>댓글내용</td>
 					<td>댓글 단 날짜</td>
+					<td></td>
 				</tr>
 				
 				<tr th:each="comment:${commentList}">
@@ -349,7 +356,7 @@ th
 							});
 						});
 			</script>
-	
+	</div>
 		<!-- Scripts -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/jquery.scrolly.min.js"></script>
