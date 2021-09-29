@@ -60,26 +60,28 @@
 
 <c:if test="${errors.idOrPwNotMatch}">
 </c:if>
-
-<p>
-	<input id="member_id" type="text" name="id" value="${param.id}" placeholder="ID">
+<table>
+<tr>
+	<td>아이디</td>
+	<td><input id="member_id" type="text" name="id" value="${param.id}" placeholder="ID"></td>
 	<%-- <c:if test="${errors.idOrPwNotMatch }">
 	아이디와 암호가 일치하지 않습니다.
 	</c:if> --%>
-</p>
-
-<p>
-	<input id="member_password" type="password" name="password" placeholder="Password" >
+</tr>
+<tr>
+	<td>비밀번호</td>
+	<td><input id="member_password" type="password" name="password" placeholder="Password" ></td>
 	<%-- <c:if test="${errors.password}">
 	암호를 입력하세요.
 	</c:if> --%>
-</p>
-<button  type="button" class="btn btn-info" id="login">로그인</button>
-
+</tr>
 </div>
+</table>
+<br>
+<button  type="button" class="btn btn-info" id="login">로그인</button>
 </div>
 </section>
-</div>
+</div>	
 <script>
 		$('#login').click(function(){
 				var member=JSON.stringify({

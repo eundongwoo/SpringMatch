@@ -168,6 +168,7 @@ th
 		<!-- authUser없으면 댓글 작성안나오게하거나 댓글 작성 못하게 해야됨. -->
 		
 		<!-- 글 상세보기 일때만 댓글이 나오게 됨. -->
+		<br><br><br>
 		<div th:if="${article?.articleNo}">
 		
 			<input type="hidden" name="comment_article" value="${article.comment_no}">
@@ -175,8 +176,8 @@ th
 			<!-- 아이디 -->
 			
 			<td width="150">
-				<div>
-					userName : <span th:text=${authUser?.memberId}></span>
+				<div style="font-size:1.5em">
+					아이디 : <span th:text=${authUser?.memberId}></span>
 				</div>
 			</td>
 			<!-- 본문 작성 -->
@@ -187,7 +188,7 @@ th
 			</td>
 			<!--댓글 등록 버튼 -->
 			<td width="100">
-				<div class="comment-button">
+				<div class="comment-button" style="padding-left:1050px">
 					<input type="button" class="btn btn-default" value="댓글 쓰기"
 						id="commentWrite">
 				</div>

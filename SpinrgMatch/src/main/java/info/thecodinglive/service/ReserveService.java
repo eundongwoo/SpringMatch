@@ -51,6 +51,8 @@ public class ReserveService {
 		if(reserveCheck==1)
 		{
 			System.out.println("이미 예약했어...");
+			httpSession.setAttribute("DoubleReserve", "DoubleReserve");
+			return "DoubleReserve";
 			
 		}else
 		{
