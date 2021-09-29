@@ -34,6 +34,9 @@ th
 </style>
 </head>
 <body>
+
+	
+
 	<!--  ===><span th:text=${article?.title}></span> -->
 	<header id="header" class="alt">
 			<a href="/main" class="logo"><strong>matching</strong>
@@ -96,14 +99,21 @@ th
                 </ul>                                                         
                     </div>
 		</nav>
+		
 		<section id="one">
 			<div id="wrap">
+		</div>
 		<header style= "text-align: center">
 			<h1 align="center"></h1>
 		</header><br><br>
-	
+		
+	<div th:if="!${authUser}">
+		<script>
+		 	location.href='/member/loginForm';
+		</script>
+	</div>
 
-	<div class="container">
+	<div class="container" th:if="${authUser}">
 		<div class="page-header">
 			<h1>게시글 등록</h1>
 		</div>
