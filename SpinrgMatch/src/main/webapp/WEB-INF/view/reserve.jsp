@@ -151,7 +151,8 @@ p {
 {
 	width: 1000px;
 	margin: 0 auto;
-	margin-top:500px
+	margin-top:500px;
+	
 	
 }
 #home-tab
@@ -179,6 +180,17 @@ p {
 	resize: none;
 }
 </style>
+<script type="text/javascript">
+	function btnActive()  {
+		  const target = document.getElementById('profile-tab');
+	  	target.disabled = false;
+	}
+	function btnActive2()  {
+		  const target = document.getElementById('timelook');
+	  	target.disabled = false;
+	}
+	
+</script>
 
 </head>
 
@@ -226,21 +238,15 @@ p {
 <div id="selectBtn">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">풋살장</button>
+    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick='btnActive()'>풋살장</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">날 짜</button>
+    <button class="nav-link" id="profile-tab" disabled='disabled' data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" onclick='btnActive2()'>날 짜</button>
   </li>
    <li class="nav-item" role="presentation">
-    <button class="nav-link" id="timelook"data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
+    <button class="nav-link" id="timelook" disabled='disabled' data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="true">
      시간조회 </button>
   </li> 
-  <!-- <li class="nav-item" role="presentation">
-  <input id="timelook" type="button" text-align="right" value="시간 조회">
-  </li> -->
-  <!-- <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#player" type="button" role="tab" aria-controls="contact" aria-selected="true">인 원</button>
-  </li> -->
 </ul>
 </div>
 		
@@ -256,32 +262,23 @@ p {
     </div>
   	<!-- 달력 끝 -->
   	
-  	<!-- 시간,조회 시작 -->
+  	<!-- 시간 조회 시작 -->
   
   			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
   					<table>
   						<tr>
-							<td><!-- <input id="timelook" type="button" text-align="right" value="시간 조회"> -->
+							<td>
 							<div id="timezone"style="text-align: center; width: 950px; margin: 0 auto"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
 							<div id="memberInfo" style="text-align: center; width: 950px; margin: 0 auto"></div>
 							</td>						
 						</tr>
 					</table>	
 			</div>
-  
-  
- 		<!-- <form action="/reserve/reserveSubmit" method="post">
- 		<div id="wrap" style="text-align: center">
-  			<div class="tab-pane fade" id="player" role="tabpanel" aria-labelledby="contact-tab" style="text-align: center">					
-  					<tr>
-					<td>인원:</td><td><input type="button" value="+" id="plus"></td><td><input
-						id="group" name="memberGroupString" type="text" value="1">
-					</td><td><input type="button"
-						value="-" id="minus"></td>
-					</tr>	
-					</table>
-			</div>
-		</div> -->
+ 		</div>
 </head>
 <body>
 	<!-- calendar end------------------------------------------- -->	
@@ -396,7 +393,7 @@ p {
                                           
                                           var t = checkButton.memberCheckList[k].operationId;
                                           if(checkButton.operationTimeList[i].operationId==t) {
-                                             $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'></textarea>");
+                                             $("#timezone").append("<br><textarea id='dop"+i+"' class='go' rows='1' readonly='readonly'></textare	a>");
                                              $("#dop"+i).val('최대인원: '+checkButton.memberCheckList[k].maxPerson+'명 / 현재예약인원: '+checkButton.memberCheckList[k].memberGroup+'명 / 남은 자리수: '+checkButton.memberCheckList[k].possibleNum+"명");
                                              check++;
                                           }
