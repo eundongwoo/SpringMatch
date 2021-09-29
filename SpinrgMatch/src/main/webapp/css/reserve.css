@@ -1,0 +1,30 @@
+@charset "EUC-KR";
+table
+{
+	width: 100%;
+}
+
+.one
+{
+	width: 80%;
+}
+
+.two
+{
+	width: 20%;
+}
+
+/* #toggle
+{
+	display: none;
+}
+
+#hidden_div
+{
+	display: none;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 80px;
+}
+#toggle:checked ~ #hidden_div { display:block; } */

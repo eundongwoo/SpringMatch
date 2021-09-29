@@ -2,10 +2,13 @@ plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	
+	
 }
 
 group = 'info.thecodinglive'
 version = '0.0.1-SNAPSHOT'
+
 sourceCompatibility = '1.8'
 
 configurations {
@@ -19,7 +22,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 	compileOnly 'org.projectlombok:lombok'
@@ -28,6 +31,16 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group:'com.zaxxer', name:'HikariCP', version:'2.5.1' 
+	
+	
+	implementation 'org.webjars:jquery:3.1.0'
+	implementation 'org.webjars:bootstrap:3.3.1'
+	implementation 'javax.servlet:jstl' 
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+ 
 }
 
 test {

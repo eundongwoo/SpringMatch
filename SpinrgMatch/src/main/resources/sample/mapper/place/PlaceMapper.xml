@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.mapper.place.PlaceMapper">
+	<select id="getPlaceInfo" resultMap="placeRs">
+		<![CDATA[
+			SELECT place_id, 
+				place_name ,
+				place_addr ,
+				place_tel ,
+				manager from place
+			]]>
+	</select>
+	
+	<select id="getPlaceId" parameterType="map" resultType="info.thecodinglive.model.Place">
+		<![CDATA[
+			SELECT place_id as "placeId"
+				FROM place 
+				WHERE place_name=#{place}
+			]]>
+	</select>
+	
+	<insert id="addPlace">
+		<![CDATA[
+			insert into place(place_id, place_name, place_addr, place_tel, manager, place_cost,max_person)
+			values(place_num.nextVal, #{placeName}, #{placeAddr}, #{placeTel}, #{manager}, #{placeCost},#{maxPerson})
+			]]>
+		</insert>
+	
+	<select id="getPlaceName" parameterType="info.thecodinglive.model.Search" resultType="info.thecodinglive.model.Place">
+		<![CDATA[
+			SELECT place_name as "placeName"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+	</select>
+	
+	<select id="getMaxPersonPlace" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			SELECT max_person as "maxPerson"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+		</select>
+	
+	
+	
+    <resultMap type="info.thecodinglive.model.Place" id="placeRs">
+		<result property="placeId" column="place_id"/>
+		<result property="placeName" column="place_name"/>
+		<result property="placeAddr" column="place_addr"/>
+		<result property="placeTel" column="place_tel"/>
+		<result property="manager" column="manager"/>
+	</resultMap>  
+
+
+
+</mapper>

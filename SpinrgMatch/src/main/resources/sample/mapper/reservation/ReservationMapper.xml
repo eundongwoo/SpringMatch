@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.mapper.reservation.ReservationMapper">
+	<insert id="addReservation"  >
+		<![CDATA[
+			insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date,member_group) 
+			values(reserve_num.NEXTVAL, #{memberId}, #{placeId}, #{operationId}, #{date},#{memberGroup})
+			]]>
+		</insert>
+		
+		<select id="reserveCount" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			select count(*) from reservation where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{date} 
+			and OPERATION_ID=#{operationId}
+			]]>
+		</select>
+		
+		<update id="stateUpdate" >
+			<![CDATA[
+			update reservation 
+			set state = '예약확정'
+			where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{date} 
+			and OPERATION_ID=#{operationId}
+			]]>
+		</update>
+		
+		<select id="searchById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.ReservationDTO">
+		<![CDATA[
+			select place_id as "placeId",
+			operation_id as "operationId",
+			reserve_date as "reserveDate",
+			state as "state",
+			reg_time as "regTime"
+			from reservation
+			where member_id=#{memberId}
+			]]>
+		</select>
+		
+		<select id="searchJoinById" parameterType="info.thecodinglive.model.Member" resultType="info.thecodinglive.model.Search">
+		<![CDATA[
+			select  
+			reserve_num as "reserveNum",
+			place_name as "placeName",
+			 reserve_date as "reserveDate",
+			  reg_time as "regDate",
+			   state as "state",
+			   operation_id as "operationId"
+			     from
+			      reservation r,
+			       place p 
+			       where r.place_id=p.place_id and member_id=#{memberId} order by  REG_TIME desc
+			]]>
+		</select>
+		
+		
+		<delete id="cancelReservation" >
+			<![CDATA[
+			delete from reservation 
+			where reserve_num=#{reserveNum}
+			
+			
+			]]>
+		
+		</delete> 
+		
+		
+		
+		<update id="stateUpdateByReserveNum" >
+			<![CDATA[
+			update reservation 
+			set state = '매칭실패'
+			where reserve_num=#{reserveNum} and state != '예약확정'
+			
+			]]>
+		</update>
+		
+		<select id="reserveCheck" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			select count(*) from reservation where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{date} 
+			and OPERATION_ID=#{operationId} and member_id=#{memberId}
+			]]>
+		</select>
+		
+		
+		<select id="searchByDop" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			select count(*) from reservation where PLACE_ID=#{placeId} 
+			and RESERVE_DATE=#{reserveDate} 
+			and OPERATION_ID=#{operationId}
+			]]>
+		</select>
+		
+		<!-- 	풋살장의 가격 들고오기 -->
+		<select id="getCost" parameterType="info.thecodinglive.model.PlaceAndCalendar" resultType="Integer">
+		<![CDATA[
+			select PLACE_COST from place where PLACE_NAME=#{placeName}
+			]]>
+		</select>
+		
+		<select id="getMemberGroup" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="info.thecodinglive.model.DateOperationPlace">
+		<![CDATA[
+			select operation_id as "operationId",
+			sum(member_group) as "memberGroup"
+			from reservation 
+			where place_id=#{placeId} and reserve_date=#{reserveDate} and (state='예약대기' or state='예약확정')
+			group by operation_id order by operation_id asc
+			]]>
+		</select>
+		
+		<select id="getMaxPerson" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			SELECT max_person as "maxPerson"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+		</select>
+		
+		<select id="getMaxPersonOperation" parameterType="info.thecodinglive.model.OperationTime" resultType="Integer">
+		<![CDATA[
+			SELECT max_person as "maxPerson"
+				FROM place 
+				WHERE place_id=#{placeId}
+			]]>
+		</select>
+		
+		<select id="getMemberSum" parameterType="info.thecodinglive.model.ReserveDTO" resultType="Integer">
+		<![CDATA[
+			select NVL(SUM(MEMBER_GROUP),0)
+			from RESERVATION
+			where PLACE_ID=#{placeId} and OPERATION_ID=#{operationId} and RESERVE_DATE=#{date}
+			]]>
+		</select>
+		
+		<select id="getMemberSumDOP" parameterType="info.thecodinglive.model.DateOperationPlace" resultType="Integer">
+		<![CDATA[
+			select NVL(SUM(MEMBER_GROUP),0)
+			from RESERVATION
+			where PLACE_ID=#{placeId} and OPERATION_ID=#{operationId} and RESERVE_DATE=#{reserveDate}
+			]]>
+		</select>
+		
+		<!-- resultType="Integer" -->
+	<!-- 
+	insert into reservation(reserve_num, member_id, place_id, operation_id, reserve_date)
+			values(reserve_num.NEXTVAL, #{memberId}, #{placeId}, #{operationId}, #{date}) -->
+<!-- parameterType="info.thecodinglive.model.ReserveDTO" -->
+
+
+
+</mapper>

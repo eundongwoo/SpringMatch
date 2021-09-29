@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <link rel="stylesheet" th:href="@{/css/main.css}">
+<!--  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" /> -->
+<style>
+#wrap
+{
+	width: 70%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#wrap div:first-child {
+	width: 70%;
+	box-sizing:border-box;
+	float: left;
+}
+#wrap div:last-child {
+	width: 70%;
+	
+	box-sizing:border-box;
+	float: center;
+} 
+th
+{
+ border-bottom:1px solid orange;
+}
+#purple
+{
+	background-color:#ca72ed;
+	
+}
+</style>
+</head>
+<body>
+
+	
+
+	<!--  ===><span th:text=${article?.title}></span> -->
+	<header id="header" class="alt">
+			<a href="/main" class="logo"><strong>matching</strong>
+				<span>kick together</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+	</header>
+	
+	<nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="!${authUser}">
+                <ul class="links">
+                  
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    	</li>               
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/article/list">자유게시판</a>
+                    	</li>
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약페이지</a>
+                    	</li>
+                 </ul>
+                 <ul class="actions stacked">
+						<li><a href="/member/joinForm" class="button primary fit">회원가입</a></li>
+						<li><a href="/member/loginForm" class="button fit">로그인</a></li>
+				 </ul>
+            </div>  
+
+
+                   
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" th:if="${authUser}">       
+                    
+                 <ul class="links">
+                    
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/main">HOME</a>
+                    	</li>
+                    	 <li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/reserveHome">예약페이지</a>
+                    	</li> 
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/reserve/search">예약조회</a>
+                    	</li>                
+                    	<li class="nav-item">
+                        	<a class="nav-link active" aria-current="page" href="/article/list">자유게시판</a>
+                    	</li>                 
+                                    
+                    	 <span th:if="${#strings.equals(authUser.author,'1')}">
+                    		<li class="nav-item">
+                        		<a class="nav-link active" aria-current="page" href="/admin/addplaceForm">풋살장 등록</a>
+                    		</li>
+                    	</span>  
+                    	 <ul class="actions stacked">
+								<li>
+								<a href="/member/logout" class="button primary fit">로그아웃</a>
+								</li>
+								 
+						 </ul>         
+                </ul>                                                         
+                    </div>
+		</nav>
+		
+		<section id="one">
+			<div id="wrap">
+		
+		<header style= "text-align: center">
+			<h1 align="center"></h1>
+		</header><br><br>
+		
+	<div th:if="!${authUser}">
+		<script>
+			alert("로그인 해주세요");
+		 	location.href='/member/loginForm';
+		</script>
+	</div>
+
+	<div class="container" th:if="${authUser}">
+		<div class="page-header">
+			<h1>게시글 등록</h1>
+		</div>
+		<br /> 
+		<input id="articleNum" type="hidden" th:value="${article?.articleNo}" />
+		<input id="article_regdate" type="hidden"
+			th:value="${article?.regdate}" />
+		<input id="writer" th:if="${authUser?.memberId}" type="hidden"  th:value="${authUser?.memberId}" />
+		
+		<table class="table">
+			<tr>
+				<th style="padding: 13px 0 0 15px">글제목</th>
+				<td><input id="title" type="text"
+					class="col-md-1 form-control input-sm" th:value="${article?.title}" />
+				</td>
+			</tr>
+			<tr>
+				<th style="padding: 13px 0 0 15px">생성날짜</th>
+				<td>
+					<div class="pull-left">
+						<input type="text" readonly="readonly"
+							class="col-md-1 form-control input-sm"
+							th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th style="padding: 13px 0 0 15px">작성자ID</th>
+				<td>
+					<div class="pull-left">
+						<!--글번호를 파라미터로 가지고 있으면 본래의 글 작성자 이름이 보이고, 그렇지 않다면 세션으로 받는 memberId가 보이게. -->
+						<!--처리되엇음.  -->
+						<input th:if="${article?.articleNo}" type="text"
+							readonly="readonly" class="col-md-1 form-control input-sm"
+							th:value="${article?.memberId}" /> <input
+							th:if="!${article?.articleNo}" id="userId" type="text"
+							readonly="readonly" class="col-md-1 form-control input-sm"
+							th:value="${authUser?.memberId}" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th style="padding: 13px 0 0 15px">내용</th>
+				<td><textarea id="content" maxlength="500" rows="4"
+						style="height: 400px;resize: none;" class="col-md-1 form-control input-sm"
+						th:text="${article?.content}">
+					</textarea> <span class="help-block"></span></td>
+			</tr>
+		</table>
+		<div class="pull-left">
+			
+		</div>
+		<div class="pull-right" style="float:right;">
+			<!-- 멤버아이디 세션이랑 같다면 수정삭제버튼이 보이도록 해야됨 -->
+			<button th:if="!${article?.articleNo}" type="button" class="btn btn-primary" id="insert" style="float:right; margin-left:10px;">저장</button>
+			<span th:if="${article?.memberId == authUser?.memberId}">
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-info" id="update" style="float:right; margin-left:10px;">수정</button>
+			<button th:if="${article?.articleNo}" type="button" class="btn btn-danger" id="delete" style="float:right; margin-left:10px;">삭제</button>
+			</span>
+			<button type="button" class="btn btn-primary" style="float:right;"><a href="/article/list" class="btn btn-default">목록</a></button>
+		</div>
+
+		<!-- 댓글 작성 -->
+		<!-- authUser없으면 댓글 작성안나오게하거나 댓글 작성 못하게 해야됨. -->
+		
+		<!-- 글 상세보기 일때만 댓글이 나오게 됨. -->
+		<br><br><br>
+		<div th:if="${article?.articleNo}">
+		
+			<input type="hidden" name="comment_article" value="${article.comment_no}">
+			<!-- <input type="hidden" name="id" value="${authUser.memberId }"> -->
+			<!-- 아이디 -->
+			<td width="150">
+				<div style="font-size:1.5em">
+					아이디 : <span th:text=${authUser?.memberId}></span>
+				</div>
+			</td>
+			<!-- 본문 작성 -->
+			<td width="550">
+				<div>
+					<input type=text id="cmtContent" placeholder="댓글을 입력해주세요."></input>
+				</div>
+			</td>
+			<!--댓글 등록 버튼 -->
+			<td width="100">
+				<div class="comment-button" style="padding-left:1050px">
+					<input type="button" class="btn btn-default" value="댓글 쓰기"
+						id="commentWrite">
+				</div>
+			</td>
+			
+			<!--  ===><span th:text=${article?.title}></span> 
+			th:value="${#calendars.format(article?.regdate, 'yyyy-MM-dd HH:mm')}"
+			${#calendars.format(comment.commentDate,'yyyy-MM-dd HH:mm')}
+			th:text=${comment.commentDate}-->
+			<!-- 댓글 목록들 -->
+			<br>
+			
+			<table th:if="${commentList}" id="commentsList" style="width:1500px">
+				<tr id="purple">
+					<td>번호</td>
+					<!-- <td>index</td> -->
+					<td>유저이름</td>
+					<td>댓글내용</td>
+					<td>댓글 단 날짜</td>
+					<td></td>
+				</tr>
+				
+				<tr th:each="comment:${commentList}">
+					<td th:text=${comment.commentNum}></td>
+					<!-- <td th:text=${commentStat.index}></td> -->
+					<td th:text=${comment.memberId}></td>
+					<td th:text=${comment.commentContent}></td>
+					<td th:text="${#calendars.format(comment.commentDate, 'yyyy-MM-dd HH:mm')}"></td>
+					<td><button th:if="${comment.memberId == authUser?.memberId}" type="button" class="btn btn-danger" th:value=${comment.commentNum} name="cmtDelete">삭제</button></td>
+				</tr>
+			</table>
+			<div th:if="(${commentList} == null)">댓글이 없습니다.</div>
+		</div>
+		</div>
+		<!-- <div th:replace="layout/footer::footer" /> -->
+		
+		<script>
+				$("#commentWrite").click(function() {
+					if ($("#cmtContent").val() == "") {
+						alert('댓글 내용을 입력해주세요');
+						return null;
+					};
+					var commentData = JSON.stringify({
+						memberId :  $('#writer').val(), 
+						articleNo : $('#articleNum').val(),
+						commentContent : $('#cmtContent').val()
+					});
+					$.ajax({
+						url : "http://localhost:9080/article/commentInsert",
+						type : "POST",
+						dataType : "json",
+						data : commentData,
+						contentType : "application/json",
+						success : function() {
+							alert('댓글 쓰기 성공!');
+							location.reload();
+						},
+						error : function() {
+							alert("로그인을 해주세요"), alert('댓글 저장 실패');
+						}
+					});
+				});
+			</script>
+			<!--th:inline="javascript" script안에 이걸 넣으면 thymeleaf값을 가져올 수 있게된다.  -->
+			<script>
+			$('[name=cmtDelete]').click(
+				function() {
+					var commentNum = $(this).val();
+					$.ajax({
+						url : "http://localhost:9080/article/cmtDelete/"
+								+ commentNum,
+						type : "DELETE",
+						success : function() {
+							alert('삭제 성공!');
+							location.reload();
+						},
+						error : function() {
+							alert(commentNum); 
+							alert('삭제실패');
+						}
+					});
+				});
+			</script>
+			
+			<script th:if="!${article?.articleNo}">
+				$('#insert').click(function() {
+					var jsonData = JSON.stringify({
+						title : $('#title').val(),
+						memberId : $('#userId').val(),
+						content : $('#content').val()
+					});
+					$.ajax({
+						url : "http://localhost:9080/article/insert",
+						type : "POST",
+						data : jsonData,
+						contentType : "application/json",
+						dataType : "json",
+						success : function() {
+							alert('저장 성공');
+							location.href = '/article/list';
+						},
+						error : function() {
+							alert(jsonData), alert('저장 실패');
+						}
+					});
+				});
+			</script>
+			<!-- th:if="${article?.articleNo}" -->
+			<script>
+				$('#update').click(
+						function() {
+							var update = JSON.stringify({
+								title : $('#title').val(),
+								memberId : $('#userId').val(),
+								content : $('#content').val()
+	
+							});
+							$.ajax({
+								url : "http://localhost:9080/article/update/"
+										+ $('#articleNum').val(),
+								type : "PUT",
+								data : update,
+								contentType : "application/json",
+								dataType : "json",
+								success : function() {
+									alert('수정 성공!');
+									location.href = '/article/list';
+								},
+								error : function() {
+									alert(this.url);
+								}
+							});
+						});
+	
+				$('#delete').click(
+						function() {
+							$.ajax({
+								url : "http://localhost:9080/article/delete/"
+										+ $('#articleNum').val(),
+								type : "DELETE",
+								success : function() {
+									alert('삭제 성공!');
+									location.href = '/article/list';
+								},
+								error : function() {
+									alert('삭제실패');
+								}
+							});
+						});
+			</script>
+	</div>
+		<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.scrolly.min.js"></script>
+	<script src="/js/jquery.scrollex.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+			
+			
+		
+</body>
+</html>

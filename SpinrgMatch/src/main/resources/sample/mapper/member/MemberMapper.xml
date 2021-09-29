@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.mapper.member.MemberMapper">
+
+	<insert id="addUser">
+		<![CDATA[
+			insert into member(member_id, member_name, member_password, member_tel)
+			values(#{memberId},#{memberName}, #{memberPassword}, #{memberTel})
+			]]>
+		</insert>
+
+	<select id="loginUser" parameterType="map" resultMap="loginResultMap">
+		<![CDATA[
+			SELECT * FROM member WHERE member_id=#{memberId} and member_password=#{memberPassword}
+			]]>
+	</select>
+	
+	<resultMap type="info.thecodinglive.model.Member" id="loginResultMap">
+		<result property="memberId" column="member_id"/>
+		<result property="memberName" column="member_name"/>
+		<result property="memberPassword" column="member_password"/>
+		<result property="memberTel" column="member_tel"/>
+		<result property="author" column="author"/>
+	</resultMap> 
+	
+</mapper>
+
