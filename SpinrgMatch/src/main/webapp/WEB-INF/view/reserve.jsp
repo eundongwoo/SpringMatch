@@ -66,21 +66,6 @@
              $("#time").val(value);
          });
          
-         
-         
-         
-        /*  $(function() {
-            var topNum=$("#place").offset().top;
-            $(window).scrollTop(topNum);
-         });
-         
-         $("#lookTotal").click(function() {
-            var topNum=$("#banner").offset().top;
-            $(window).scrollTop(topNum);
-         });
-            
-         
-         });      */ 
       </script>
 <!-- 퀵메뉴-------------------- -->
 <script type="text/javascript">
@@ -309,9 +294,9 @@ p {
 				<td>
 				<div id="countPerson">
 					<div>인원:</div>
-					<input type="button" value="-" id="minus" style="width:20px;">
+					<input type="button" value="-" id="minus" style="width:10px;">
 					<input id="group" name="memberGroupString" type="text" value="1" style="text-align:center; width:60px; height:50px;" readonly="readonly">
-					<input type="button" value="+" id="plus" style="width:20px;">
+					<input type="button" value="+" id="plus" style="width:1px;height:70px;">
 				</div>
 				</td>
 			</tr>
