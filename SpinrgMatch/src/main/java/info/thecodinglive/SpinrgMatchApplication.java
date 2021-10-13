@@ -8,6 +8,7 @@ public class SpinrgMatchApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpinrgMatchApplication.class, args);
+		//최종코드
 	}
 
 }
