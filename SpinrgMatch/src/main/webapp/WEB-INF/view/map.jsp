@@ -24,7 +24,7 @@
 </form> 
 
 <section id="one" class="tiles">
-		<div id="map" style="width: 70%; height: 400px; margin: 0 auto;"></div>
+		<div id="map" style="width: 65%; height: 400px; margin: 0 auto;"></div>
 
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9139ecf68b85217bc0cf45262df346ce&libraries=services"></script>

@@ -116,7 +116,7 @@
          
       </table>   
    </div>
-	<button  type="button" class="btn btn-info" id="addPlace" style="margin-left:90%;">등록</button>
+	<button  type="button" class="btn btn-info" id="addPlace" style="margin-left:85%;">등록</button>
 	<input type="hidden" name="timeRowNum" id="timeRowNum">
 	<!-- </form> -->
 	</div>

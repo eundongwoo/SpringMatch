@@ -18,6 +18,25 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1 nitial-scale=1, user-scalable=no">
 <link rel="stylesheet" href="/css/main.css">
+<style>
+#wrap
+{
+	width: 70%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#wrap div:first-child {
+	width: 70%;
+	box-sizing:border-box;
+	float: left;
+}
+#wrap div:last-child {
+	width: 70%;
+	
+	box-sizing:border-box;
+	float: center;
+} 
+</style>
 </head>
 <body class="is-preload">
 	<!-- Wrapper -->
@@ -39,9 +58,10 @@
 
 <%-- <c:set var="vals" value="<%=list%>"/> --%>
 
-<h1>${authUser.memberName}님 예약조회</h1>
+<h1>&emsp;${authUser.memberName}님 예약조회</h1>
 
 <br>
+<div id="wrap">
 <table class="table table-striped">
 <thead>
 <tr>
@@ -83,8 +103,8 @@
  </c:forEach> 
 </tbody>
 </table>
-
-<button type="button" onclick="location.href='/main'" style="margin-left:1200px">뒤로가기</button>
+</div>
+<button type="button" onclick="location.href='/main'" style="margin-left:1400px">뒤로가기</button>
 </div>
 <!-- Scripts -->
 		<script src="/js/jquery.min.js"></script>

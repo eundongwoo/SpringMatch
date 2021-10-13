@@ -193,7 +193,7 @@ p {
    <!-- Banner -->
    <section id="banner2" class="major">
       <div class="inner" >
-         <header class="major" style="margin-left: 300px; margin-top: 300px;">
+         <header class="major" style="margin-left: 200px; margin-top: 300px;">
             <h2>주의사항</h2>
             <h3>1.예약은 인터넷으로만 가능하며, 하단의 풋살장과 예약가능일자를 클릭하시면 예약신청이 가능합니다.</h3>
             <h3>2.예약취소는 예약페이지에서 취소가능하며, 환불문의 및 연기는 평일 오전9시~오후6시 사이
@@ -201,7 +201,7 @@ p {
             <h3>3.북현풋살구장과 lfc풋살파크 계좌는 대구은행 508-12-433440-9(예금주: 박천웅)</h3>
          </header>
          
-         <div style="margin-left: 1650px; margin-top: 100px;">
+         <div style="margin-left: 1450px; margin-top: 100px;">
 
 
             <p style="color: orange;font-size:1.2em">확인하셨습니까?</p>

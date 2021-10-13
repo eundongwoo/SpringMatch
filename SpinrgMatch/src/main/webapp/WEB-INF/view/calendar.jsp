@@ -9,19 +9,19 @@
   
     <STYLE>
 #wrap {
-	width: 70%;
+	width: 65%;
 	overflow: hidden;
 	margin: 0 auto;
 }
 
 #wrap div:first-child {
-	width: 70%;
+	width: 65%;
 	box-sizing: border-box;
 	float: left;
 }
 
 #wrap div:last-child {
-	width: 70%;
+	width: 65%;
 	box-sizing: border-box;
 	float: center;
 }
